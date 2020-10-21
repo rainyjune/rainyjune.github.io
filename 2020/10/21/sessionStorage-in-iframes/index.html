@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>sessionStorage in iframes | SummerTown</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Quick RecapsessionStorage is similar to localStorage, the main difference is that data in sessionStorage is cleared when the page session ends, while data in localStorage persists.  A page session las">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sessionStorage in iframes">
+<meta property="og:url" content="https://rainyjune.github.io/2020/10/21/sessionStorage-in-iframes/index.html">
+<meta property="og:site_name" content="SummerTown">
+<meta property="og:description" content="Quick RecapsessionStorage is similar to localStorage, the main difference is that data in sessionStorage is cleared when the page session ends, while data in localStorage persists.  A page session las">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-10-21T03:20:53.000Z">
+<meta property="article:modified_time" content="2020-10-21T06:29:37.548Z">
+<meta property="article:author" content="rainyjune">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="SummerTown" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">SummerTown</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rainyjune.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-sessionStorage-in-iframes" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/10/21/sessionStorage-in-iframes/" class="article-date">
+  <time datetime="2020-10-21T03:20:53.000Z" itemprop="datePublished">2020-10-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      sessionStorage in iframes
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Quick-Recap"><a href="#Quick-Recap" class="headerlink" title="Quick Recap"></a>Quick Recap</h2><p><code>sessionStorage</code> is similar to <code>localStorage</code>, the main difference is that data in <code>sessionStorage</code> is cleared when the page session ends, while data in <code>localStorage</code> persists.</p>
+<ul>
+<li>A page session lasts as long as the browser is open, and survices over page reloads and restores.</li>
+<li>Each tab/window has its own <code>sessionStorage</code>, even if they are opening the same URL.</li>
+<li>Closing a tab/window ends the session and clears data in <code>sessionStorage</code>.</li>
+<li>Data stored in <code>sessionStorage</code> is also origin seperated.</li>
+</ul>
+<h2 id="sessionStorage-in-iframes"><a href="#sessionStorage-in-iframes" class="headerlink" title="sessionStorage in iframes"></a>sessionStorage in iframes</h2><h3 id="Same-site-iframes"><a href="#Same-site-iframes" class="headerlink" title="Same site iframes"></a>Same site iframes</h3><p>If you have an iframe embedded in a webpage and they are in the same domain, is the data in <code>sessionStorage</code> shared between the iframe and its parent document?</p>
+<p>Let’s write the following code snippet to demonstrate.</p>
+<!-- Copy and Paste Me -->
+<div class="glitch-embed-wrap" style="height: 420px; width: 100%;">
+  <iframe
+    src="https://glitch.com/embed/#!/embed/dolomite-brainy-vermicelli?path=index.html&previewSize=0"
+    title="dolomite-brainy-vermicelli on Glitch"
+    allow="geolocation; microphone; camera; midi; vr; encrypted-media"
+    style="height: 100%; width: 100%; border: 0;">
+  </iframe>
+</div>
+
+<p>In the example above, <code>iframe.html</code> and <code>iframe2.html</code> are embedded in <code>index.html</code>. We set one item on each html file seperately. We are using a timer to display all items available, now these items are accessible on both side.</p>
+<p>So, we come to the conclusion that: <strong>data stored in <code>sessionStorage</code> is visible within a browser tab/window, including iframes from the same origin</strong>.</p>
+<h3 id="Cross-Site-iframes"><a href="#Cross-Site-iframes" class="headerlink" title="Cross Site iframes"></a>Cross Site iframes</h3><p>Based on knowledge we have known, data in <code>sessionStorage</code> is not shared across origins. We can make a guess data stored in <code>sessionStorage</code> is not shared between a webpage and container iframes from another domain.</p>
+<p>Let’s verify what we have guessed is correct or not.</p>
+<!-- Copy and Paste Me -->
+<div class="glitch-embed-wrap" style="height: 420px; width: 100%;">
+  <iframe
+    src="https://glitch.com/embed/#!/embed/descriptive-fluffy-nylon?path=index.html&previewSize=0"
+    title="descriptive-fluffy-nylon on Glitch"
+    allow="geolocation; microphone; camera; midi; vr; encrypted-media"
+    style="height: 100%; width: 100%; border: 0;">
+  </iframe>
+</div>
+
+<p>In the example above, we put <code>index.html</code> in the domain <code>https://descriptive-fluffy-nylon.glitch.me/</code>, the two iframes files are hosted on a different origin <code>https://dolomite-brainy-vermicelli.glitch.me/</code>.</p>
+<p>The parent webpage can only access the <code>indexhtml</code> item, which was set on the <code>index.html</code>. However, <code>iframe.html</code> and <code>iframe2.html</code> are sharing the same data because they are from the same origin.</p>
+<p>conclusion: <strong>sessionStorage is bound to the origin, however it is shared between iframes in the same tab, if these iframes come from the same origin.</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rainyjune.github.io/2020/10/21/sessionStorage-in-iframes/" data-id="ckgj1vjhj0003ewv638yd4471" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/10/20/what-is-symbol-used-for-in-JavaScript/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">what is symbol used for in JavaScript</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/10/21/sessionStorage-in-iframes/">sessionStorage in iframes</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/20/what-is-symbol-used-for-in-JavaScript/">what is symbol used for in JavaScript</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/20/embedding-an-image-using-markdown-in-Hexo/">embedding an image using markdown in Hexo</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/20/Create-your-blog-with-Hexo-on-GitHub-Pages/">Create your blog with Hexo on GitHub Pages</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 rainyjune<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

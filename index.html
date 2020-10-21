@@ -18,7 +18,7 @@
     <link rel="alternate" href="/atom.xml" title="SummerTown" type="application/atom+xml">
   
   
-    <link rel="icon" href="/favicon.png">
+    <link rel="icon" href="favicon.ico">
   
   
     <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
@@ -63,6 +63,78 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-sessionStorage-in-iframes" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/10/21/sessionStorage-in-iframes/" class="article-date">
+  <time datetime="2020-10-21T03:20:53.000Z" itemprop="datePublished">2020-10-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/21/sessionStorage-in-iframes/">sessionStorage in iframes</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Quick-Recap"><a href="#Quick-Recap" class="headerlink" title="Quick Recap"></a>Quick Recap</h2><p><code>sessionStorage</code> is similar to <code>localStorage</code>, the main difference is that data in <code>sessionStorage</code> is cleared when the page session ends, while data in <code>localStorage</code> persists.</p>
+<ul>
+<li>A page session lasts as long as the browser is open, and survices over page reloads and restores.</li>
+<li>Each tab/window has its own <code>sessionStorage</code>, even if they are opening the same URL.</li>
+<li>Closing a tab/window ends the session and clears data in <code>sessionStorage</code>.</li>
+<li>Data stored in <code>sessionStorage</code> is also origin seperated.</li>
+</ul>
+<h2 id="sessionStorage-in-iframes"><a href="#sessionStorage-in-iframes" class="headerlink" title="sessionStorage in iframes"></a>sessionStorage in iframes</h2><h3 id="Same-site-iframes"><a href="#Same-site-iframes" class="headerlink" title="Same site iframes"></a>Same site iframes</h3><p>If you have an iframe embedded in a webpage and they are in the same domain, is the data in <code>sessionStorage</code> shared between the iframe and its parent document?</p>
+<p>Let’s write the following code snippet to demonstrate.</p>
+<!-- Copy and Paste Me -->
+<div class="glitch-embed-wrap" style="height: 420px; width: 100%;">
+  <iframe
+    src="https://glitch.com/embed/#!/embed/dolomite-brainy-vermicelli?path=index.html&previewSize=0"
+    title="dolomite-brainy-vermicelli on Glitch"
+    allow="geolocation; microphone; camera; midi; vr; encrypted-media"
+    style="height: 100%; width: 100%; border: 0;">
+  </iframe>
+</div>
+
+<p>In the example above, <code>iframe.html</code> and <code>iframe2.html</code> are embedded in <code>index.html</code>. We set one item on each html file seperately. We are using a timer to display all items available, now these items are accessible on both side.</p>
+<p>So, we come to the conclusion that: <strong>data stored in <code>sessionStorage</code> is visible within a browser tab/window, including iframes from the same origin</strong>.</p>
+<h3 id="Cross-Site-iframes"><a href="#Cross-Site-iframes" class="headerlink" title="Cross Site iframes"></a>Cross Site iframes</h3><p>Based on knowledge we have known, data in <code>sessionStorage</code> is not shared across origins. We can make a guess data stored in <code>sessionStorage</code> is not shared between a webpage and container iframes from another domain.</p>
+<p>Let’s verify what we have guessed is correct or not.</p>
+<!-- Copy and Paste Me -->
+<div class="glitch-embed-wrap" style="height: 420px; width: 100%;">
+  <iframe
+    src="https://glitch.com/embed/#!/embed/descriptive-fluffy-nylon?path=index.html&previewSize=0"
+    title="descriptive-fluffy-nylon on Glitch"
+    allow="geolocation; microphone; camera; midi; vr; encrypted-media"
+    style="height: 100%; width: 100%; border: 0;">
+  </iframe>
+</div>
+
+<p>In the example above, we put <code>index.html</code> in the domain <code>https://descriptive-fluffy-nylon.glitch.me/</code>, the two iframes files are hosted on a different origin <code>https://dolomite-brainy-vermicelli.glitch.me/</code>.</p>
+<p>The parent webpage can only access the <code>indexhtml</code> item, which was set on the <code>index.html</code>. However, <code>iframe.html</code> and <code>iframe2.html</code> are sharing the same data because they are from the same origin.</p>
+<p>conclusion: <strong>sessionStorage is bound to the origin, however it is shared between iframes in the same tab, if these iframes come from the same origin.</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rainyjune.github.io/2020/10/21/sessionStorage-in-iframes/" data-id="ckgj1vjhj0003ewv638yd4471" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-what-is-symbol-used-for-in-JavaScript" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -132,7 +204,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rainyjune.github.io/2020/10/20/what-is-symbol-used-for-in-JavaScript/" data-id="ckghu55mp0002nsv6ec8x1n2p" class="article-share-link">Share</a>
+      <a data-url="https://rainyjune.github.io/2020/10/20/what-is-symbol-used-for-in-JavaScript/" data-id="ckgj1vjhh0002ewv69378g4dg" class="article-share-link">Share</a>
       
       
     </footer>
@@ -178,7 +250,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rainyjune.github.io/2020/10/20/embedding-an-image-using-markdown-in-Hexo/" data-id="ckghu55mo0001nsv658hehria" class="article-share-link">Share</a>
+      <a data-url="https://rainyjune.github.io/2020/10/20/embedding-an-image-using-markdown-in-Hexo/" data-id="ckgj1vjhf0001ewv6f6zydwh2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -236,7 +308,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rainyjune.github.io/2020/10/20/Create-your-blog-with-Hexo-on-GitHub-Pages/" data-id="ckghu55mg0000nsv6h7lp8hc6" class="article-share-link">Share</a>
+      <a data-url="https://rainyjune.github.io/2020/10/20/Create-your-blog-with-Hexo-on-GitHub-Pages/" data-id="ckgj1vjh90000ewv6b6qhexbf" class="article-share-link">Share</a>
       
       
     </footer>
@@ -275,6 +347,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/10/21/sessionStorage-in-iframes/">sessionStorage in iframes</a>
+          </li>
         
           <li>
             <a href="/2020/10/20/what-is-symbol-used-for-in-JavaScript/">what is symbol used for in JavaScript</a>
