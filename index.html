@@ -64,6 +64,53 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Disable-MySQL-server-in-MAMP-on-Windows-10" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/10/22/Disable-MySQL-server-in-MAMP-on-Windows-10/" class="article-date">
+  <time datetime="2020-10-22T06:02:31.000Z" itemprop="datePublished">2020-10-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/22/Disable-MySQL-server-in-MAMP-on-Windows-10/">Disable MySQL server in MAMP on Windows 10</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.mamp.info/">MAMP</a> is a great local server environment works on MacOS and Windows. You can set up a website and make it running with just a few clicks.</p>
+<p>There are a few software packages in the app, including Apache, Nginx, PHP and MySQL. It’s an ideal solution stack for PHP developers, however, as a front end developer, I rarely use the MySQL server shipped with it. What I want to achieve is starting Apache only when I click the <em>Start Servers</em> button.</p>
+<p><img src="/2020/10/22/Disable-MySQL-server-in-MAMP-on-Windows-10/mamp_start_servers_default.png" alt="Click the Start Server button starts both Web Server and MySQL Server"></p>
+<p>After spending some time googling, I realised there was no elegant way to disable MySQL server. </p>
+<p>So I tried to inspect the MySQL server process in Task Manager:</p>
+<p><img src="/2020/10/22/Disable-MySQL-server-in-MAMP-on-Windows-10/task_manager.png" alt="Find mysqld.exe file location with Task Manager"></p>
+<p><code>mysqld (32 bit)</code> is the name of MySQL server process. Now we’ve got where the <code>mysqld.exe</code> file is, then open File Exloper and change to the path, rename it to a different name, eg <code>mysqld_backup.exe</code>. Note you should stop servers before this step.</p>
+<p><img src="/2020/10/22/Disable-MySQL-server-in-MAMP-on-Windows-10/renaming_mysqld.png" alt="Rename mysqld.exe to another name"></p>
+<p>Now come back to MAMP app, click the <em>Start Servers</em> button again, you will find MySQL server is not running anymore.</p>
+<p><img src="/2020/10/22/Disable-MySQL-server-in-MAMP-on-Windows-10/mamp_start_servers_2.png" alt="MySQL server is not running"></p>
+<p>Enjoy!</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rainyjune.github.io/2020/10/22/Disable-MySQL-server-in-MAMP-on-Windows-10/" data-id="ckgkjpn1q00011ov641rcfi1r" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-sessionStorage-in-iframes" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/10/21/sessionStorage-in-iframes/" class="article-date">
@@ -126,7 +173,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rainyjune.github.io/2020/10/21/sessionStorage-in-iframes/" data-id="ckgj1vjhj0003ewv638yd4471" class="article-share-link">Share</a>
+      <a data-url="https://rainyjune.github.io/2020/10/21/sessionStorage-in-iframes/" data-id="ckgkjpn1u00031ov65lqt8j8n" class="article-share-link">Share</a>
       
       
     </footer>
@@ -204,7 +251,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rainyjune.github.io/2020/10/20/what-is-symbol-used-for-in-JavaScript/" data-id="ckgj1vjhh0002ewv69378g4dg" class="article-share-link">Share</a>
+      <a data-url="https://rainyjune.github.io/2020/10/20/what-is-symbol-used-for-in-JavaScript/" data-id="ckgkjpn1w00041ov687muabnw" class="article-share-link">Share</a>
       
       
     </footer>
@@ -250,7 +297,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rainyjune.github.io/2020/10/20/embedding-an-image-using-markdown-in-Hexo/" data-id="ckgj1vjhf0001ewv6f6zydwh2" class="article-share-link">Share</a>
+      <a data-url="https://rainyjune.github.io/2020/10/20/embedding-an-image-using-markdown-in-Hexo/" data-id="ckgkjpn1t00021ov61xvsddp3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -308,7 +355,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rainyjune.github.io/2020/10/20/Create-your-blog-with-Hexo-on-GitHub-Pages/" data-id="ckgj1vjh90000ewv6b6qhexbf" class="article-share-link">Share</a>
+      <a data-url="https://rainyjune.github.io/2020/10/20/Create-your-blog-with-Hexo-on-GitHub-Pages/" data-id="ckgkjpn1k00001ov66ho9dll4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -347,6 +394,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/10/22/Disable-MySQL-server-in-MAMP-on-Windows-10/">Disable MySQL server in MAMP on Windows 10</a>
+          </li>
         
           <li>
             <a href="/2020/10/21/sessionStorage-in-iframes/">sessionStorage in iframes</a>

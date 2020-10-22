@@ -5,19 +5,24 @@
   
 
   
-  <title>embedding an image using markdown in Hexo | SummerTown</title>
+  <title>Disable MySQL server in MAMP on Windows 10 | SummerTown</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="This approach should be the easist way to embed an image in a markdown file in Hexo. hexo-renderer-marked 3.1.0 introduced a new option that allows you to embed an image in markdown. InstallationChang">
+  <meta name="description" content="MAMP is a great local server environment works on MacOS and Windows. You can set up a website and make it running with just a few clicks. There are a few software packages in the app, including Apache">
 <meta property="og:type" content="article">
-<meta property="og:title" content="embedding an image using markdown in Hexo">
-<meta property="og:url" content="https://rainyjune.github.io/2020/10/20/embedding-an-image-using-markdown-in-Hexo/index.html">
+<meta property="og:title" content="Disable MySQL server in MAMP on Windows 10">
+<meta property="og:url" content="https://rainyjune.github.io/2020/10/22/Disable-MySQL-server-in-MAMP-on-Windows-10/index.html">
 <meta property="og:site_name" content="SummerTown">
-<meta property="og:description" content="This approach should be the easist way to embed an image in a markdown file in Hexo. hexo-renderer-marked 3.1.0 introduced a new option that allows you to embed an image in markdown. InstallationChang">
+<meta property="og:description" content="MAMP is a great local server environment works on MacOS and Windows. You can set up a website and make it running with just a few clicks. There are a few software packages in the app, including Apache">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-10-20T04:18:13.000Z">
-<meta property="article:modified_time" content="2020-10-20T04:24:29.884Z">
+<meta property="og:image" content="https://rainyjune.github.io/2020/10/22/Disable-MySQL-server-in-MAMP-on-Windows-10/mamp_start_servers_default.png">
+<meta property="og:image" content="https://rainyjune.github.io/2020/10/22/Disable-MySQL-server-in-MAMP-on-Windows-10/task_manager.png">
+<meta property="og:image" content="https://rainyjune.github.io/2020/10/22/Disable-MySQL-server-in-MAMP-on-Windows-10/renaming_mysqld.png">
+<meta property="og:image" content="https://rainyjune.github.io/2020/10/22/Disable-MySQL-server-in-MAMP-on-Windows-10/mamp_start_servers_2.png">
+<meta property="article:published_time" content="2020-10-22T06:02:31.000Z">
+<meta property="article:modified_time" content="2020-10-22T07:29:19.891Z">
 <meta property="article:author" content="rainyjune">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://rainyjune.github.io/2020/10/22/Disable-MySQL-server-in-MAMP-on-Windows-10/mamp_start_servers_default.png">
   
     <link rel="alternate" href="/atom.xml" title="SummerTown" type="application/atom+xml">
   
@@ -66,10 +71,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-embedding-an-image-using-markdown-in-Hexo" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Disable-MySQL-server-in-MAMP-on-Windows-10" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/10/20/embedding-an-image-using-markdown-in-Hexo/" class="article-date">
-  <time datetime="2020-10-20T04:18:13.000Z" itemprop="datePublished">2020-10-20</time>
+    <a href="/2020/10/22/Disable-MySQL-server-in-MAMP-on-Windows-10/" class="article-date">
+  <time datetime="2020-10-22T06:02:31.000Z" itemprop="datePublished">2020-10-22</time>
 </a>
     
   </div>
@@ -80,7 +85,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      embedding an image using markdown in Hexo
+      Disable MySQL server in MAMP on Windows 10
     </h1>
   
 
@@ -88,21 +93,22 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>This approach should be the easist way to embed an image in a markdown file in Hexo.</p>
-<p>hexo-renderer-marked 3.1.0 introduced a new option that allows you to embed an image in markdown.</p>
-<h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><p>Change to your Hexo blog directory, and run the following command in your terminal:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-renderer-marked --save</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="Options"><a href="#Options" class="headerlink" title="Options"></a>Options</h2><p>To enable this plugin, edit _config.yml:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">post_asset_folder: true</span><br><span class="line">marked:</span><br><span class="line">  prependRoot: true</span><br><span class="line">  postAsset: true</span><br></pre></td></tr></table></figure>
-
-<p>Once enabled, an asset image will be automatically resolved to its corresponding post’s path. For example, “image.jpg” is located at “/2020/01/02/foo/image.jpg”, meaning it is an asset image of “/2020/01/02/foo/“ post, <code>![](image.jpg)</code> will be rendered as <code>&lt;img src=&quot;/2020/01/02/foo/image.jpg&quot;&gt;</code>.</p>
+        <p><a target="_blank" rel="noopener" href="https://www.mamp.info/">MAMP</a> is a great local server environment works on MacOS and Windows. You can set up a website and make it running with just a few clicks.</p>
+<p>There are a few software packages in the app, including Apache, Nginx, PHP and MySQL. It’s an ideal solution stack for PHP developers, however, as a front end developer, I rarely use the MySQL server shipped with it. What I want to achieve is starting Apache only when I click the <em>Start Servers</em> button.</p>
+<p><img src="/2020/10/22/Disable-MySQL-server-in-MAMP-on-Windows-10/mamp_start_servers_default.png" alt="Click the Start Server button starts both Web Server and MySQL Server"></p>
+<p>After spending some time googling, I realised there was no elegant way to disable MySQL server. </p>
+<p>So I tried to inspect the MySQL server process in Task Manager:</p>
+<p><img src="/2020/10/22/Disable-MySQL-server-in-MAMP-on-Windows-10/task_manager.png" alt="Find mysqld.exe file location with Task Manager"></p>
+<p><code>mysqld (32 bit)</code> is the name of MySQL server process. Now we’ve got where the <code>mysqld.exe</code> file is, then open File Exloper and change to the path, rename it to a different name, eg <code>mysqld_backup.exe</code>. Note you should stop servers before this step.</p>
+<p><img src="/2020/10/22/Disable-MySQL-server-in-MAMP-on-Windows-10/renaming_mysqld.png" alt="Rename mysqld.exe to another name"></p>
+<p>Now come back to MAMP app, click the <em>Start Servers</em> button again, you will find MySQL server is not running anymore.</p>
+<p><img src="/2020/10/22/Disable-MySQL-server-in-MAMP-on-Windows-10/mamp_start_servers_2.png" alt="MySQL server is not running"></p>
+<p>Enjoy!</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rainyjune.github.io/2020/10/20/embedding-an-image-using-markdown-in-Hexo/" data-id="ckgkjpn1t00021ov61xvsddp3" class="article-share-link">Share</a>
+      <a data-url="https://rainyjune.github.io/2020/10/22/Disable-MySQL-server-in-MAMP-on-Windows-10/" data-id="ckgkjpn1q00011ov641rcfi1r" class="article-share-link">Share</a>
       
       
     </footer>
@@ -111,19 +117,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2020/10/20/what-is-symbol-used-for-in-JavaScript/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          what is symbol used for in JavaScript
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/10/20/Create-your-blog-with-Hexo-on-GitHub-Pages/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/10/21/sessionStorage-in-iframes/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Create your blog with Hexo on GitHub Pages</div>
+      <div class="article-nav-title">sessionStorage in iframes</div>
     </a>
   
 </nav>
