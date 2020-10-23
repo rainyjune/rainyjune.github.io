@@ -79,6 +79,82 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-how-to-install-apache-web-server-on-windows" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/10/23/how-to-install-apache-web-server-on-windows/" class="article-date">
+  <time datetime="2020-10-23T04:01:29.000Z" itemprop="datePublished">2020-10-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/23/how-to-install-apache-web-server-on-windows/">How to install Apache web server on Windows</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Step-1-Download-the-package-file"><a href="#Step-1-Download-the-package-file" class="headerlink" title="Step 1:  Download the package file"></a>Step 1:  Download the package file</h2><p>We’re going to use the unofficial Windows binary from <a target="_blank" rel="noopener" href="http://www.apachelounge.com/">Apache Lounge</a>. This version has performance and stability improvements over the official Apache distribution, it’s provided as a manually installable ZIP file from <a target="_blank" rel="noopener" href="http://www.apachelounge.com/download/">www.apachelounge.com/download/</a>.</p>
+<h2 id="Step-2-Extract-the-files"><a href="#Step-2-Extract-the-files" class="headerlink" title="Step 2: Extract the files"></a>Step 2: Extract the files</h2><p>We’ll install Apache in <code>C:/Apache24</code>, so extract the ZIP file to the root of the <code>C:/</code> drive. Apache can be installed anywhere on your system, but you’ll need to change <code>SRVROOT</code> configuration to point to your unzipped location — suh as <code>E:/Apache24</code>.</p>
+<h2 id="Step-3-Configure-Apache"><a href="#Step-3-Configure-Apache" class="headerlink" title="Step 3: Configure Apache"></a>Step 3: Configure Apache</h2><p>Apache is configured with the text file <code>conf/httpd.conf</code> contained in the Apache folder. Open it with your favorite text editor.</p>
+<p>Note that all file path settings use a forward slash (<code>/</code>) rather than the Windows backslash. If you installed Apache anywhere other than <code>C:/Apache24</code>, now is a good time to search and replace all references to <code>C:/Apache24</code>.</p>
+<p>There are several lines you should change for your production environment:</p>
+<ul>
+<li><p>Line 60, listen to all requests on port 80:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Listen *:80</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Line 162, enable mod-rewrite by removing the # (optional, but useful):</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LoadModule rewrite_module modules&#x2F;mod_rewrite.so</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Line 227, specify the server domain name:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ServerName localhost:80</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Line 224, allow .htaccess overrides:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AllowOverride All</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="Step-4-Change-the-Document-Root-optional"><a href="#Step-4-Change-the-Document-Root-optional" class="headerlink" title="Step 4: Change the Document Root (optional)"></a>Step 4: Change the Document Root (optional)</h2><p>By default, Apache returns files found in its <code>C:/Apache24/htdocs</code> folder. It’s good to use a folder on an another drive or partition to make backups and re-installation easier. For the purposes of this example, we’ll create a folder called <code>D:WebPages</code> and change <code>httpd.conf</code> accordingly:</p>
+<p>Line 251, set the root:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DocumentRoot &quot;D:&#x2F;WebPages&quot;</span><br></pre></td></tr></table></figure>
+<p>Line 252:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Directory &quot;D:&#x2F;WebPages&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Step-5-Test-your-installation"><a href="#Step-5-Test-your-installation" class="headerlink" title="Step 5: Test your installation"></a>Step 5: Test your installation</h2><p>Your Apache configuration can now be tested. Open a command box (Start &gt; Run &gt; cmd) and enter:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># navigate to Apache bin directory</span><br><span class="line">cd &#x2F;Apache24&#x2F;bin</span><br><span class="line"># Test httpd.conf validity</span><br><span class="line">httpd -t</span><br></pre></td></tr></table></figure>
+
+<p>It should say “Syntax OK”. If not, correct any httpd.conf configuration errors and retest until none appear.</p>
+<h2 id="Step-6-install-Apache-as-a-Windows-service"><a href="#Step-6-install-Apache-as-a-Windows-service" class="headerlink" title="Step 6: install Apache as a Windows service"></a>Step 6: install Apache as a Windows service</h2><p>The easiest way to start Apache is to add it as a Windows service. Open a new command prompt as administrator, and enter the following:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd &#x2F;Apache24&#x2F;bin</span><br><span class="line">httpd -k install</span><br></pre></td></tr></table></figure>
+
+<p>Open the Control Panel, Administrative Tools, then Services and double-click Apache2.4. Set the Startup type to “Automatic” to ensure Apache starts every time you boot your PC.</p>
+<p>Alternatively, set the Startup type to “Manual” and launch Apache whenever you choose using the command “net start Apache2.4”.</p>
+<h2 id="Step-7-Test-the-Web-Server"><a href="#Step-7-Test-the-Web-Server" class="headerlink" title="Step 7: Test the Web Server"></a>Step 7: Test the Web Server</h2><p>Create a file named index.html in Apache’s web page root (either htdocs or D:\WebPages) and add a little HTML code:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>Testing Apache<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Apache is working!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Ensure Apache has started successfully, open a web browser and enter the address <code>http://localhost/</code>. If all goes well, your test page should appear.</p>
+<p>In general, most problems will be caused by an incorrect setting in the <code>httpd.conf</code> configuration file. Refer to the <a target="_blank" rel="noopener" href="http://httpd.apache.org/docs/2.4/">Apache documentation</a> if you require further information.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rainyjune.github.io/2020/10/23/how-to-install-apache-web-server-on-windows/" data-id="ckglqx6h10003mcv65zkiadun" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-insertion-sort-in-javascript" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/10/22/insertion-sort-in-javascript/" class="article-date">
@@ -126,54 +202,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rainyjune.github.io/2020/10/22/insertion-sort-in-javascript/" data-id="ckglonf9z0005s8v6d9dr0m3k" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Disable-MySQL-server-in-MAMP-on-Windows-10" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/10/22/Disable-MySQL-server-in-MAMP-on-Windows-10/" class="article-date">
-  <time datetime="2020-10-22T06:02:31.000Z" itemprop="datePublished">2020-10-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/22/Disable-MySQL-server-in-MAMP-on-Windows-10/">Disable MySQL server in MAMP on Windows 10</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a target="_blank" rel="noopener" href="https://www.mamp.info/">MAMP</a> is a great local server environment works on MacOS and Windows. You can set up a website and make it running with just a few clicks.</p>
-<p>There are a few software packages in the app, including Apache, Nginx, PHP and MySQL. It’s an ideal solution stack for PHP developers, however, as a front end developer, I rarely use the MySQL server shipped with it. What I want to achieve is starting Apache only when I click the <em>Start Servers</em> button.</p>
-<p><img src="/2020/10/22/Disable-MySQL-server-in-MAMP-on-Windows-10/mamp_start_servers_default.png" alt="Click the Start Server button starts both Web Server and MySQL Server"></p>
-<p>After spending some time googling, I realised there was no elegant way to disable MySQL server. </p>
-<p>So I tried to inspect the MySQL server process in Task Manager:</p>
-<p><img src="/2020/10/22/Disable-MySQL-server-in-MAMP-on-Windows-10/task_manager.png" alt="Find mysqld.exe file location with Task Manager"></p>
-<p><code>mysqld (32 bit)</code> is the name of MySQL server process. Now we’ve got where the <code>mysqld.exe</code> file is, then open File Exloper and change to the path, rename it to a different name, eg <code>mysqld_backup.exe</code>. Note you should stop servers before this step.</p>
-<p><img src="/2020/10/22/Disable-MySQL-server-in-MAMP-on-Windows-10/renaming_mysqld.png" alt="Rename mysqld.exe to another name"></p>
-<p>Now come back to MAMP app, click the <em>Start Servers</em> button again, you will find MySQL server is not running anymore.</p>
-<p><img src="/2020/10/22/Disable-MySQL-server-in-MAMP-on-Windows-10/mamp_start_servers_2.png" alt="MySQL server is not running"></p>
-<p>Enjoy!</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://rainyjune.github.io/2020/10/22/Disable-MySQL-server-in-MAMP-on-Windows-10/" data-id="ckglonf9u0002s8v61vrgdmlj" class="article-share-link">Share</a>
+      <a data-url="https://rainyjune.github.io/2020/10/22/insertion-sort-in-javascript/" data-id="ckglqx6h10004mcv68t9ka2gy" class="article-share-link">Share</a>
       
       
     </footer>
@@ -245,7 +274,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rainyjune.github.io/2020/10/21/sessionStorage-in-iframes/" data-id="ckglonf9x0004s8v62vst8jbr" class="article-share-link">Share</a>
+      <a data-url="https://rainyjune.github.io/2020/10/21/sessionStorage-in-iframes/" data-id="ckglqx6h20005mcv687ia4oc4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -323,7 +352,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rainyjune.github.io/2020/10/20/what-is-symbol-used-for-in-JavaScript/" data-id="ckglonfa00006s8v6hgcl7py3" class="article-share-link">Share</a>
+      <a data-url="https://rainyjune.github.io/2020/10/20/what-is-symbol-used-for-in-JavaScript/" data-id="ckglqx6h30006mcv6d37sayr5" class="article-share-link">Share</a>
       
       
     </footer>
@@ -369,7 +398,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rainyjune.github.io/2020/10/20/embedding-an-image-using-markdown-in-Hexo/" data-id="ckglonf9w0003s8v65qp99seu" class="article-share-link">Share</a>
+      <a data-url="https://rainyjune.github.io/2020/10/20/embedding-an-image-using-markdown-in-Hexo/" data-id="ckglqx6gz0002mcv6eivxfgbn" class="article-share-link">Share</a>
       
       
     </footer>
@@ -427,7 +456,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rainyjune.github.io/2020/10/20/Create-your-blog-with-Hexo-on-GitHub-Pages/" data-id="ckglonf9q0001s8v66w0p004p" class="article-share-link">Share</a>
+      <a data-url="https://rainyjune.github.io/2020/10/20/Create-your-blog-with-Hexo-on-GitHub-Pages/" data-id="ckglqx6gw0001mcv6bj4j6wwd" class="article-share-link">Share</a>
       
       
     </footer>
@@ -468,11 +497,11 @@ ga('send', 'pageview');
       <ul>
         
           <li>
-            <a href="/2020/10/22/insertion-sort-in-javascript/">Insertion Sort in JavaScript</a>
+            <a href="/2020/10/23/how-to-install-apache-web-server-on-windows/">How to install Apache web server on Windows</a>
           </li>
         
           <li>
-            <a href="/2020/10/22/Disable-MySQL-server-in-MAMP-on-Windows-10/">Disable MySQL server in MAMP on Windows 10</a>
+            <a href="/2020/10/22/insertion-sort-in-javascript/">Insertion Sort in JavaScript</a>
           </li>
         
           <li>
