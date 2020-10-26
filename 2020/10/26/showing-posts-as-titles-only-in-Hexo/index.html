@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-144501873-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>Showing posts as titles only in Hexo | SummerTown</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Now I’m running this blog with Hexo 5.2, it works fine, just an annoying problem there. Hexo displays a posts list on the home page, both titles and contents are shown by default, which gives a poor p">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Showing posts as titles only in Hexo">
+<meta property="og:url" content="https://rainyjune.github.io/2020/10/26/showing-posts-as-titles-only-in-Hexo/index.html">
+<meta property="og:site_name" content="SummerTown">
+<meta property="og:description" content="Now I’m running this blog with Hexo 5.2, it works fine, just an annoying problem there. Hexo displays a posts list on the home page, both titles and contents are shown by default, which gives a poor p">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-10-26T05:35:42.000Z">
+<meta property="article:modified_time" content="2020-10-26T10:43:43.894Z">
+<meta property="article:author" content="rainyjune">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="SummerTown" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">SummerTown</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/Links">Links</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rainyjune.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-showing-posts-as-titles-only-in-Hexo" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/10/26/showing-posts-as-titles-only-in-Hexo/" class="article-date">
+  <time datetime="2020-10-26T05:35:42.000Z" itemprop="datePublished">2020-10-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Showing posts as titles only in Hexo
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Now I’m running this blog with Hexo 5.2, it works fine, just an annoying problem there. Hexo displays a posts list on the home page, both titles and contents are shown by default, which gives a poor performance when loading the page, especially if there are third party iframes in them; and besides, site visitors might not interested in posts contents at the first glance, what they want to known is what topics your blog is talking about.</p>
+<p>So, I am going to modify the default Hexo theme, to show post titles only on the home page.</p>
+<h2 id="Create-your-own-theme"><a href="#Create-your-own-theme" class="headerlink" title="Create your own theme"></a>Create your own theme</h2><p>In fact, I am not going to modify the default theme directly. It’s always a best practice not to modify the official theme, creating your own one base on the default one could be a good idea.</p>
+<p>Here, I am creating a new theme called <code>liyuan</code>. You can do this just by copying the <code>landscape</code> directory to a new <code>liyuan</code> directory in the same directory.</p>
+<p>Then use it as the current theme, edit <code>_config.yml</code>:</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">theme:</span> <span class="string">liyuan</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Understanding-the-layout"><a href="#Understanding-the-layout" class="headerlink" title="Understanding the layout"></a>Understanding the layout</h2><p>All pages use the default <code>layout.ejs</code> as a base template. For the home page, the <code>index.ejs</code> template file is used to describe the appearance of it:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">%-</span> <span class="attr">partial</span>(&#x27;<span class="attr">_partial</span>/<span class="attr">archive</span>&#x27;, &#123;<span class="attr">pagination:</span> <span class="attr">2</span>, <span class="attr">index:</span> <span class="attr">true</span>&#125;) %&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>_partial/archive.ejs</code> is used to render what a post looks like:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span> (<span class="attr">pagination</span> == <span class="string">2)&#123;</span> %&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">%</span> <span class="attr">page.posts.each</span>(<span class="attr">function</span>(<span class="attr">post</span>)&#123; %&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">%-</span> <span class="attr">partial</span>(&#x27;<span class="attr">article</span>&#x27;, &#123;<span class="attr">post:</span> <span class="attr">post</span>, <span class="attr">index:</span> <span class="attr">true</span>&#125;) %&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">%</span> &#125;) %&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%</span> &#125;%&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Now we’ve got the actual template for rendering a post - <code>_partial/article.ejs</code>.</p>
+<p>We can’t modify this file, because it’s the template file used by both the home page and post pages. We can create a duplicate and rename to <code>article-homepage.ejs</code>.</p>
+<p>Remove the <code>div.article-entry</code> tag from the source code of <code>article-homepage.ejs</code>.</p>
+<p>Finally, edit <code>_partial/archive.ejs</code> to use our new <code>article-homepage.ejs</code> template:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span> (<span class="attr">pagination</span> == <span class="string">2)&#123;</span> %&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">%</span> <span class="attr">page.posts.each</span>(<span class="attr">function</span>(<span class="attr">post</span>)&#123; %&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">%-</span> <span class="attr">partial</span>(&#x27;<span class="attr">article-homepage</span>&#x27;, &#123;<span class="attr">post:</span> <span class="attr">post</span>, <span class="attr">index:</span> <span class="attr">true</span>&#125;) %&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">%</span> &#125;) %&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%</span> &#125;%&gt;</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rainyjune.github.io/2020/10/26/showing-posts-as-titles-only-in-Hexo/" data-id="ckgqfb9e60008tkv6964z69km" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/10/26/how-to-flatten-an-array-in-javascript/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          How to flatten an array in JavaScript?
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/10/23/allow-access-to-site-directory-in-apache-on-macos/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Allow access to Site directory in Apache on macOS</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/10/26/how-to-flatten-an-array-in-javascript/">How to flatten an array in JavaScript?</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/26/showing-posts-as-titles-only-in-Hexo/">Showing posts as titles only in Hexo</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/23/allow-access-to-site-directory-in-apache-on-macos/">Allow access to Site directory in Apache on macOS</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/23/how-to-install-apache-web-server-on-windows/">How to install Apache web server on Windows</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/22/insertion-sort-in-javascript/">Insertion Sort in JavaScript</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 rainyjune<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/Links" class="mobile-nav-link">Links</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

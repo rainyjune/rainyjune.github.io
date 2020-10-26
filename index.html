@@ -79,6 +79,99 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-how-to-flatten-an-array-in-javascript" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/10/26/how-to-flatten-an-array-in-javascript/" class="article-date">
+  <time datetime="2020-10-26T10:46:27.000Z" itemprop="datePublished">2020-10-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/26/how-to-flatten-an-array-in-javascript/">How to flatten an array in JavaScript?</a>
+    </h1>
+  
+
+      </header>
+    
+    <footer class="article-footer">
+      <a data-url="https://rainyjune.github.io/2020/10/26/how-to-flatten-an-array-in-javascript/" data-id="ckgqfb9e30004tkv60e3l8l41" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-showing-posts-as-titles-only-in-Hexo" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/10/26/showing-posts-as-titles-only-in-Hexo/" class="article-date">
+  <time datetime="2020-10-26T05:35:42.000Z" itemprop="datePublished">2020-10-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/26/showing-posts-as-titles-only-in-Hexo/">Showing posts as titles only in Hexo</a>
+    </h1>
+  
+
+      </header>
+    
+    <footer class="article-footer">
+      <a data-url="https://rainyjune.github.io/2020/10/26/showing-posts-as-titles-only-in-Hexo/" data-id="ckgqfb9e60008tkv6964z69km" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-allow-access-to-site-directory-in-apache-on-macos" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/10/23/allow-access-to-site-directory-in-apache-on-macos/" class="article-date">
+  <time datetime="2020-10-23T10:28:09.000Z" itemprop="datePublished">2020-10-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/23/allow-access-to-site-directory-in-apache-on-macos/">Allow access to Site directory in Apache on macOS</a>
+    </h1>
+  
+
+      </header>
+    
+    <footer class="article-footer">
+      <a data-url="https://rainyjune.github.io/2020/10/23/allow-access-to-site-directory-in-apache-on-macos/" data-id="ckgqfb9e10002tkv6caq9a12q" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-how-to-install-apache-web-server-on-windows" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/10/23/how-to-install-apache-web-server-on-windows/" class="article-date">
@@ -99,53 +192,8 @@ ga('send', 'pageview');
 
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Step-1-Download-the-package-file"><a href="#Step-1-Download-the-package-file" class="headerlink" title="Step 1:  Download the package file"></a>Step 1:  Download the package file</h2><p>We’re going to use the unofficial Windows binary from <a target="_blank" rel="noopener" href="http://www.apachelounge.com/">Apache Lounge</a>. This version has performance and stability improvements over the official Apache distribution, it’s provided as a manually installable ZIP file from <a target="_blank" rel="noopener" href="http://www.apachelounge.com/download/">www.apachelounge.com/download/</a>.</p>
-<h2 id="Step-2-Extract-the-files"><a href="#Step-2-Extract-the-files" class="headerlink" title="Step 2: Extract the files"></a>Step 2: Extract the files</h2><p>We’ll install Apache in <code>C:/Apache24</code>, so extract the ZIP file to the root of the <code>C:/</code> drive. Apache can be installed anywhere on your system, but you’ll need to change <code>SRVROOT</code> configuration to point to your unzipped location — suh as <code>E:/Apache24</code>.</p>
-<h2 id="Step-3-Configure-Apache"><a href="#Step-3-Configure-Apache" class="headerlink" title="Step 3: Configure Apache"></a>Step 3: Configure Apache</h2><p>Apache is configured with the text file <code>conf/httpd.conf</code> contained in the Apache folder. Open it with your favorite text editor.</p>
-<p>Note that all file path settings use a forward slash (<code>/</code>) rather than the Windows backslash. If you installed Apache anywhere other than <code>C:/Apache24</code>, now is a good time to search and replace all references to <code>C:/Apache24</code>.</p>
-<p>There are several lines you should change for your production environment:</p>
-<ul>
-<li><p>Line 60, listen to all requests on port 80:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Listen *:80</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Line 162, enable mod-rewrite by removing the # (optional, but useful):</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LoadModule rewrite_module modules&#x2F;mod_rewrite.so</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Line 227, specify the server domain name:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ServerName localhost:80</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Line 224, allow .htaccess overrides:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AllowOverride All</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h2 id="Step-4-Change-the-Document-Root-optional"><a href="#Step-4-Change-the-Document-Root-optional" class="headerlink" title="Step 4: Change the Document Root (optional)"></a>Step 4: Change the Document Root (optional)</h2><p>By default, Apache returns files found in its <code>C:/Apache24/htdocs</code> folder. It’s good to use a folder on an another drive or partition to make backups and re-installation easier. For the purposes of this example, we’ll create a folder called <code>D:WebPages</code> and change <code>httpd.conf</code> accordingly:</p>
-<p>Line 251, set the root:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DocumentRoot &quot;D:&#x2F;WebPages&quot;</span><br></pre></td></tr></table></figure>
-<p>Line 252:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Directory &quot;D:&#x2F;WebPages&quot;&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Step-5-Test-your-installation"><a href="#Step-5-Test-your-installation" class="headerlink" title="Step 5: Test your installation"></a>Step 5: Test your installation</h2><p>Your Apache configuration can now be tested. Open a command box (Start &gt; Run &gt; cmd) and enter:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># navigate to Apache bin directory</span><br><span class="line">cd &#x2F;Apache24&#x2F;bin</span><br><span class="line"># Test httpd.conf validity</span><br><span class="line">httpd -t</span><br></pre></td></tr></table></figure>
-
-<p>It should say “Syntax OK”. If not, correct any httpd.conf configuration errors and retest until none appear.</p>
-<h2 id="Step-6-install-Apache-as-a-Windows-service"><a href="#Step-6-install-Apache-as-a-Windows-service" class="headerlink" title="Step 6: install Apache as a Windows service"></a>Step 6: install Apache as a Windows service</h2><p>The easiest way to start Apache is to add it as a Windows service. Open a new command prompt as administrator, and enter the following:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd &#x2F;Apache24&#x2F;bin</span><br><span class="line">httpd -k install</span><br></pre></td></tr></table></figure>
-
-<p>Open the Control Panel, Administrative Tools, then Services and double-click Apache2.4. Set the Startup type to “Automatic” to ensure Apache starts every time you boot your PC.</p>
-<p>Alternatively, set the Startup type to “Manual” and launch Apache whenever you choose using the command “net start Apache2.4”.</p>
-<h2 id="Step-7-Test-the-Web-Server"><a href="#Step-7-Test-the-Web-Server" class="headerlink" title="Step 7: Test the Web Server"></a>Step 7: Test the Web Server</h2><p>Create a file named index.html in Apache’s web page root (either htdocs or D:\WebPages) and add a little HTML code:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>Testing Apache<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Apache is working!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>Ensure Apache has started successfully, open a web browser and enter the address <code>http://localhost/</code>. If all goes well, your test page should appear.</p>
-<p>In general, most problems will be caused by an incorrect setting in the <code>httpd.conf</code> configuration file. Refer to the <a target="_blank" rel="noopener" href="http://httpd.apache.org/docs/2.4/">Apache documentation</a> if you require further information.</p>
-
-      
-    </div>
     <footer class="article-footer">
-      <a data-url="https://rainyjune.github.io/2020/10/23/how-to-install-apache-web-server-on-windows/" data-id="ckglqx6h10003mcv65zkiadun" class="article-share-link">Share</a>
+      <a data-url="https://rainyjune.github.io/2020/10/23/how-to-install-apache-web-server-on-windows/" data-id="ckgqfb9e40005tkv68mv1e0k6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -175,34 +223,8 @@ ga('send', 'pageview');
 
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Insertion sort is one of sorting algorithms, to better understand it, you could imagine you are playing cards.</p>
-<p><img src="/2020/10/22/insertion-sort-in-javascript/play_cards.jpg"></p>
-<p>Every time you get a new card, compare it with the existing ones, then put it in the right place. While you comparing, we start it from right to left.</p>
-<p>The following pictures gives a demonstration of how this sort happended.</p>
-<p><img src="/2020/10/22/insertion-sort-in-javascript/Insertion-sort-example-300px.gif"></p>
-<h2 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h2><p>Let’s start building our <code>insertionSort</code> function.</p>
-<h3 id="step-1"><a href="#step-1" class="headerlink" title="step 1"></a>step 1</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">insertionSort</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> length = arr.length;</span><br><span class="line">  <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>It’s a best practice to save the array length in a variable.</p>
-<h3 id="step-2"><a href="#step-2" class="headerlink" title="step 2"></a>step 2</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">insertionSort</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> length = arr.length;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; length; i++) &#123;</span><br><span class="line">    <span class="comment">// </span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>We use a for loop to go over the array.</p>
-<h3 id="step-3"><a href="#step-3" class="headerlink" title="step 3"></a>step 3</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">insertionSort</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> length = arr.length;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; length; i++) &#123;</span><br><span class="line">    <span class="keyword">let</span> current = arr[i];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Save current value in a variable for comparison.</p>
-<h3 id="step-4"><a href="#step-4" class="headerlink" title="step 4"></a>step 4</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">insertionSort</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> length = arr.length;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; length; i++) &#123;</span><br><span class="line">    <span class="keyword">let</span> current = arr[i];</span><br><span class="line">    <span class="keyword">let</span> j;</span><br><span class="line">    <span class="keyword">for</span> (j = i - <span class="number">1</span>; j &gt;= <span class="number">0</span> &amp;&amp; arr[j] &gt; current; j--) &#123;</span><br><span class="line">      arr[j + <span class="number">1</span>] = arr[j];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>We set up an inner loop in order to put current value in the right place.</p>
-<h3 id="step-5"><a href="#step-5" class="headerlink" title="step 5"></a>step 5</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">insertionSort</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> length = arr.length;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; length; i++) &#123;</span><br><span class="line">    <span class="keyword">let</span> current = arr[i];</span><br><span class="line">    <span class="keyword">let</span> j;</span><br><span class="line">    <span class="keyword">for</span> (j = i - <span class="number">1</span>; j &gt;= <span class="number">0</span> &amp;&amp; arr[j] &gt; current; j--) &#123;</span><br><span class="line">      arr[j + <span class="number">1</span>] = arr[j];</span><br><span class="line">    &#125;</span><br><span class="line">    arr[j + <span class="number">1</span>] = current;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Finally assign the the value <code>current</code> to the correct index position.</p>
-<h2 id="Complexity"><a href="#Complexity" class="headerlink" title="Complexity"></a>Complexity</h2><p>Best case: n<br>Average: n<sup>2</sup><br>Worst: n<sup>2</sup><br>Memory: 1<br>Stable: Yes</p>
-
-      
-    </div>
     <footer class="article-footer">
-      <a data-url="https://rainyjune.github.io/2020/10/22/insertion-sort-in-javascript/" data-id="ckglqx6h10004mcv68t9ka2gy" class="article-share-link">Share</a>
+      <a data-url="https://rainyjune.github.io/2020/10/22/insertion-sort-in-javascript/" data-id="ckgqfb9e40006tkv6bxiobv9g" class="article-share-link">Share</a>
       
       
     </footer>
@@ -232,49 +254,8 @@ ga('send', 'pageview');
 
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Quick-Recap"><a href="#Quick-Recap" class="headerlink" title="Quick Recap"></a>Quick Recap</h2><p><code>sessionStorage</code> is similar to <code>localStorage</code>, the main difference is that data in <code>sessionStorage</code> is cleared when the page session ends, while data in <code>localStorage</code> persists.</p>
-<ul>
-<li>A page session lasts as long as the browser is open, and survices over page reloads and restores.</li>
-<li>Each tab/window has its own <code>sessionStorage</code>, even if they are opening the same URL.</li>
-<li>Closing a tab/window ends the session and clears data in <code>sessionStorage</code>.</li>
-<li>Data stored in <code>sessionStorage</code> is also origin seperated.</li>
-</ul>
-<h2 id="sessionStorage-in-iframes"><a href="#sessionStorage-in-iframes" class="headerlink" title="sessionStorage in iframes"></a>sessionStorage in iframes</h2><h3 id="Same-site-iframes"><a href="#Same-site-iframes" class="headerlink" title="Same site iframes"></a>Same site iframes</h3><p>If you have an iframe embedded in a webpage and they are in the same domain, is the data in <code>sessionStorage</code> shared between the iframe and its parent document?</p>
-<p>Let’s write the following code snippet to demonstrate.</p>
-<!-- Copy and Paste Me -->
-<div class="glitch-embed-wrap" style="height: 420px; width: 100%;">
-  <iframe
-    src="https://glitch.com/embed/#!/embed/dolomite-brainy-vermicelli?path=index.html&previewSize=0"
-    title="dolomite-brainy-vermicelli on Glitch"
-    allow="geolocation; microphone; camera; midi; vr; encrypted-media"
-    style="height: 100%; width: 100%; border: 0;">
-  </iframe>
-</div>
-
-<p>In the example above, <code>iframe.html</code> and <code>iframe2.html</code> are embedded in <code>index.html</code>. We set one item on each html file seperately. We are using a timer to display all items available, now these items are accessible on both side.</p>
-<p>So, we come to the conclusion that: <strong>data stored in <code>sessionStorage</code> is visible within a browser tab/window, including iframes from the same origin</strong>.</p>
-<h3 id="Cross-Site-iframes"><a href="#Cross-Site-iframes" class="headerlink" title="Cross Site iframes"></a>Cross Site iframes</h3><p>Based on knowledge we have known, data in <code>sessionStorage</code> is not shared across origins. We can make a guess data stored in <code>sessionStorage</code> is not shared between a webpage and container iframes from another domain.</p>
-<p>Let’s verify what we have guessed is correct or not.</p>
-<!-- Copy and Paste Me -->
-<div class="glitch-embed-wrap" style="height: 420px; width: 100%;">
-  <iframe
-    src="https://glitch.com/embed/#!/embed/descriptive-fluffy-nylon?path=index.html&previewSize=0"
-    title="descriptive-fluffy-nylon on Glitch"
-    allow="geolocation; microphone; camera; midi; vr; encrypted-media"
-    style="height: 100%; width: 100%; border: 0;">
-  </iframe>
-</div>
-
-<p>In the example above, we put <code>index.html</code> in the domain <code>https://descriptive-fluffy-nylon.glitch.me/</code>, the two iframes files are hosted on a different origin <code>https://dolomite-brainy-vermicelli.glitch.me/</code>.</p>
-<p>The parent webpage can only access the <code>indexhtml</code> item, which was set on the <code>index.html</code>. However, <code>iframe.html</code> and <code>iframe2.html</code> are sharing the same data because they are from the same origin.</p>
-<p>conclusion: <strong>sessionStorage is bound to the origin, however it is shared between iframes in the same tab, if these iframes come from the same origin.</strong></p>
-
-      
-    </div>
     <footer class="article-footer">
-      <a data-url="https://rainyjune.github.io/2020/10/21/sessionStorage-in-iframes/" data-id="ckglqx6h20005mcv687ia4oc4" class="article-share-link">Share</a>
+      <a data-url="https://rainyjune.github.io/2020/10/21/sessionStorage-in-iframes/" data-id="ckgqfb9e50007tkv63fa937o3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -304,55 +285,8 @@ ga('send', 'pageview');
 
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>A new primitive data type was introduced in ES2015 - Symbol. It’s relative new, you might not be familiar with it yet. </p>
-<p>In this article we will explain what a Symbol is and how it can be used in real life apps.</p>
-<h2 id="What-is-symbol"><a href="#What-is-symbol" class="headerlink" title="What is symbol?"></a>What is symbol?</h2><p>The data type symbol is a primitive data type, it is one of JavaScript’s 6 primitive data types: string, number, boolean, undefined, bigint and symbol.</p>
-<p>There is a <code>Symbol()</code> function available, it returns a value of type symbol. Every value returned is unique, you can never create two identical values, even though calling this function with the same parameter. </p>
-<p>Symbol can accept an optional description as parameter, but only for debugging purpose.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> symbol1 = <span class="built_in">Symbol</span>();</span><br><span class="line"><span class="keyword">const</span> symbol2 = <span class="built_in">Symbol</span>();</span><br><span class="line"><span class="keyword">const</span> symbol3 = <span class="built_in">Symbol</span>(<span class="string">&#x27;foo&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> symbol4 = <span class="built_in">Symbol</span>(<span class="string">&#x27;foo&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> symbol1); <span class="comment">// &quot;symbol&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(symbol1 === symbol2); <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(symbol3 === symbol4); <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Use the description property to get the its description.</span></span><br><span class="line"><span class="built_in">console</span>.log(symbol3.description); <span class="comment">// &quot;foo&quot;. </span></span><br></pre></td></tr></table></figure>
-
-<p>In case you want to get an already created symbol, you can use <code>Symbol.for()</code> method. This method creates a symbol available in a global symbol registry list if the given key was not found, otherwise the existing one was returned.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Symbol</span>.for(<span class="string">&#x27;a&#x27;</span>); <span class="comment">// create a new global symbol</span></span><br><span class="line"><span class="built_in">Symbol</span>.for(<span class="string">&#x27;a&#x27;</span>); <span class="comment">// retrieve the already created symbol</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Symbol</span>.for(<span class="string">&#x27;bar&#x27;</span>) === <span class="built_in">Symbol</span>.for(<span class="string">&#x27;bar&#x27;</span>));</span><br><span class="line"><span class="comment">// expected output: true</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Symbol</span>(<span class="string">&#x27;bar&#x27;</span>) === <span class="built_in">Symbol</span>(<span class="string">&#x27;bar&#x27;</span>));</span><br><span class="line"><span class="comment">// expected output: false</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> symbol1 = <span class="built_in">Symbol</span>.for(<span class="string">&#x27;foo&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(symbol1.toString()); <span class="comment">// &quot;Symbol(foo)&quot;</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Symbol</span>.for(<span class="string">&#x27;foo&#x27;</span>) === symbol1); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-
-
-<h2 id="Use-cases"><a href="#Use-cases" class="headerlink" title="Use cases"></a>Use cases</h2><h3 id="1-Used-as-an-identifier-for-object-properties"><a href="#1-Used-as-an-identifier-for-object-properties" class="headerlink" title="1.Used as an identifier for object properties"></a>1.Used as an identifier for object properties</h3><p>By using symbols, you don’t need to worry about key collisions in objects, this is the data type’s primary purpose.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> thirdPartyObject = &#123;</span><br><span class="line">  prop1: <span class="string">&#x27;3rd party prop1&#x27;</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">thirdPartyObject[<span class="built_in">Symbol</span>(<span class="string">&#x27;prop1&#x27;</span>)] = <span class="string">&#x27;changed&#x27;</span>;</span><br><span class="line"><span class="built_in">console</span>.log(thirdPartyObject);</span><br><span class="line"><span class="comment">// &#123;prop1: &quot;3rd party prop1&quot;, Symbol(prop1): &quot;changed&quot;&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Others may try to add their own prop1 attribute</span></span><br><span class="line">thirdPartyObject[<span class="built_in">Symbol</span>(<span class="string">&#x27;prop1&#x27;</span>)] = <span class="string">&#x27;changed again&#x27;</span>;</span><br><span class="line"><span class="built_in">console</span>.log(thirdPartyObject);</span><br><span class="line"><span class="comment">// &#123;prop1: &quot;3rd party prop1&quot;, Symbol(prop1): &quot;changed&quot;, Symbol(prop1): &quot;changed again&quot;&#125;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="2-Enable-private-properties"><a href="#2-Enable-private-properties" class="headerlink" title="2. Enable private properties."></a>2. Enable private properties.</h3><p>The original motivation for introducing symbols is to enable private properties in JavaScript. </p>
-<p>Symbols are not enumerable in for…in iterations. </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;&#125;</span><br><span class="line"></span><br><span class="line">obj[<span class="built_in">Symbol</span>(<span class="string">&#x27;a&#x27;</span>)] = <span class="string">&#x27;a&#x27;</span></span><br><span class="line">obj[<span class="built_in">Symbol</span>.for(<span class="string">&#x27;b&#x27;</span>)] = <span class="string">&#x27;b&#x27;</span></span><br><span class="line">obj[<span class="string">&#x27;c&#x27;</span>] = <span class="string">&#x27;c&#x27;</span></span><br><span class="line">obj.d = <span class="string">&#x27;d&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">in</span> obj) &#123;</span><br><span class="line">   <span class="built_in">console</span>.log(i)  <span class="comment">// logs &quot;c&quot; and &quot;d&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Symbol-keyed properties are ignored when using JSON.stringify() as well:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">JSON</span>.stringify(&#123;[<span class="built_in">Symbol</span>(<span class="string">&#x27;foo&#x27;</span>)]: <span class="string">&#x27;foo&#x27;</span>&#125;)</span><br><span class="line"><span class="comment">// &#x27;&#123;&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p>However, they are not 100% hidden, you can still get these properties, use <code>Object.getOwnPropertySymbols()</code> or <code>Reflect.ownKeys()</code>:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;&#125;</span><br><span class="line"></span><br><span class="line">obj[<span class="built_in">Symbol</span>(<span class="string">&#x27;a&#x27;</span>)] = <span class="string">&#x27;a&#x27;</span></span><br><span class="line">obj[<span class="built_in">Symbol</span>.for(<span class="string">&#x27;b&#x27;</span>)] = <span class="string">&#x27;b&#x27;</span></span><br><span class="line">obj[<span class="string">&#x27;c&#x27;</span>] = <span class="string">&#x27;c&#x27;</span></span><br><span class="line">obj.d = <span class="string">&#x27;d&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Reflect</span>.ownKeys(obj)); <span class="comment">// [&quot;c&quot;, &quot;d&quot;, Symbol(a), Symbol(b)]</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getOwnPropertySymbols(obj)); <span class="comment">// [Symbol(a), Symbol(b)]</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="Predefined-Symbols"><a href="#Predefined-Symbols" class="headerlink" title="Predefined Symbols"></a>Predefined Symbols</h2><p>It has several properties that expose several members of built-in object. These are predefined symbols, they are also called well-known symbols.</p>
-<ul>
-<li>Symbol.asyncIterator - A method that returns the default AsyncIterator for an object. Used by for await…of.</li>
-<li>Symbol.hasInstance - A method determining if a constructor object recognizes an object as its instance. Used by instanceof.</li>
-<li>Symbol.isConcatSpreadable - A Boolean value indicating if an object should be flattened to its array elements. Used by Array.prototype.concat().</li>
-<li>Symbol.iterator - A method returning the default iterator for an object. Used by for…of.</li>
-<li>Symbol.match - A method that matches against a string, also used to determine if an object may be used as a regular expression. Used by String.prototype.match().</li>
-<li>Symbol.matchAll - A method that returns an iterator, that yields matches of the regular expression against a string. Used by String.prototype.matchAll().</li>
-<li>Symbol.replace - A method that replaces matched substrings of a string. Used by String.prototype.replace().</li>
-<li>Symbol.search - A method that returns the index within a string that matches the regular expression. Used by String.prototype.search().</li>
-<li>Symbol.split - A method that splits a string at the indices that match a regular expression. Used by String.prototype.split().</li>
-<li>Symbol.species - A constructor function that is used to create derived objects.</li>
-<li>Symbol.toPrimitive - A method converting an object to a primitive value.</li>
-<li>Symbol.toStringTag - A string value used for the default description of an object. Used by Object.prototype.toString().</li>
-<li>Symbol.unscopables - An object value of whose own and inherited property names are excluded from the with environment bindings of the associated object.</li>
-</ul>
-
-      
-    </div>
     <footer class="article-footer">
-      <a data-url="https://rainyjune.github.io/2020/10/20/what-is-symbol-used-for-in-JavaScript/" data-id="ckglqx6h30006mcv6d37sayr5" class="article-share-link">Share</a>
+      <a data-url="https://rainyjune.github.io/2020/10/20/what-is-symbol-used-for-in-JavaScript/" data-id="ckgqfb9e60009tkv6b1912yat" class="article-share-link">Share</a>
       
       
     </footer>
@@ -382,23 +316,8 @@ ga('send', 'pageview');
 
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>This approach should be the easist way to embed an image in a markdown file in Hexo.</p>
-<p>hexo-renderer-marked 3.1.0 introduced a new option that allows you to embed an image in markdown.</p>
-<h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><p>Change to your Hexo blog directory, and run the following command in your terminal:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-renderer-marked --save</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="Options"><a href="#Options" class="headerlink" title="Options"></a>Options</h2><p>To enable this plugin, edit _config.yml:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">post_asset_folder: true</span><br><span class="line">marked:</span><br><span class="line">  prependRoot: true</span><br><span class="line">  postAsset: true</span><br></pre></td></tr></table></figure>
-
-<p>Once enabled, an asset image will be automatically resolved to its corresponding post’s path. For example, “image.jpg” is located at “/2020/01/02/foo/image.jpg”, meaning it is an asset image of “/2020/01/02/foo/“ post, <code>![](image.jpg)</code> will be rendered as <code>&lt;img src=&quot;/2020/01/02/foo/image.jpg&quot;&gt;</code>.</p>
-
-      
-    </div>
     <footer class="article-footer">
-      <a data-url="https://rainyjune.github.io/2020/10/20/embedding-an-image-using-markdown-in-Hexo/" data-id="ckglqx6gz0002mcv6eivxfgbn" class="article-share-link">Share</a>
+      <a data-url="https://rainyjune.github.io/2020/10/20/embedding-an-image-using-markdown-in-Hexo/" data-id="ckgqfb9e20003tkv6bjq6dx81" class="article-share-link">Share</a>
       
       
     </footer>
@@ -428,35 +347,8 @@ ga('send', 'pageview');
 
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="prerequisites"><a href="#prerequisites" class="headerlink" title="prerequisites"></a>prerequisites</h2><p>First of all, make sure you have Node.js and Git installed on your machine.</p>
-<h2 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h2><p>Run the following commands in your favorite terminal:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line">hexo init blog</span><br><span class="line">cd blog</span><br><span class="line">npm install</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
-
-<p>It might takes a few minutes to finish, If everything goes smoothly, you have successfully installed Hexo. Now visit <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a> in your browser, you can see your hexo blog is running:</p>
-<p><img src="/2020/10/20/Create-your-blog-with-Hexo-on-GitHub-Pages/hexo_default_ui.png"></p>
-<p>To create a new post, run the following in your terminal:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new &quot;My New Post&quot;</span><br></pre></td></tr></table></figure>
-
-<p>Refresh you blog page, you will notice the new post has been displayed.</p>
-<h2 id="GitHub-Pages"><a href="#GitHub-Pages" class="headerlink" title="GitHub Pages"></a>GitHub Pages</h2><p>There are two ways of deploying to GitHub Pages. </p>
-<ul>
-<li>use GitHub Actions - It works in both public and private repository.</li>
-<li>One-command deployment - If you prefer not to upload your source folder to GitHub.</li>
-</ul>
-<p>I would prefer the second solution because I don’t want to upload my source folder to a public GitHub repository. </p>
-<ol>
-<li>Install hexo-deployer-git.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></li>
-<li>Add the following configurations to _config.yml (remove existing lines if any)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https:&#x2F;&#x2F;github.com&#x2F;&lt;username&gt;&#x2F;&lt;project&gt;</span><br><span class="line">  # example, https:&#x2F;&#x2F;github.com&#x2F;hexojs&#x2F;hexojs.github.io</span><br><span class="line">  branch: gh-pages</span><br></pre></td></tr></table></figure></li>
-<li>Run hexo clean &amp;&amp; hexo deploy</li>
-<li>Check the webpage at username.github.io.</li>
-</ol>
-
-      
-    </div>
     <footer class="article-footer">
-      <a data-url="https://rainyjune.github.io/2020/10/20/Create-your-blog-with-Hexo-on-GitHub-Pages/" data-id="ckglqx6gw0001mcv6bj4j6wwd" class="article-share-link">Share</a>
+      <a data-url="https://rainyjune.github.io/2020/10/20/Create-your-blog-with-Hexo-on-GitHub-Pages/" data-id="ckgqfb9dx0001tkv6ar0y5mml" class="article-share-link">Share</a>
       
       
     </footer>
@@ -497,23 +389,23 @@ ga('send', 'pageview');
       <ul>
         
           <li>
+            <a href="/2020/10/26/how-to-flatten-an-array-in-javascript/">How to flatten an array in JavaScript?</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/26/showing-posts-as-titles-only-in-Hexo/">Showing posts as titles only in Hexo</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/23/allow-access-to-site-directory-in-apache-on-macos/">Allow access to Site directory in Apache on macOS</a>
+          </li>
+        
+          <li>
             <a href="/2020/10/23/how-to-install-apache-web-server-on-windows/">How to install Apache web server on Windows</a>
           </li>
         
           <li>
             <a href="/2020/10/22/insertion-sort-in-javascript/">Insertion Sort in JavaScript</a>
-          </li>
-        
-          <li>
-            <a href="/2020/10/21/sessionStorage-in-iframes/">sessionStorage in iframes</a>
-          </li>
-        
-          <li>
-            <a href="/2020/10/20/what-is-symbol-used-for-in-JavaScript/">what is symbol used for in JavaScript</a>
-          </li>
-        
-          <li>
-            <a href="/2020/10/20/embedding-an-image-using-markdown-in-Hexo/">embedding an image using markdown in Hexo</a>
           </li>
         
       </ul>
