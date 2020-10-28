@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-144501873-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>Unicode in JavaScript | SummerTown</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="How JavaScript uses Unicode internallyDespite the fact that a JavaScript source file can have any kind of encoding, JavaScript uses UTF-16 internally. JavaScript strings are all UTF-16 sequences. Acco">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unicode in JavaScript">
+<meta property="og:url" content="https://rainyjune.github.io/2020/10/28/unicode-in-javascript/index.html">
+<meta property="og:site_name" content="SummerTown">
+<meta property="og:description" content="How JavaScript uses Unicode internallyDespite the fact that a JavaScript source file can have any kind of encoding, JavaScript uses UTF-16 internally. JavaScript strings are all UTF-16 sequences. Acco">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-10-28T06:48:29.000Z">
+<meta property="article:modified_time" content="2020-10-28T07:40:01.348Z">
+<meta property="article:author" content="rainyjune">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="SummerTown" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">SummerTown</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/Links">Links</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rainyjune.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-unicode-in-javascript" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/10/28/unicode-in-javascript/" class="article-date">
+  <time datetime="2020-10-28T06:48:29.000Z" itemprop="datePublished">2020-10-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Unicode in JavaScript
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="How-JavaScript-uses-Unicode-internally"><a href="#How-JavaScript-uses-Unicode-internally" class="headerlink" title="How JavaScript uses Unicode internally"></a>How JavaScript uses Unicode internally</h2><p>Despite the fact that a JavaScript source file can have any kind of encoding, <strong>JavaScript uses UTF-16 internally</strong>.</p>
+<p><strong>JavaScript strings are all UTF-16 sequences</strong>.</p>
+<p>According to <a target="_blank" rel="noopener" href="http://ecma-international.org/ecma-262/5.1/#sec-6">Section 6</a> of the ECMAScript specification:</p>
+<blockquote>
+<p>ECMAScript source text is represented as a sequence of characters in the Unicode character encoding, version 3.0 or later. […] ECMAScript source text is assumed to be a sequence of 16-bit code units for the purposes of this specification. […] If an actual source text is encoded in a form other than 16-bit code units, it must be processed as if it was first converted to UTF-16.</p>
+</blockquote>
+<h2 id="Using-Unicode-in-a-string"><a href="#Using-Unicode-in-a-string" class="headerlink" title="Using Unicode in a string"></a>Using Unicode in a string</h2><p>A unicode sequence can be inside any string using the format <code>\xXXXX</code>:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s1 = <span class="string">&#x27;\u00E9&#x27;</span>; <span class="comment">// é</span></span><br></pre></td></tr></table></figure>
+
+<p>A sequnce can be created by combining two unicode sequences:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s2 = <span class="string">&#x27;\u0065\u0301&#x27;</span> <span class="comment">//é</span></span><br></pre></td></tr></table></figure>
+
+<p>They both generate an accented e, but they are two different strings, and <code>str2</code> is considered to be 2 characters long:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;é&quot;</span>.length <span class="comment">// 1</span></span><br><span class="line">s1.length <span class="comment">//1</span></span><br><span class="line">s2.length <span class="comment">//2</span></span><br><span class="line">s1 == s2 <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<p>You can also write a string combining a unicode character with a plain char, as internally it’s actually the same thing:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> s3 = <span class="string">&#x27;e\u0301&#x27;</span> <span class="comment">//é</span></span><br><span class="line">s3.length === <span class="number">2</span> <span class="comment">//true</span></span><br><span class="line">s2 === s3 <span class="comment">//true</span></span><br><span class="line">s1 !== s3 <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Normalization"><a href="#Normalization" class="headerlink" title="Normalization"></a>Normalization</h2><p>ES6/ES2015 introduced the normalize() method on the string prototype:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s1 === s3 <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line">s1.normalize() === s3.normalize() <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Emojis"><a href="#Emojis" class="headerlink" title="Emojis"></a>Emojis</h2><p>Emojis are Unicode characters, so they are perfectly valid to be used in strings:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s4 = <span class="string">&#x27;🐶&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p>The 🐶 symbol, which is <code>U+1F436</code>, is traditionally encoded as <code>\uD83D\uDC36</code> (called surrogate pair). </p>
+<h2 id="Get-the-proper-length-of-a-string"><a href="#Get-the-proper-length-of-a-string" class="headerlink" title="Get the proper length of a string"></a>Get the proper length of a string</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s4.length <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+
+<p>One easy way in ES6+ is to use the spread operator:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">;[...<span class="string">&#x27;🐶&#x27;</span>].length <span class="comment">//1</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="ES6-Unicode-code-point-escapes"><a href="#ES6-Unicode-code-point-escapes" class="headerlink" title="ES6 Unicode code point escapes"></a>ES6 Unicode code point escapes</h2><p>ES6/ES2015 introduced a way to represent Unicode points in the astral planes (any Unicode code point requiring more than 4 chars), by wrapping the code in graph parentheses <code>\u&#123;XXXXX&#125;</code>.</p>
+<p>The dog 🐶 symbol, which is <code>U+1F436</code>, can be represented as <code>\u&#123;1F436&#125;</code> instead of having to combine two unrelated Unicode code points, like we showed before: <code>\uD83D\uDC36</code>.</p>
+<p>But <code>length</code> calculation still does not work correctly, because internally it’s converted to the surrogate pair shown above.</p>
+<h2 id="Encoding-ASCII-chars"><a href="#Encoding-ASCII-chars" class="headerlink" title="Encoding ASCII chars"></a>Encoding ASCII chars</h2><p>The first 128 characters can be encoded using the special escaping character <code>\x</code>, which only accepts 2 characters:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;\x61&#x27;</span> <span class="comment">// a</span></span><br><span class="line"><span class="string">&#x27;\x2A&#x27;</span> <span class="comment">// *</span></span><br></pre></td></tr></table></figure>
+
+<p>This will only work from <code>\x00</code> to <code>\xFF</code>, which is the set of ASCII characters.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rainyjune.github.io/2020/10/28/unicode-in-javascript/" data-id="ckgt5vgd00009d8v6ges122oi" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/10/26/how-to-flatten-an-array-in-javascript/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">How to flatten an array in JavaScript?</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/10/28/unicode-in-javascript/">Unicode in JavaScript</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/26/how-to-flatten-an-array-in-javascript/">How to flatten an array in JavaScript?</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/26/showing-posts-as-titles-only-in-Hexo/">Showing posts as titles only in Hexo</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/23/allow-access-to-site-directory-in-apache-on-macos/">Allow access to Site directory in Apache on macOS</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/23/how-to-install-apache-web-server-on-windows/">How to install Apache web server on Windows</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 rainyjune<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/Links" class="mobile-nav-link">Links</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
