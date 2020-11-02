@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-144501873-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>SameSite cookies | SummerTown</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Modern browsers (including Chrome, Firefox, and Edge) are changing their bahavior to enforce more privacy-preserving defaults. Servers set cookies by sending the aptly-named Set-Cookie header in their">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SameSite cookies">
+<meta property="og:url" content="https://rainyjune.github.io/2020/10/29/samesite-cookies/index.html">
+<meta property="og:site_name" content="SummerTown">
+<meta property="og:description" content="Modern browsers (including Chrome, Firefox, and Edge) are changing their bahavior to enforce more privacy-preserving defaults. Servers set cookies by sending the aptly-named Set-Cookie header in their">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://webdev.imgix.net/samesite-cookies-explained/set-cookie-response-header.png">
+<meta property="og:image" content="https://webdev.imgix.net/samesite-cookies-explained/cookie-request-header.png">
+<meta property="og:image" content="https://webdev.imgix.net/samesite-cookies-explained/document-cookie.png">
+<meta property="og:image" content="https://webdev.imgix.net/samesite-cookies-explained/cross-site-set-cookie-response-header.png">
+<meta property="og:image" content="https://webdev.imgix.net/samesite-cookies-explained/cross-site-cookie-request-header.png">
+<meta property="og:image" content="https://webdev.imgix.net/samesite-cookies-explained/samesite-none-lax-strict.png">
+<meta property="article:published_time" content="2020-10-29T08:21:18.000Z">
+<meta property="article:modified_time" content="2020-10-30T02:52:59.463Z">
+<meta property="article:author" content="rainyjune">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://webdev.imgix.net/samesite-cookies-explained/set-cookie-response-header.png">
+  
+    <link rel="alternate" href="/atom.xml" title="SummerTown" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">SummerTown</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/Links">Links</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rainyjune.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-samesite-cookies" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/10/29/samesite-cookies/" class="article-date">
+  <time datetime="2020-10-29T08:21:18.000Z" itemprop="datePublished">2020-10-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      SameSite cookies
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Modern browsers (including Chrome, Firefox, and Edge) are changing their bahavior to enforce more privacy-preserving defaults.</p>
+<p>Servers set cookies by sending the aptly-named <code>Set-Cookie</code> header in their response.</p>
+<p>The header looks like this:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set-Cookie: promo_shown&#x3D;1; Max-Age&#x3D;2600000; Secure</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://webdev.imgix.net/samesite-cookies-explained/set-cookie-response-header.png" alt="Servers set cookies using the Set-Cookie header."></p>
+<p>When users on a secure connection and the cookie is less than a month old, then their browser will send this header in its request:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cookie: promo_shown&#x3D;1</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://webdev.imgix.net/samesite-cookies-explained/cookie-request-header.png" alt="Your browser sends cookies back in the Cookie header."></p>
+<p>You can also access the cookies available to that site in JavaScript using <code>document.cookie</code>. Making an assignment to <code>document.cookie</code> will create or overwrite a cookie with that key.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; document.cookie &#x3D; &quot;promo_shown&#x3D;1; Max-Age&#x3D;2600000; Secure&quot;</span><br><span class="line">&lt; &quot;promo_shown&#x3D;1; Max-Age&#x3D;2600000; Secure&quot;</span><br></pre></td></tr></table></figure>
+
+<p>Reading <code>document.cookie</code> will output all the cookies accessible in the current context, with each cookie separated by a semicolon:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; document.cookie;</span><br><span class="line">&lt; &quot;promo_shown&#x3D;1; color_theme&#x3D;peachpuff; sidebar_loc&#x3D;left&quot;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://webdev.imgix.net/samesite-cookies-explained/document-cookie.png" alt="JavaScript can access cookies using document.cookie."></p>
+<h2 id="What-are-first-party-and-third-party-cookies"><a href="#What-are-first-party-and-third-party-cookies" class="headerlink" title="What are first-party and third-party cookies?"></a>What are first-party and third-party cookies?</h2><p>Cookies that match the domain of the current site, i.e. what’s displayed in the browser’s address bar, are referred to as <strong>first-party</strong> cookies. </p>
+<p>Similarly, cookies from domains other than the current site are referred to as <strong>third-party</strong> cookies.</p>
+<p>This isn’t an absolute label but is relative to the user’s context; the same cookie can be either first-party or third-party depending on which site the user is on at the time.</p>
+<p><img src="https://webdev.imgix.net/samesite-cookies-explained/cross-site-set-cookie-response-header.png" alt="Cookies may come from a variety of different domains on one page."></p>
+<p><img src="https://webdev.imgix.net/samesite-cookies-explained/cross-site-cookie-request-header.png" alt="A cookie in a third-party context is sent when visiting different pages."></p>
+<p>Cross-site request forgery (CSRF) attacks rely on the fact that cookie are attached to any requests to a given origin, no matter who initiates the request. For example, if you visit <code>evil.example</code> then it can trigger requests to <code>your-blog.example</code>, and your browser will happily attach the associated cookies. If your blog isn’t careful with how it validates those requests then <code>evil.example</code> could trigger actions like deleting posts or adding their own content.</p>
+<h2 id="Explicitly-state-cookie-usage-with-the-SameSite-attribut"><a href="#Explicitly-state-cookie-usage-with-the-SameSite-attribut" class="headerlink" title="Explicitly state cookie usage with the SameSite attribut"></a>Explicitly state cookie usage with the SameSite attribut</h2><p>The introduction of the <code>SameSite</code> attribute allows you to declare if your cookie should be restricted to a first-party or same-site context. It’s helpful to understand exactly what ‘site’ means here. The site is the combination of the domain suffix and the part of the domain just before it. For example, the <code>www.web.dev</code> domain is part of the <code>web.dev</code> site.</p>
+<p>If the user is on <code>www.web.dev</code> and requests an image from <code>static.web.dev</code> then that is a <strong>same-site</strong> request.</p>
+<p>The public suffix list defines this, so it’s not just top-level domains like <code>.com</code> but also includes services like <code>github.io</code>. That enables <code>your-project.github.io</code> and <code>my-project.github.io</code> to count as separate sites.</p>
+<p>If the user is on <code>your-project.github.io</code> and requests an image from <code>my-project.github.io</code> that’s a cross-site request.</p>
+<ul>
+<li><strong>Strict</strong>: Cookies will only be sent in a first-party context.<br>In user terms, the cookie will only be sent if the site for the cookie matches the site currently shown in the browser’s URL bar.<br>This is good when you have cookies relating to functionality that will always be behind an initial navigation.</li>
+<li><strong>Lax</strong>: Allows the cookie to be sent with these top-level navigations.<br>This is a good choice for cookies affecting the display of the site.</li>
+<li><strong>None</strong>: No restrictions will applied. The cookie will be sent in all requests - both cross-site and same-site.<br>This means you can use <code>None</code> to clearly communicate that you intentionally want the cookie sent in a third-party context.<br>If you provide a service that other sites consume such as widgets, embedded content, affiliate programes, advertising, or sign-in across multipile sites then you should use <code>None</code> to ensure your intent is clear.</li>
+</ul>
+<p><img src="https://webdev.imgix.net/samesite-cookies-explained/samesite-none-lax-strict.png" alt="Explicitly mark the context of a cookie as None, Lax, or Strict."></p>
+<h2 id="Changes-to-the-default-behavior-without-SameSite"><a href="#Changes-to-the-default-behavior-without-SameSite" class="headerlink" title="Changes to the default behavior without SameSite"></a>Changes to the default behavior without SameSite</h2><ul>
+<li><p>Cookies without a <code>SameSite</code> attribute will be treated as <code>SameSite=Lax</code>.</p>
+</li>
+<li><p>Cookies with <code>SameSite=None</code> must also specify <code>Secure</code>, meaning they require a secure context.</p>
+<p>Both of these changes are backwards-compatible with browsers that have correctly implemented the previous version of the <code>SameSite</code> attribute, or just do not support it at all. By applying these changes to your cookies, you are making their intended use explicit rather than relying on the default behavior of the browser. Likewise, any clients that do not recognize <code>SameSite=None</code> as of yet should ignore it and carry on as if the attribute was not set.</p>
+</li>
+</ul>
+<h3 id="Warning"><a href="#Warning" class="headerlink" title="Warning"></a>Warning</h3><p> A number of older versions of browsers including Chrome, Safari, and UC browser are incompatible with the new <code>None</code> attribute and may ignore or restrict the cookie. This behavior is fixed in current versions, but you should check your traffic to determine what proportion of your users are affected. You can see the <a target="_blank" rel="noopener" href="https://www.chromium.org/updates/same-site/incompatible-clients">list of known incompatible clients on the Chromium site</a>.</p>
+<h2 id="SameSite-cookie-recipes"><a href="#SameSite-cookie-recipes" class="headerlink" title="SameSite cookie recipes"></a>SameSite cookie recipes</h2><p>For further detail on exactly how to update your cookies to successfully handle these changes to <code>SameSite=None</code> and the difference in browser behavior, head to the follow up article, <a target="_blank" rel="noopener" href="https://web.dev/samesite-cookie-recipes">SameSite cookie recipes</a>.</p>
+<p>Ref:<br><a target="_blank" rel="noopener" href="https://web.dev/samesite-cookies-explained/">https://web.dev/samesite-cookies-explained/</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rainyjune.github.io/2020/10/29/samesite-cookies/" data-id="ckh007tu300096kv6crrh2rbb" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/11/02/object-create-in-javascript/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Object.create in JavaScript
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/10/29/xdomainrequest-restrictions-limitations-and-workarounds/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">XDomainRequest - Restrictions, Limitations and Workarounds</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/11/02/object-create-in-javascript/">Object.create in JavaScript</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/29/samesite-cookies/">SameSite cookies</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/29/xdomainrequest-restrictions-limitations-and-workarounds/">XDomainRequest - Restrictions, Limitations and Workarounds</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/28/get-all-unique-values-in-a-javascript-array/">Get all unique values in a JavaScript array</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/28/unicode-in-javascript/">Unicode in JavaScript</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 rainyjune<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/Links" class="mobile-nav-link">Links</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
