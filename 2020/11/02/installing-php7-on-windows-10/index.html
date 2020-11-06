@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-144501873-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>Installing PHP 7 on Windows 10 | SummerTown</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Download PHP for Windows. I prefer to use 7.4.x (current release - 12), so I downloaded the latest VC15 x64 Thread Safe package. I downloaded the .zip file version of the VC15 x64 Thread Safe edition">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Installing PHP 7 on Windows 10">
+<meta property="og:url" content="https://rainyjune.github.io/2020/11/02/installing-php7-on-windows-10/index.html">
+<meta property="og:site_name" content="SummerTown">
+<meta property="og:description" content="Download PHP for Windows. I prefer to use 7.4.x (current release - 12), so I downloaded the latest VC15 x64 Thread Safe package. I downloaded the .zip file version of the VC15 x64 Thread Safe edition">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-11-02T06:54:50.000Z">
+<meta property="article:modified_time" content="2020-11-02T07:24:57.050Z">
+<meta property="article:author" content="rainyjune">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="SummerTown" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">SummerTown</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/Links">Links</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rainyjune.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-installing-php7-on-windows-10" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/11/02/installing-php7-on-windows-10/" class="article-date">
+  <time datetime="2020-11-02T06:54:50.000Z" itemprop="datePublished">2020-11-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Installing PHP 7 on Windows 10
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li><a target="_blank" rel="noopener" href="https://windows.php.net/download/">Download PHP for Windows</a>. I prefer to use 7.4.x (current release - 12), so I downloaded the latest VC15 x64 Thread Safe package. I downloaded the .zip file version of the VC15 x64 Thread Safe edition, under the PHP 7.4 heading.</li>
+<li>Expand the zip file into the path <code>d:\php7</code>.</li>
+<li>Configure PHP to run correctly on your system:<ol>
+<li>In the <code>d:\php7</code> folder, rename the file <code>php.ini-development</code> to <code>php.ini</code>.</li>
+<li>Edit the <code>php.ini</code> file in a text editor.</li>
+<li>Change the following settings in the file and save the file:<ol>
+<li>Uncomment the line that reads <code>;extension_dir = &quot;ext&quot;</code> (remove the <code>;</code> so the line is just <code>extension_dir = &quot;ext&quot;</code>).</li>
+<li>In the section where there are a bunch of <code>extension=</code> lines, uncomment the following lines:<ol>
+<li>extension=php_gd2.dll</li>
+<li>extension=php_curl.dll</li>
+<li>extension=php_mbstring.dll</li>
+<li>extension=php_openssl.dll</li>
+<li>extension=php_pdo_mysql.dll</li>
+<li>extension=php_pdo_sqlite.dll</li>
+<li>extension=php_sockets.dll</li>
+<li>extension=mysqli</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>Add <code>d:\php7</code> to your Windows system path</li>
+<li>Open PowerShell or another terminal emulator (I generally prefer cmder), and type in <code>php -v</code> to verify PHP is working.</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\myuser&gt; php -v</span><br><span class="line">PHP 7.4.12 (cli) (built: Oct 27 2020 17:18:47) ( ZTS Visual C++ 2017 x64 )</span><br><span class="line">Copyright (c) The PHP Group</span><br><span class="line">Zend Engine v3.4.0, Copyright (c) Zend Technologies</span><br></pre></td></tr></table></figure>
+
+<h2 id="Configure-PHP-as-an-Apache-module"><a href="#Configure-PHP-as-an-Apache-module" class="headerlink" title="Configure PHP as an Apache module"></a>Configure PHP as an Apache module</h2><p>Edit <code>httpd.conf</code>,add index.php as a default file name:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DirectoryIndex index.php index.html</span><br></pre></td></tr></table></figure>
+
+<p>At the bottom of the file, add the following lines (change the PHP file locations if necessary):</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># PHP7 module</span><br><span class="line">AddHandler application&#x2F;x-httpd-php .php</span><br><span class="line">AddType application&#x2F;x-httpd-php .php .html</span><br><span class="line">LoadModule php7_module &quot;d:&#x2F;php7&#x2F;php7apache2_4.dll&quot;</span><br><span class="line">PHPiniDir &quot;d:&#x2F;php7&quot;</span><br></pre></td></tr></table></figure>
+
+<p>Save the configuration file and test it from the command line (Start &gt; Run &gt; cmd):</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">httpd -t</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rainyjune.github.io/2020/11/02/installing-php7-on-windows-10/" data-id="ckh5yp41x000b5gv66v5hgly3" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/11/04/safari-beacon-issues/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Safari’s Beacon API problems
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/11/02/object-create-in-javascript/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Object.create in JavaScript</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/11/04/front-end-interview-css/">Front-End Interview Questions - CSS</a>
+          </li>
+        
+          <li>
+            <a href="/2020/11/04/css-selectors-vs-xpath/">CSS Selectors vs. XPath</a>
+          </li>
+        
+          <li>
+            <a href="/2020/11/04/getting-css-selector-of-an-element/">Getting CSS selector of an element</a>
+          </li>
+        
+          <li>
+            <a href="/2020/11/04/safari-beacon-issues/">Safari’s Beacon API problems</a>
+          </li>
+        
+          <li>
+            <a href="/2020/11/02/installing-php7-on-windows-10/">Installing PHP 7 on Windows 10</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 rainyjune<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/Links" class="mobile-nav-link">Links</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
