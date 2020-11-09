@@ -30,7 +30,7 @@ ga('send', 'pageview');
 <meta property="og:image" content="https://rainyjune.github.io/2020/11/04/front-end-interview-css/css_boxmodel.png">
 <meta property="og:image" content="https://rainyjune.github.io/2020/11/04/front-end-interview-css/layout_test.png">
 <meta property="article:published_time" content="2020-11-04T14:36:28.000Z">
-<meta property="article:modified_time" content="2020-11-06T07:51:21.096Z">
+<meta property="article:modified_time" content="2020-11-07T06:32:15.764Z">
 <meta property="article:author" content="rainyjune">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://rainyjune.github.io/2020/11/04/front-end-interview-css/css_boxmodel.png">
@@ -332,6 +332,17 @@ Browsers match selectors from rightmost to left. Browsers filter out elements in
 <p>For example with this selector <code>p span</code>, browsers firstly find all the <code>&lt;span&gt;</code> element, and traverse up its parent all the way up to the root to find the <code>&lt;p&gt;</code> element. For a particular <code>&lt;span&gt;</code>, as soon as it finds a <code>&lt;p&gt;</code>, it knows that the <code>&lt;span&gt;</code> matches and can stop its matching.</p>
 </div>
 
+
+<h3 id="15-Can-you-explain-the-difference-between-px-em-and-rem-as-they-relate-to-font-sizing"><a href="#15-Can-you-explain-the-difference-between-px-em-and-rem-as-they-relate-to-font-sizing" class="headerlink" title="15. Can you explain the difference between px, em and rem as they relate to font sizing?"></a>15. Can you explain the difference between px, em and rem as they relate to font sizing?</h3><div style="display:none;">
+
+<ul>
+<li><code>px</code> - The easiest measurement to use. It is not good for <code>font-size</code>, as it doesn’t respect user’s font preferences.</li>
+<li><code>em</code> - An <code>em</code> is equal to the computed font-size of that element’s parent. Best for layouts and media queries.</li>
+<li><code>rem</code> - <code>rem</code> values are relative to the root <code>html</code> element, not to the parent element. Best for font sizing and spacing (margin, padding, etc).</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://www.digitalocean.com/community/tutorials/css-rem-vs-em-units">https://www.digitalocean.com/community/tutorials/css-rem-vs-em-units</a></p>
+</div>
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   jQuery('h3[id]').on('click', function(){
@@ -342,7 +353,7 @@ document.addEventListener('DOMContentLoaded', function() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rainyjune.github.io/2020/11/04/front-end-interview-css/" data-id="ckh5yp41p00055gv68j63g1tn" class="article-share-link">Share</a>
+      <a data-url="https://rainyjune.github.io/2020/11/04/front-end-interview-css/" data-id="ckha1awnn00069wv6ciih1nuk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -350,6 +361,15 @@ document.addEventListener('DOMContentLoaded', function() {
   
     
 <nav id="article-nav">
+  
+    <a href="/2020/11/09/enable-https-for-apache-on-localhost/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Enable https for Apache on localhost
+        
+      </div>
+    </a>
   
   
     <a href="/2020/11/04/css-selectors-vs-xpath/" id="article-nav-older" class="article-nav-link-wrap">
@@ -391,6 +411,10 @@ document.addEventListener('DOMContentLoaded', function() {
       <ul>
         
           <li>
+            <a href="/2020/11/09/enable-https-for-apache-on-localhost/">Enable https for Apache on localhost</a>
+          </li>
+        
+          <li>
             <a href="/2020/11/04/front-end-interview-css/">Front-End Interview Questions - CSS</a>
           </li>
         
@@ -404,10 +428,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
           <li>
             <a href="/2020/11/04/safari-beacon-issues/">Safari’s Beacon API problems</a>
-          </li>
-        
-          <li>
-            <a href="/2020/11/02/installing-php7-on-windows-10/">Installing PHP 7 on Windows 10</a>
           </li>
         
       </ul>
