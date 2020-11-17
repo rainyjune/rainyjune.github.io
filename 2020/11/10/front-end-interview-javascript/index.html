@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-144501873-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>Front-End Interview Questions - JavaScript | SummerTown</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="h3[id] {   cursor: pointer; }  h3[id] + div {   display: none; }   1. Explain event delegation Event delegation refers to the process of using event propagation (bubbling) to handle events at a highe">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Front-End Interview Questions - JavaScript">
+<meta property="og:url" content="https://rainyjune.github.io/2020/11/10/front-end-interview-javascript/index.html">
+<meta property="og:site_name" content="SummerTown">
+<meta property="og:description" content="h3[id] {   cursor: pointer; }  h3[id] + div {   display: none; }   1. Explain event delegation Event delegation refers to the process of using event propagation (bubbling) to handle events at a highe">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-11-10T04:01:37.000Z">
+<meta property="article:modified_time" content="2020-11-11T07:01:54.204Z">
+<meta property="article:author" content="rainyjune">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="SummerTown" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">SummerTown</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/Links">Links</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rainyjune.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-front-end-interview-javascript" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/11/10/front-end-interview-javascript/" class="article-date">
+  <time datetime="2020-11-10T04:01:37.000Z" itemprop="datePublished">2020-11-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Front-End Interview Questions - JavaScript
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <style>
+h3[id] {
+  cursor: pointer;
+}
+
+h3[id] + div {
+  display: none;
+}
+</style>
+
+<h3 id="1-Explain-event-delegation"><a href="#1-Explain-event-delegation" class="headerlink" title="1. Explain event delegation"></a>1. Explain event delegation</h3><div>
+Event delegation refers to the process of using event propagation (bubbling) to handle events at a higher level in the DOM than the element on which the event originated. It allows us to attach a single event listener, to a parent element, that will fire for all descendants, whether thoese descendants exist now or are added in the future. 
+</div>
+
+<h3 id="2-Explain-how-this-works-in-JavaScript"><a href="#2-Explain-how-this-works-in-JavaScript" class="headerlink" title="2. Explain how this works in JavaScript"></a>2. Explain how <code>this</code> works in JavaScript</h3><div>
+
+<p><strong>Global context</strong></p>
+<p>In the global execution context (outside of any function), <code>this</code> refers to the global object.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// In web browsers, the window object is also the global object:</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">this</span> === <span class="built_in">window</span>); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line">a = <span class="number">37</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">window</span>.a); <span class="comment">// 37</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">this</span>.b = <span class="string">&quot;MDN&quot;</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">window</span>.b)  <span class="comment">// &quot;MDN&quot;</span></span><br><span class="line"><span class="built_in">console</span>.log(b)         <span class="comment">// &quot;MDN&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Function context</strong></p>
+<p>Inside a function, the value of <code>this</code> depends on how the function is called.</p>
+<p>In non-strict mode, the value of <code>this</code> defaults to the global object, which is <code>window</code> in a browser.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// In a browser:</span></span><br><span class="line">f1() === <span class="built_in">window</span>; <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// In Node:</span></span><br><span class="line">f1() === globalThis; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>In strict mode, if the value of <code>this</code> is not set when entering an execution context, it remains as <code>undefined</code>.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="meta">  &#x27;use strict&#x27;</span>; <span class="comment">// see strict mode</span></span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">f2() === <span class="literal">undefined</span>; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Class context</strong></p>
+<p>The behavior of <code>this</code> in classes and functions is similar.</p>
+<p>Within a class constructor, <code>this</code> is a regular object. All non-static methods within the class are added to the prototype of <code>this</code>.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Example</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> proto = <span class="built_in">Object</span>.getPrototypeOf(<span class="built_in">this</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">Object</span>.getOwnPropertyNames(proto));</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="title">first</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">  <span class="function"><span class="title">second</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">  <span class="keyword">static</span> <span class="function"><span class="title">third</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Example(); <span class="comment">// [&#x27;constructor&#x27;, &#x27;first&#x27;, &#x27;second&#x27;]</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Arrow functions</strong></p>
+<p>In arrow functions, <code>this</code> retains the value of the enclosing lexical context’s <code>this</code>.</p>
+</div>
+
+<h3 id="3-Explain-how-prototypal-inheritance-works"><a href="#3-Explain-how-prototypal-inheritance-works" class="headerlink" title="3. Explain how prototypal inheritance works."></a>3. Explain how prototypal inheritance works.</h3><div>
+The core idea of prototypal inheritance is that an object can point to another object and inherit all its properties. The main purpose is to allow multiple instances of an object to share common properties.
+</div>
+
+<h3 id="4-What-is-a-promise-Where-and-how-would-you-use-promise"><a href="#4-What-is-a-promise-Where-and-how-would-you-use-promise" class="headerlink" title="4. What is a promise? Where and how would you use promise?"></a>4. What is a promise? Where and how would you use promise?</h3><div>
+
+<p>A promise is an object that my produce a single value some time in the future: either a resolved value, or a reason that’s not resolved. A promise may be in one of 3 possible states: fufilled, rejected, or pending. It can be chained with callback functions to handle the fufilled value or the reason for rejection.</p>
+<ul>
+<li>Complex async code made easier</li>
+<li>Promisifying XMLHttpRequest</li>
+<li>Chaining <code>then</code>s to transform values or run additional async actions one after another</li>
+</ul>
+</div>
+
+<h3 id="5-What-is-the-difference-between-while-and-do-while-loops-in-JavaScript"><a href="#5-What-is-the-difference-between-while-and-do-while-loops-in-JavaScript" class="headerlink" title="5. What is the difference between while and do...while loops in JavaScript?"></a>5. What is the difference between <code>while</code> and <code>do...while</code> loops in JavaScript?</h3><div>
+
+<p>The difference is a matter of when the condition is checked.</p>
+<ul>
+<li>A <code>while</code> loop checks the condition, then executes the loop.</li>
+<li>A <code>do...while</code> loop executes the loop and then checks the conditions.</li>
+</ul>
+</div>
+
+<h3 id="6-Why-you-might-want-to-create-static-class-members"><a href="#6-Why-you-might-want-to-create-static-class-members" class="headerlink" title="6. Why you might want to create static class members?"></a>6. Why you might want to create static class members?</h3><div>
+Static methods are used for the functionality that belongs to the class, it doesn't relate to a concrete class instance.
+
+<p>Static properties are used when we’d like to store class-level data, also not bound to an instance.</p>
+<p>Static properties and methods are inherited.</p>
+</div>
+
+<h3 id="7-How-can-you-share-code-between-files"><a href="#7-How-can-you-share-code-between-files" class="headerlink" title="7. How can you share code between files?"></a>7. How can you share code between files?</h3><div>
+
+<p><strong>Solution 1. Global object</strong></p>
+<p>utils.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> add = <span class="function"><span class="keyword">function</span>(<span class="params">num1, num2</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> num1 + num2;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> subtract = <span class="function"><span class="keyword">function</span>(<span class="params">num1, num2</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> num1 - num2</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.globalobject = &#123;</span><br><span class="line">  add: add,</span><br><span class="line">  subtract: subtrack</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>file1.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">globalobject.add(<span class="number">4</span>, <span class="number">4</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>Solution 2. CommonJS</strong></p>
+<p>utils.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> add = <span class="function"><span class="keyword">function</span>(<span class="params">num1, num2</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> num1 + num2;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> subtract = <span class="function"><span class="keyword">function</span>(<span class="params">num1, num2</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> num1 - num2</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  add,</span><br><span class="line">  subtract</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>file1.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> &#123; add, subtract &#125; = <span class="built_in">require</span>(<span class="string">&#x27;./utils.js&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(add(<span class="number">1</span>, <span class="number">2</span>));</span><br><span class="line"><span class="built_in">console</span>.log(subtract(<span class="number">1</span>, <span class="number">2</span>));</span><br></pre></td></tr></table></figure>
+
+<p>*<strong>Solution 3. ESM</strong></p>
+<p>utils.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> add = <span class="function"><span class="keyword">function</span>(<span class="params">num1, num2</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> num1 + num2;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> subtract = <span class="function"><span class="keyword">function</span>(<span class="params">num1, num2</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> num1 - num2</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  add,</span><br><span class="line">  subtract</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>file1.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> globalobject <span class="keyword">from</span> <span class="string">&#x27;./utils.mjs&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> &#123; add, subtract &#125; = globalobject;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(add(<span class="number">1</span>, <span class="number">2</span>));</span><br><span class="line"><span class="built_in">console</span>.log(subtract(<span class="number">1</span>, <span class="number">2</span>));</span><br></pre></td></tr></table></figure>
+
+<p><strong>Solution 4. JSONP</strong><br>utils.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> add = <span class="function"><span class="keyword">function</span>(<span class="params">num1, num2</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> num1 + num2;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> subtract = <span class="function"><span class="keyword">function</span>(<span class="params">num1, num2</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> num1 - num2</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>file1.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">jsonp</span>(<span class="params">file, callback</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> s = <span class="built_in">document</span>.createElement(<span class="string">&#x27;script&#x27;</span>);</span><br><span class="line">  s.src = file;</span><br><span class="line">  s.onload = callback;</span><br><span class="line">  <span class="built_in">document</span>.body.appendChild(s);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">jsonp(<span class="string">&#x27;./a.js&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(add(<span class="number">1</span>, <span class="number">2</span>));</span><br><span class="line">  <span class="built_in">console</span>.log(subtract(<span class="number">1</span>, <span class="number">2</span>));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  jQuery('h3[id]').on('click', function(){
+    jQuery(this).next('div').slideToggle();
+  })
+});
+</script>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rainyjune.github.io/2020/11/10/front-end-interview-javascript/" data-id="ckhld2s4u0007qkv62281fot9" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/11/12/react-error-adjacent-jsx-elements-must-be-wrapped-in-an-enclosing-tag/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          React Error: Adjacent JSX elements must be wrapped in an enclosing tag
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/11/09/enable-https-for-apache-on-localhost/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Enable https for Apache on localhost</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/11/16/introduction-to-service-worker/">Introduction to Service Worker</a>
+          </li>
+        
+          <li>
+            <a href="/2020/11/12/react-error-adjacent-jsx-elements-must-be-wrapped-in-an-enclosing-tag/">React Error: Adjacent JSX elements must be wrapped in an enclosing tag</a>
+          </li>
+        
+          <li>
+            <a href="/2020/11/10/front-end-interview-javascript/">Front-End Interview Questions - JavaScript</a>
+          </li>
+        
+          <li>
+            <a href="/2020/11/09/enable-https-for-apache-on-localhost/">Enable https for Apache on localhost</a>
+          </li>
+        
+          <li>
+            <a href="/2020/11/04/front-end-interview-css/">Front-End Interview Questions - CSS</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 rainyjune<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/Links" class="mobile-nav-link">Links</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
