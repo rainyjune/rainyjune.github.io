@@ -20,13 +20,15 @@ ga('send', 'pageview');
   
   <title>Introduction to Service Worker | SummerTown</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
+  <meta name="description" content="Check if service worker is supportedmain.js 12345if (&amp;#x27;serviceWorker&amp;#x27; in navigator) &amp;#123;  &#x2F;&#x2F; supported!&amp;#125; else &amp;#123;  &#x2F;&#x2F; Service workers are not supported.&amp;#125;  Register a service wo">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Introduction to Service Worker">
 <meta property="og:url" content="https://rainyjune.github.io/2020/11/16/introduction-to-service-worker/index.html">
 <meta property="og:site_name" content="SummerTown">
+<meta property="og:description" content="Check if service worker is supportedmain.js 12345if (&amp;#x27;serviceWorker&amp;#x27; in navigator) &amp;#123;  &#x2F;&#x2F; supported!&amp;#125; else &amp;#123;  &#x2F;&#x2F; Service workers are not supported.&amp;#125;  Register a service wo">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-11-16T03:52:21.000Z">
-<meta property="article:modified_time" content="2020-11-16T03:52:57.833Z">
+<meta property="article:modified_time" content="2020-11-17T08:35:20.683Z">
 <meta property="article:author" content="rainyjune">
 <meta name="twitter:card" content="summary">
   
@@ -101,11 +103,41 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h3 id="Check-if-service-worker-is-supported"><a href="#Check-if-service-worker-is-supported" class="headerlink" title="Check if service worker is supported"></a>Check if service worker is supported</h3><p>main.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="string">&#x27;serviceWorker&#x27;</span> <span class="keyword">in</span> navigator) &#123;</span><br><span class="line">  <span class="comment">// supported!</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="comment">// Service workers are not supported.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Register-a-service-worker"><a href="#Register-a-service-worker" class="headerlink" title="Register a service worker"></a>Register a service worker</h3><p>main.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">navigator.serviceWorker.register(<span class="string">&#x27;sw.js&#x27;</span>)</span><br><span class="line">.then(<span class="function"><span class="params">registration</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`Registration successful, scope is <span class="subst">$&#123;registration.scope&#125;</span>`</span>);</span><br><span class="line">&#125;)</span><br><span class="line">.catch(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`Service worker registration failed, error: <span class="subst">$&#123;error&#125;</span>`</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Check-if-a-service-worker-exists-in-a-given-URL"><a href="#Check-if-a-service-worker-exists-in-a-given-URL" class="headerlink" title="Check if a service worker exists in a given URL"></a>Check if a service worker exists in a given URL</h3><p>If you want to do this in code, you can only do it within the same origin as the worker(s) you want to check for. Within the same origin, you can use <code>getRegistration(url)</code> (which gives you a promise that will resolve to <code>undefined</code> or a <code>ServiceWorkerRegistration</code> object for the URL), or <code>getRegistrations()</code> (which gives you a promise for an array of <code>ServiceWorkerRegistration</code> objects). E.g.:</p>
+<p>main.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">navigator.serviceWorker.getRegistrations().then(<span class="function"><span class="params">registrations</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(registrations);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="How-to-use-navigator-serviceWorker-ready-property"><a href="#How-to-use-navigator-serviceWorker-ready-property" class="headerlink" title="How to use navigator.serviceWorker.ready property?"></a>How to use navigator.serviceWorker.ready property?</h2><h3 id="I-want-the-service-worker-to-control-higher-pages"><a href="#I-want-the-service-worker-to-control-higher-pages" class="headerlink" title="I want the service worker to control higher pages"></a>I want the service worker to control higher pages</h3><ol>
+<li>Change the <code>scope</code> option when registering the service worker</li>
+</ol>
+<p>main.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">navigator.serviceWorker.register(<span class="string">&#x27;/app/service-worker.js&#x27;</span>, &#123;</span><br><span class="line">  scope: <span class="string">&#x27;/app&#x27;</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>Set the <a target="_blank" rel="noopener" href="https://w3c.github.io/ServiceWorker/#service-worker-script-response">Service-Worker-Allowed HTTP header</a> in your server config for the request serving the service worker script.</li>
+</ol>
+<p>nginx config</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">location ~* (service-worker\.js)$ &#123;</span><br><span class="line">  # tells browsers the service worker scope</span><br><span class="line">  add_header &#39;Service-Worker-Allowed&#39; &#39;&#x2F;app&#39;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Apache config</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">LoadModule rewrite_module modules&#x2F;mod_rewrite.so</span><br><span class="line">&lt;Files &quot;service-worker.js&quot;&gt;</span><br><span class="line">  Header set Service-Worker-Allowed &quot;&#x2F;&quot;</span><br><span class="line">&lt;&#x2F;Files&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Listen-for-install-event-in-service-worker"><a href="#Listen-for-install-event-in-service-worker" class="headerlink" title="Listen for install event in service worker"></a>Listen for install event in service worker</h3><p>service-worker.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Listen for install event, set callback</span></span><br><span class="line">self.addEventListener(<span class="string">&#x27;install&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// Perform some task</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="Listen-for-activate-event-in-service-worker"><a href="#Listen-for-activate-event-in-service-worker" class="headerlink" title="Listen for activate event in service worker"></a>Listen for activate event in service worker</h3><p>service-worker.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">self.addEventListener(<span class="string">&#x27;activate&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// Perform some task</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rainyjune.github.io/2020/11/16/introduction-to-service-worker/" data-id="ckhld2s50000eqkv6b8higsmp" class="article-share-link">Share</a>
+      <a data-url="https://rainyjune.github.io/2020/11/16/introduction-to-service-worker/" data-id="ckhpxdnin000f20v68s4y6x2o" class="article-share-link">Share</a>
       
       
     </footer>
@@ -114,10 +146,19 @@ ga('send', 'pageview');
     
 <nav id="article-nav">
   
+    <a href="/2020/11/19/stuff-i-wish-i-had-known-earlier-about-service-workers/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          stuff i wish i had known earlier about service workers
+        
+      </div>
+    </a>
   
-    <a href="/2020/11/12/react-error-adjacent-jsx-elements-must-be-wrapped-in-an-enclosing-tag/" id="article-nav-older" class="article-nav-link-wrap">
+  
+    <a href="/2020/11/14/service-worker-an-introduction/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">React Error: Adjacent JSX elements must be wrapped in an enclosing tag</div>
+      <div class="article-nav-title">Service Workers: an Introduction</div>
     </a>
   
 </nav>
@@ -154,23 +195,23 @@ ga('send', 'pageview');
       <ul>
         
           <li>
+            <a href="/2020/11/20/fix-referenceerror-primordials-is-not-defined/">How to fix ReferenceError: primordials is not defined in node</a>
+          </li>
+        
+          <li>
+            <a href="/2020/11/19/stuff-i-wish-i-had-known-earlier-about-service-workers/">stuff i wish i had known earlier about service workers</a>
+          </li>
+        
+          <li>
             <a href="/2020/11/16/introduction-to-service-worker/">Introduction to Service Worker</a>
           </li>
         
           <li>
+            <a href="/2020/11/14/service-worker-an-introduction/">Service Workers: an Introduction</a>
+          </li>
+        
+          <li>
             <a href="/2020/11/12/react-error-adjacent-jsx-elements-must-be-wrapped-in-an-enclosing-tag/">React Error: Adjacent JSX elements must be wrapped in an enclosing tag</a>
-          </li>
-        
-          <li>
-            <a href="/2020/11/10/front-end-interview-javascript/">Front-End Interview Questions - JavaScript</a>
-          </li>
-        
-          <li>
-            <a href="/2020/11/09/enable-https-for-apache-on-localhost/">Enable https for Apache on localhost</a>
-          </li>
-        
-          <li>
-            <a href="/2020/11/04/front-end-interview-css/">Front-End Interview Questions - CSS</a>
           </li>
         
       </ul>
