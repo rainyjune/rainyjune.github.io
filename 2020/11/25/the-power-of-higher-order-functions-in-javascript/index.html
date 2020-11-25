@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-144501873-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>The Power of Higher Order Functions in JavaScript | SummerTown</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="A higher order function is a function that either takes another function as an argument or returns a function as the return value.  Higher order functions are widely used in JavaScript and they exist">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Power of Higher Order Functions in JavaScript">
+<meta property="og:url" content="https://rainyjune.github.io/2020/11/25/the-power-of-higher-order-functions-in-javascript/index.html">
+<meta property="og:site_name" content="SummerTown">
+<meta property="og:description" content="A higher order function is a function that either takes another function as an argument or returns a function as the return value.  Higher order functions are widely used in JavaScript and they exist">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-11-25T05:09:14.000Z">
+<meta property="article:modified_time" content="2020-11-25T06:51:37.845Z">
+<meta property="article:author" content="rainyjune">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="SummerTown" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">SummerTown</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/Links">Links</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rainyjune.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-the-power-of-higher-order-functions-in-javascript" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/11/25/the-power-of-higher-order-functions-in-javascript/" class="article-date">
+  <time datetime="2020-11-25T05:09:14.000Z" itemprop="datePublished">2020-11-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      The Power of Higher Order Functions in JavaScript
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>A higher order function is a function that either takes another function as an argument or returns a function as the return value. </p>
+<p>Higher order functions are widely used in JavaScript and they exist in commonly used functions like <code>.map</code>, <code>.filter</code>, <code>.reduce</code> and <code>.forEach</code>.</p>
+<p>You see these when you declare function callbacks as arguments to these array methods:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="string">&#x27;six&#x27;</span>, <span class="string">&#x27;seven&#x27;</span>, <span class="string">&#x27;eight&#x27;</span>, <span class="string">&#x27;nine&#x27;</span>, <span class="string">&#x27;ten&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">// Duplicate the array</span></span><br><span class="line">arr.map(<span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> value</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Return only the number types</span></span><br><span class="line">arr.filter(<span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">typeof</span> value === <span class="string">&#x27;number&#x27;</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Log each value to the console</span></span><br><span class="line">arr.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(value)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Add the numbers together, avoiding the string types</span></span><br><span class="line">arr.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">acc, value</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> value === <span class="string">&#x27;number&#x27;</span>) &#123;</span><br><span class="line">    acc += value</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> acc</span><br><span class="line">&#125;, <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+<p>But the higher order function isn’t the function you pass in to methods like <code>.map</code>. Methods like <code>.map</code> is the higher order function.</p>
+<p>At first, it may seem like a useless way to write code in JavaScript. Why pass in a function and bother returning another function, when you can just avoid all of that and do everything in one function all at once?</p>
+<p>The biggest benefit that higher order functions bring to the table are reusability and simplicity. But they also benefit from writing beautiful code.</p>
+<h2 id="Code-Composition-and-Powerful-Examples"><a href="#Code-Composition-and-Powerful-Examples" class="headerlink" title="Code Composition and Powerful Examples"></a>Code Composition and Powerful Examples</h2><p>Now that we know what higher order functions look like in code, you might be wondering what were some use cases and where do they begin to shine.</p>
+<p>Let’s say we have a list of frogs:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> frogsList = [</span><br><span class="line">  <span class="comment">// Yes, these frogs are intelligent. They know how to use email</span></span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">&#x27;bobTheFrog&#x27;</span>,</span><br><span class="line">    email: <span class="string">&#x27;froggy@gmail.com&#x27;</span>,</span><br><span class="line">    age: <span class="number">2</span>,</span><br><span class="line">    gender: <span class="string">&#x27;Male&#x27;</span>,</span><br><span class="line">    widthOfTongue: <span class="number">3</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">&#x27;hippoTheFrog&#x27;</span>,</span><br><span class="line">    email: <span class="string">&#x27;hippo@gmail.com&#x27;</span>,</span><br><span class="line">    age: <span class="number">10</span>,</span><br><span class="line">    gender: <span class="string">&#x27;Male&#x27;</span>,</span><br><span class="line">    widthOfTongue: <span class="number">11</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">&#x27;sally&#x27;</span>,</span><br><span class="line">    email: <span class="string">&#x27;sallyLipstick@gmail.com&#x27;</span>,</span><br><span class="line">    age: <span class="number">5</span>,</span><br><span class="line">    gender: <span class="string">&#x27;Female&#x27;</span>,</span><br><span class="line">    widthOfTongue: <span class="number">4</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">&#x27;george&#x27;</span>,</span><br><span class="line">    email: <span class="string">&#x27;georgeRoseBowl@gmail.com&#x27;</span>,</span><br><span class="line">    age: <span class="number">11</span>,</span><br><span class="line">    gender: <span class="string">&#x27;Male&#x27;</span>,</span><br><span class="line">    widthOfTongue: <span class="number">3</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">&#x27;lisa&#x27;</span>,</span><br><span class="line">    email: <span class="string">&#x27;lisaLovesGeorgeForever@gmail.com&#x27;</span>,</span><br><span class="line">    age: <span class="number">19</span>,</span><br><span class="line">    gender: <span class="string">&#x27;Female&#x27;</span>,</span><br><span class="line">    widthOfTongue: <span class="number">15</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">&#x27;kentucky&#x27;</span>,</span><br><span class="line">    email: <span class="string">&#x27;frogInKentucky@yahoo.com&#x27;</span>,</span><br><span class="line">    age: <span class="number">18</span>,</span><br><span class="line">    gender: <span class="string">&#x27;Male&#x27;</span>,</span><br><span class="line">    widthOfTongue: <span class="number">13</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>To filter the frogs to a specific gender type without a higher order function, we would have to do something like this:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">filterGender</span>(<span class="params">gender, frogs</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> frogs.filter(<span class="function"><span class="keyword">function</span>(<span class="params">frog</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> frog.gender === gender</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// filterGender in use</span></span><br><span class="line"><span class="keyword">const</span> maleFrogs = filterGender(<span class="string">&#x27;Male&#x27;</span>, frogsList)</span><br></pre></td></tr></table></figure>
+
+<p>This is perfectly fine. However, it can be cumbersome if used multiple times in an application. If we had a gigantic app about frogs, <code>filterGender</code> might be used more than once.</p>
+<h2 id="Taking-it-a-Second-Step-Further"><a href="#Taking-it-a-Second-Step-Further" class="headerlink" title="Taking it a Second Step Further"></a>Taking it a Second Step Further</h2><p>If you were to fetch a different list of frogs you’d have to call <code>filterGender</code> again and re-declare your gender as the first argument to filter the new list:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFrogs</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// some logic and returns a new list of frogs</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> newFrogs = getFrogs()</span><br><span class="line"><span class="keyword">const</span> moreMaleFrogs = filterGender(<span class="string">&#x27;Male&#x27;</span>, newFrogs) <span class="comment">// Shucks, I have to write &#x27;Male&#x27; again?</span></span><br></pre></td></tr></table></figure>
+
+<p>To solve this issue, we can use the concept of higher order functions.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">filterGender</span>(<span class="params">gender</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">frogs</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> frogs.filter(<span class="function"><span class="keyword">function</span>(<span class="params">frog</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> frog.gender === gender</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>And now, just like that, we can just assign this gender filterer to a variable and we would never have to declare the same gender when filtering frogs anymore!</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> filterFemaleFrogs = filterGender(<span class="string">&#x27;Female&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> femaleFrogs = filterFemaleFrogs(frogsList)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Taking-it-a-Third-Step-Further"><a href="#Taking-it-a-Third-Step-Further" class="headerlink" title="Taking it a Third Step Further"></a>Taking it a Third Step Further</h2><p>If you still aren’t convinced enough of how powerful higher order functions are in the JavaScript language, then lets continue the example to make an even more generic function to create a higher level of reusability:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">filterFrogs</span>(<span class="params">filter</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">frogs</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> frogs.filter(filter)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Previously we had the ability to make a reusable function for a frog’s gender. However, we can go further by abstracting away the logic of the <em>filter</em> function, so that now we can compose and re-use different filter functions!</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> filterMaleFrogs = filterFrogs(<span class="function"><span class="keyword">function</span>(<span class="params">frog</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> frog.gender === <span class="string">&#x27;Male&#x27;</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> filterAdultFrogs = filterFrogs(<span class="function"><span class="keyword">function</span>(<span class="params">frog</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> frog.age &gt;= <span class="number">10</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> filterFrogNamesThatStartWithHippo = filterFrogs(<span class="function"><span class="keyword">function</span>(<span class="params">frog</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> frog.name.toLowerCase().startsWith(<span class="string">&#x27;hippo&#x27;</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> filterGmailEmails = filterFrogs(<span class="function"><span class="keyword">function</span>(<span class="params">frog</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="regexp">/gmail.com/i</span>.test(frog.email)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>Wow!</p>
+<p>Previously we had the amazing ability to re-use a gender filterer function without ever having to declare the same gender type ever again, but now we have the additional abilities of creating and re-using functions of how we want the frogs to be filtered! Amazing!</p>
+<p>We can even use them all at once:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">applyAllFilters</span>(<span class="params">...filters</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">frogs</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> newFrogs = [...frogs]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> index = <span class="number">0</span>; index &lt; filters.length; index++) &#123;</span><br><span class="line">      <span class="keyword">const</span> filter = filters[index]</span><br><span class="line">      newFrogs = filter(newFrogs)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> newFrogs</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> applyFrogFilterers = applyAllFilters(</span><br><span class="line">  filterMaleFrogs,</span><br><span class="line">  filterAdultFrogs,</span><br><span class="line">  filterFrogNamesThatStartWithHippo,</span><br><span class="line">  filterGmailEmails,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> combinedFrogsList = [...frogsList, ...frogsList2, ...frogsList3]</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> filteredFrogs = applyFrogFilterers(combinedFrogsList)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(filteredFrogs)</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">      result:</span></span><br><span class="line"><span class="comment">        &#123;</span></span><br><span class="line"><span class="comment">          age: 10,</span></span><br><span class="line"><span class="comment">          email: &quot;hippo@gmail.com&quot;,</span></span><br><span class="line"><span class="comment">          gender: &quot;Male&quot;,</span></span><br><span class="line"><span class="comment">          name: &quot;hippoTheFrog&quot;,</span></span><br><span class="line"><span class="comment">          widthOfTongue: 11</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Taking-it-Further-One-Last-Time"><a href="#Taking-it-Further-One-Last-Time" class="headerlink" title="Taking it Further One Last Time"></a>Taking it Further One Last Time</h2><p>Our <em>applyAllFilters</em> function does the job quite well. However, for huge lists of frogs it might become a heavy task because it runs <em>filter</em> multiple times to get the final result.</p>
+<p>We can again use the concept of higher order functions to make a simple, reusable higher order function that is able to make one pass through the entire list of frogs by applying the filters at the same time.</p>
+<p>To be more clear, have a look at the for loop code and try to see what’s truly happening behind the scenes:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">applyAllFilters</span>(<span class="params">...filters</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">frogs</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> newFrogs = [...frogs]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> index = <span class="number">0</span>; index &lt; filters.length; index++) &#123;</span><br><span class="line">      <span class="keyword">const</span> filter = filters[index]</span><br><span class="line">      newFrogs = filter(newFrogs)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> newFrogs</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>The line I want you to look at is this:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">newFrogs = filter(newFrogs)</span><br></pre></td></tr></table></figure>
+
+<p>That line of code is the same line of code as return frogs.filter(filter) in this function:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">filterFrogs</span>(<span class="params">filter</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">frogs</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> frogs.filter(filter)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>This is a problem, because the filter method creates a new array. When we had written this:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> applyFrogFilterers = applyAllFilters(</span><br><span class="line">  filterMaleFrogs,</span><br><span class="line">  filterAdultFrogs,</span><br><span class="line">  filterFrogNamesThatStartWithHippo,</span><br><span class="line">  filterGmailEmails,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>We’re calling the filter method 4 different times. In other words, we’re making JavaScript create four different arrays in memory just to get the final result.</p>
+<p>So how can we make JavaScript create just one array to get the same result in the end?</p>
+<p>You guessed it. Using higher order functions!</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// <span class="doctag">NOTE:</span> The filter functions are now individual functions (not wrapped with filterFrogs)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> filterMaleFrogs = <span class="function"><span class="keyword">function</span>(<span class="params">frog</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> frog.gender === <span class="string">&#x27;Male&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> filterAdultFrogs = <span class="function"><span class="keyword">function</span>(<span class="params">frog</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> frog.age &gt;= <span class="number">10</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> filterFrogNamesThatStartWithHippo = <span class="function"><span class="keyword">function</span>(<span class="params">frog</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> frog.name.toLowerCase().startsWith(<span class="string">&#x27;hippo&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> filterGmailEmails = <span class="function"><span class="keyword">function</span>(<span class="params">frog</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="regexp">/gmail.com/i</span>.test(frog.email)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Credits to: SerjoA</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">combineFilters</span>(<span class="params">...fns</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">val</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; fns.length; i++) &#123;</span><br><span class="line">      <span class="keyword">const</span> filter = fns[i]</span><br><span class="line">      <span class="keyword">const</span> passes = filter(val)</span><br><span class="line">      <span class="keyword">if</span> (passes) &#123;</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">composeFrogFilterers</span>(<span class="params">...fns</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">frogs</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// Credits to: SerjoA</span></span><br><span class="line">    <span class="keyword">return</span> frogs.filter(combineFilters(...fns))</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> applyFrogFilterers = composeFrogFilterers(</span><br><span class="line">  filterMaleFrogs,</span><br><span class="line">  filterAdultFrogs,</span><br><span class="line">  filterFrogNamesThatStartWithHippo,</span><br><span class="line">  filterGmailEmails,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> combinedFrogsList = [...frogsList, ...frogsList2, ...frogsList3]</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> allFilteredFrogs = applyFrogFilterers(combinedFrogsList)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(allFilteredFrogs)</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">      result:</span></span><br><span class="line"><span class="comment">        &#123;</span></span><br><span class="line"><span class="comment">          age: 10,</span></span><br><span class="line"><span class="comment">          email: &quot;hippo@gmail.com&quot;,</span></span><br><span class="line"><span class="comment">          gender: &quot;Male&quot;,</span></span><br><span class="line"><span class="comment">          name: &quot;hippoTheFrog&quot;,</span></span><br><span class="line"><span class="comment">          widthOfTongue: 11</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>I hope you are convinced of how powerful higher order functions are and that by reading this article you gained some more insight on the use cases of this concept! Look out more for more in the future!</p>
+<h2 id="Source"><a href="#Source" class="headerlink" title="Source:"></a>Source:</h2><p><a target="_blank" rel="noopener" href="https://jsmanifest.com/the-power-of-higher-order-functions-in-javascript/">https://jsmanifest.com/the-power-of-higher-order-functions-in-javascript/</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rainyjune.github.io/2020/11/25/the-power-of-higher-order-functions-in-javascript/" data-id="ckhx20rc5000n1sv64v7rcrv9" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/11/20/fix-referenceerror-primordials-is-not-defined/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">How to fix ReferenceError: primordials is not defined in node</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/11/25/the-power-of-higher-order-functions-in-javascript/">The Power of Higher Order Functions in JavaScript</a>
+          </li>
+        
+          <li>
+            <a href="/2020/11/20/fix-referenceerror-primordials-is-not-defined/">How to fix ReferenceError: primordials is not defined in node</a>
+          </li>
+        
+          <li>
+            <a href="/2020/11/19/stuff-i-wish-i-had-known-earlier-about-service-workers/">stuff i wish i had known earlier about service workers</a>
+          </li>
+        
+          <li>
+            <a href="/2020/11/16/introduction-to-service-worker/">Introduction to Service Worker</a>
+          </li>
+        
+          <li>
+            <a href="/2020/11/14/service-worker-an-introduction/">Service Workers: an Introduction</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 rainyjune<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/Links" class="mobile-nav-link">Links</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
