@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-144501873-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>Why do we need Promise in JavaScript | SummerTown</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1.Cleaner code and avoid callback hellUsing callbacks: 123456789101112131415161718192021222324252627282930313233343536function get(url, callback) &amp;#123;  var request &#x3D; new XMLHttpRequest();  request.o">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Why do we need Promise in JavaScript">
+<meta property="og:url" content="https://rainyjune.github.io/2020/12/01/why-do-we-need-promises-in-javascript/index.html">
+<meta property="og:site_name" content="SummerTown">
+<meta property="og:description" content="1.Cleaner code and avoid callback hellUsing callbacks: 123456789101112131415161718192021222324252627282930313233343536function get(url, callback) &amp;#123;  var request &#x3D; new XMLHttpRequest();  request.o">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-12-01T05:26:03.000Z">
+<meta property="article:modified_time" content="2020-12-01T07:09:58.881Z">
+<meta property="article:author" content="rainyjune">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="SummerTown" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">SummerTown</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/Links">Links</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rainyjune.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-why-do-we-need-promises-in-javascript" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/01/why-do-we-need-promises-in-javascript/" class="article-date">
+  <time datetime="2020-12-01T05:26:03.000Z" itemprop="datePublished">2020-12-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Why do we need Promise in JavaScript
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-Cleaner-code-and-avoid-callback-hell"><a href="#1-Cleaner-code-and-avoid-callback-hell" class="headerlink" title="1.Cleaner code and avoid callback hell"></a>1.Cleaner code and avoid callback hell</h2><p>Using callbacks:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">get</span>(<span class="params">url, callback</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> request = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">  request.open(<span class="string">&#x27;GET&#x27;</span>, url);</span><br><span class="line">  request.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (request.readyState === <span class="number">4</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (request.status === <span class="number">200</span>) &#123;</span><br><span class="line">        callback(<span class="literal">null</span>, request.responseText);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        callback(request.statusText, <span class="literal">null</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">  request.onerror = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    callback(e.type, <span class="literal">null</span>)</span><br><span class="line">  &#125;;</span><br><span class="line">  request.send();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">get(<span class="string">&#x27;./file1.txt&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">error, text</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (error) &#123;</span><br><span class="line">    <span class="comment">//alert(&#x27;Error: &#x27; + error);</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    get(<span class="string">&#x27;./file2.txt&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">err, text2</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (err) &#123;</span><br><span class="line">        <span class="comment">//alert(&#x27;Error2: &#x27; + err);</span></span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        showContents(text, text2);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showContents</span>(<span class="params">text1, text2</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;text1:&#x27;</span>, text1);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;text2:&#x27;</span>, text2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Using promises:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Wrap the request in a promise</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">get</span>(<span class="params">url</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> request = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">    request.open(<span class="string">&#x27;GET&#x27;</span>, url);</span><br><span class="line">    request.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (request.readyState === <span class="number">4</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (request.status === <span class="number">200</span>) &#123;</span><br><span class="line">          resolve(request.responseText);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          reject(request.statusText);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    request.onerror = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">      reject(e.type, <span class="literal">null</span>)</span><br><span class="line">    &#125;;</span><br><span class="line">    request.send();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> text1 = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">get(<span class="string">&#x27;./file1.txt&#x27;</span>)</span><br><span class="line">  .then(<span class="function"><span class="params">text</span> =&gt;</span> text1 = text) <span class="comment">// Save the first file content to a variable</span></span><br><span class="line">  .then(<span class="function">() =&gt;</span> get(<span class="string">&#x27;./file2.txt&#x27;</span>)) <span class="comment">// A new promise object is expected, so we return it</span></span><br><span class="line">  .then(<span class="function"><span class="params">text</span>=&gt;</span> showContents(text1, text)) <span class="comment">// The second file content as the fulfillment value</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-Backbones-of-some-new-features"><a href="#2-Backbones-of-some-new-features" class="headerlink" title="2.Backbones of some new features"></a>2.Backbones of some new features</h2><p>Many APIs are promise-based:</p>
+<ul>
+<li>Fetch API</li>
+<li>MediaDevices API</li>
+<li>RTCPeerConnection</li>
+<li>Async functions</li>
+<li>Element API: requestFullscreen</li>
+<li>Document API: exitFullscreen</li>
+<li>HTMLMediaElement API: play</li>
+<li>OfflineAudioContext API: startRendering</li>
+<li>BaseAudioContext API: decodeAudioData</li>
+</ul>
+<h2 id="3-Automatic-error-handling"><a href="#3-Automatic-error-handling" class="headerlink" title="3.Automatic error handling"></a>3.Automatic error handling</h2><p>Using callbacks:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">get(<span class="string">&#x27;./file1.txt&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">error, text</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (error) &#123;</span><br><span class="line">    handleFileError(error); <span class="comment">// first</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    get(<span class="string">&#x27;./file2.txt&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">err, text2</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (err) &#123;</span><br><span class="line">        handleFileError(err); <span class="comment">// second</span></span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        showContents(text, text2);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">handleFileError</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">  alert(<span class="string">&#x27;File Error: &#x27;</span> + err);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Using promises, errors will be passed down the chain, so we can handle it in one common place without having to write it twice.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> text1 = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">get(<span class="string">&#x27;./file1.txt&#x27;</span>)</span><br><span class="line">  .then(<span class="function"><span class="params">text</span> =&gt;</span> text1 = text)</span><br><span class="line">  .then(<span class="function">() =&gt;</span> get(<span class="string">&#x27;./file2.txt&#x27;</span>))</span><br><span class="line">  .then(<span class="function"><span class="params">text</span>=&gt;</span> showContents(text1, text))</span><br><span class="line">  .catch(handleFileError) <span class="comment">// Write only once</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rainyjune.github.io/2020/12/01/why-do-we-need-promises-in-javascript/" data-id="cki5ol5fz000q8cv6b93fe7ak" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/11/25/currying/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">currying</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/12/01/why-do-we-need-promises-in-javascript/">Why do we need Promise in JavaScript</a>
+          </li>
+        
+          <li>
+            <a href="/2020/11/25/currying/">currying</a>
+          </li>
+        
+          <li>
+            <a href="/2020/11/25/the-power-of-higher-order-functions-in-javascript/">The Power of Higher Order Functions in JavaScript</a>
+          </li>
+        
+          <li>
+            <a href="/2020/11/20/fix-referenceerror-primordials-is-not-defined/">How to fix ReferenceError: primordials is not defined in node</a>
+          </li>
+        
+          <li>
+            <a href="/2020/11/19/stuff-i-wish-i-had-known-earlier-about-service-workers/">stuff i wish i had known earlier about service workers</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 rainyjune<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/Links" class="mobile-nav-link">Links</a>
+  
+</nav>
+    
+
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
