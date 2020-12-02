@@ -15,6 +15,10 @@
     }, searchAnimDuration);
   };
 
+  $searchWrap.on('click', function(e) {
+    e.stopPropagation();
+  });
+
   $('#nav-search-btn').on('click', function(){
     if (isSearchAnim) return;
 
@@ -27,13 +31,54 @@
 
   $('.search-form-input').on('blur', function(){
     startSearchAnim();
-    $searchWrap.removeClass('on');
+    //$searchWrap.removeClass('on');
     stopSearchAnim();
+  });
+
+  var contentJSONData = null;
+  var kwInput = $('input[name=q]');
+  var searchResultContainer = $('#local-search-result');
+
+  function filterDataByTitle(keyword) {
+    var posts = contentJSONData.posts.slice();
+    var results = posts.filter(function(post) {
+      return post.title.indexOf(keyword) > -1;
+    });
+    if (results.length) {
+      displayResult(results);
+    } else {
+      searchResultContainer.html('<p>No results found</p>');
+    }
+  }
+
+  function displayResult(dataArr) {
+    searchResultContainer.html(dataArr.map(function(post) {
+      return '<p><a href="' + post.permalink + '">' + post.title + '</a></p>';
+    }).join(''));
+  }
+
+  $('#searchform').on('submit', function() {
+    var kwval = kwInput.val().trim();
+    if (!kwval) return false;
+    if (contentJSONData) {
+      filterDataByTitle(kwval);
+    } else {
+      $.getJSON('/content.json').done(function( json ) {
+        console.log( "JSON Data: ", json);
+        contentJSONData = json;
+        filterDataByTitle(kwval);
+      }).fail(function( jqxhr, textStatus, error ) {
+        var err = textStatus + ", " + error;
+        console.log( "Request Failed: ", err );
+      });
+    }
+    return false;
   });
 
   // Share
   $('body').on('click', function(){
     $('.article-share-box.on').removeClass('on');
+    $searchWrap.removeClass('on');
   }).on('click', '.article-share-link', function(e){
     e.stopPropagation();
 
@@ -129,7 +174,8 @@
     stopMobileNavAnim();
   });
 
-  $('#wrap').on('click', function(){
+  $('#wrap').on('click', function(e){
+    e.stopPropagation();
     if (isMobileNavAnim || !$container.hasClass('mobile-nav-on')) return;
 
     $container.removeClass('mobile-nav-on');

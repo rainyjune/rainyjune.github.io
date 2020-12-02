@@ -599,7 +599,8 @@ body {
 }
 #header-inner {
   position: relative;
-  overflow: hidden;
+/*overflow: hidden*/
+  overflow: visible;
 }
 #banner {
   position: absolute;
@@ -762,6 +763,12 @@ body {
 .search-form-submit:hover,
 .search-form-submit:focus {
   color: #777;
+}
+#local-search-result {
+  margin-top: 35px;
+  border: 1px solid #000;
+  background-color: #fff;
+  width: 200px;
 }
 .article {
   margin: 50px 0;
