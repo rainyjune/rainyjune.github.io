@@ -770,6 +770,9 @@ body {
   background-color: #fff;
   width: 200px;
 }
+#local-search-result:empty {
+  border: none;
+}
 .article {
   margin: 50px 0;
 }
