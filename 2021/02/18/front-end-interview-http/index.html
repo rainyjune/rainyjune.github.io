@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-144501873-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>Front End Interview - HTTP | SummerTown</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="HTTP Code 409  This is an Nginx specific error code. It means “Client Closed Request”. Used when the client has closed the request before the server could send a response. So it’s a client side error">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Front End Interview - HTTP">
+<meta property="og:url" content="https://rainyjune.github.io/2021/02/18/front-end-interview-http/index.html">
+<meta property="og:site_name" content="SummerTown">
+<meta property="og:description" content="HTTP Code 409  This is an Nginx specific error code. It means “Client Closed Request”. Used when the client has closed the request before the server could send a response. So it’s a client side error">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://www.cloudflare.com/resources/images/slt3lc6tev37/5aYOr5erfyNBq20X5djTco/3c859532c91f25d961b2884bf521c1eb/tls-ssl-handshake.png">
+<meta property="article:published_time" content="2021-02-18T08:24:40.000Z">
+<meta property="article:modified_time" content="2021-04-08T04:13:12.109Z">
+<meta property="article:author" content="rainyjune">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.cloudflare.com/resources/images/slt3lc6tev37/5aYOr5erfyNBq20X5djTco/3c859532c91f25d961b2884bf521c1eb/tls-ssl-handshake.png">
+  
+    <link rel="alternate" href="/atom.xml" title="SummerTown" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">SummerTown</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/Links">Links</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form id="searchform" action="#" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button></form><div id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-front-end-interview-http" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/02/18/front-end-interview-http/" class="article-date">
+  <time datetime="2021-02-18T08:24:40.000Z" itemprop="datePublished">2021-02-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Front End Interview - HTTP
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>HTTP Code 409</li>
+</ol>
+<p>This is an Nginx specific error code. It means “Client Closed Request”.</p>
+<p>Used when the client has closed the request before the server could send a response. So it’s a client side error.</p>
+<p>Possible reasons:</p>
+<ul>
+<li>The server takes too long to process the request, and the client side cancels it due to time out.</li>
+<li>The previous request issued by the client was immediately cancelled by the client.</li>
+</ul>
+<p>Solution</p>
+<ul>
+<li>Extend the client (could be browsers or load balancers) timeout to a bigger value.</li>
+<li>Set <code>proxy_ignore_client_abort on</code> on Nginx</li>
+</ul>
+<ol start="2">
+<li><p>The difference between HTTP 301 and 302?</p>
+</li>
+<li><p>How does HTTPS work?</p>
+</li>
+</ol>
+<p>HTTPS uses an encryption protocol to encrypt communications. The protocol is called Transport Layer Security (TLS), although formerly it was known as Secure Sockets Layer (SSL). This protocol secures communications by using what’s known as an asymmetric public key infrastructure. This type of security system uses two different keys to encrypt communications between two parties:</p>
+<ol>
+<li>The private key - this key is controlled by the owner of a website and it’s kept, as the reader may have speculated, private. This key lives on a web server and is used to decrypt information encrypted by the public key.</li>
+<li>The public key - this key is available to everyone who wants to interact with the server in a way that’s secure. Information that’s encrypted by the public key can only be decrypted by the private key.</li>
+</ol>
+<p>When a user connects to a webpage, the webpage will send over its SSL certificate which contains the public key necessary to start the secure session. The two computers, the client and the server, then go through a process called an SSL/TLS handshake, which is a series of back-and-forth communications used to establish a secure connection.</p>
+<p>TLS handshakes are a foundational part of how HTTPS works. TLS handshakes occur after a TCP connection has been opened via a TCP handshake.</p>
+<p><img src="https://www.cloudflare.com/resources/images/slt3lc6tev37/5aYOr5erfyNBq20X5djTco/3c859532c91f25d961b2884bf521c1eb/tls-ssl-handshake.png" alt="https://www.cloudflare.com/resources/images/slt3lc6tev37/5aYOr5erfyNBq20X5djTco/3c859532c91f25d961b2884bf521c1eb/tls-ssl-handshake.png"></p>
+<p>The exact steps within a TLS handshake will vary depending upon the kind of key exchange algorithm used and the cipher suites supported by both sides. The RSA key exchange algorithm is used most often. It goes as follows:</p>
+<ol>
+<li><p>The ‘client hello’ message: The client initiates the handshake by sending a “hello” message to the server. The message will include which TLS version the client supports, the cipher suites supported, and a string of random bytes known as the “client random.”</p>
+</li>
+<li><p>The ‘server hello’ message: In reply to the client hello message, the server sends a message containing the server’s SSL certificate, the server’s chosen cipher suite, and the “server random,” another random string of bytes that’s generated by the server.</p>
+</li>
+<li><p>Authentication: The client verifies the server’s SSL certificate with the certificate authority that issued it. This confirms that the server is who it says it is, and that the client is interacting with the actual owner of the domain.</p>
+</li>
+<li><p>The premaster secret: The client sends one more random string of bytes, the “premaster secret.” The premaster secret is encrypted with the public key and can only be decrypted with the private key by the server. (The client gets the public key from the server’s SSL certificate.)</p>
+</li>
+<li><p>Private key used: The server decrypts the premaster secret.</p>
+</li>
+<li><p>Session keys created: Both client and server generate session keys from the client random, the server random, and the premaster secret. They should arrive at the same results.</p>
+</li>
+<li><p>Client is ready: The client sends a “finished” message that is encrypted with a session key.</p>
+</li>
+<li><p>Server is ready: The server sends a “finished” message encrypted with a session key.</p>
+</li>
+<li><p>Secure symmetric encryption achieved: The handshake is completed, and communication continues using the session keys.</p>
+<p>All TLS handshakes make use of asymmetric encryption (the public and private key).</p>
+</li>
+</ol>
+<ol start="4">
+<li>the difference between asymmetric and symmetric encryption</li>
+</ol>
+<p>asymmetric encryption is different on each side; the sender and the recipient use two different keys. Asymmetric encryption, also known as public key encryption, uses a public key-private key pairing: data encrypted with the private key can only be decrypted with the public key, and vice versa.</p>
+<p>In symmetric encryption, the same key both encrypts and decrypts data. For symmetric encryption to work, the two or more communicating parties must know what the key is; for it to remain secure, no third party should be able to guess or steal the key.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rainyjune.github.io/2021/02/18/front-end-interview-http/" data-id="ckn9wgz7f000assv6dkja5vnm" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/04/08/centering-in-CSS/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          centering in CSS
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/01/27/scrolling-text/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">scrolling text</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/04/08/centering-in-CSS/">centering in CSS</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/18/front-end-interview-http/">Front End Interview - HTTP</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/27/scrolling-text/">scrolling text</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/26/resizable-div/">resizable div</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/07/computer-science-in-javascript-linked-list/">Computer science in JavaScript: Linked list</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 rainyjune<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/Links" class="mobile-nav-link">Links</a>
+  
+</nav>
+    
+
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
