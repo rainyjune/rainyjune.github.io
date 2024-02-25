@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+
+  
+  <title>SameSite cookies | SummerTown</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Modern browsers (including Chrome, Firefox, and Edge) are changing their bahavior to enforce more privacy-preserving defaults. Servers set cookies by sending the aptly-named Set-Cookie header in their">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SameSite cookies">
+<meta property="og:url" content="https://jiaopucun.com/2020/10/29/samesite-cookies/index.html">
+<meta property="og:site_name" content="SummerTown">
+<meta property="og:description" content="Modern browsers (including Chrome, Firefox, and Edge) are changing their bahavior to enforce more privacy-preserving defaults. Servers set cookies by sending the aptly-named Set-Cookie header in their">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://webdev.imgix.net/samesite-cookies-explained/set-cookie-response-header.png">
+<meta property="og:image" content="https://webdev.imgix.net/samesite-cookies-explained/cookie-request-header.png">
+<meta property="og:image" content="https://webdev.imgix.net/samesite-cookies-explained/document-cookie.png">
+<meta property="og:image" content="https://webdev.imgix.net/samesite-cookies-explained/cross-site-set-cookie-response-header.png">
+<meta property="og:image" content="https://webdev.imgix.net/samesite-cookies-explained/cross-site-cookie-request-header.png">
+<meta property="og:image" content="https://webdev.imgix.net/samesite-cookies-explained/samesite-none-lax-strict.png">
+<meta property="article:published_time" content="2020-10-29T08:21:18.000Z">
+<meta property="article:modified_time" content="2024-02-25T14:03:27.771Z">
+<meta property="article:author" content="rainyjune">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://webdev.imgix.net/samesite-cookies-explained/set-cookie-response-header.png">
+  
+    <link rel="alternate" href="/atom.xml" title="SummerTown" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">SummerTown</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/projects">Projects</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form id="searchform" action="#" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button></form><div id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-samesite-cookies" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/10/29/samesite-cookies/" class="article-date">
+  <time datetime="2020-10-29T08:21:18.000Z" itemprop="datePublished">2020-10-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      SameSite cookies
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#What-are-first-party-and-third-party-cookies"><span class="toc-text">What are first-party and third-party cookies?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Explicitly-state-cookie-usage-with-the-SameSite-attribut"><span class="toc-text">Explicitly state cookie usage with the SameSite attribut</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Changes-to-the-default-behavior-without-SameSite"><span class="toc-text">Changes to the default behavior without SameSite</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Warning"><span class="toc-text">Warning</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SameSite-cookie-recipes"><span class="toc-text">SameSite cookie recipes</span></a></li></ol>
+      
+        <p>Modern browsers (including Chrome, Firefox, and Edge) are changing their bahavior to enforce more privacy-preserving defaults.</p>
+<p>Servers set cookies by sending the aptly-named <code>Set-Cookie</code> header in their response.</p>
+<p>The header looks like this:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set-Cookie: promo_shown=1; Max-Age=2600000; Secure</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://webdev.imgix.net/samesite-cookies-explained/set-cookie-response-header.png" alt="Servers set cookies using the Set-Cookie header."></p>
+<p>When users on a secure connection and the cookie is less than a month old, then their browser will send this header in its request:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cookie: promo_shown=1</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://webdev.imgix.net/samesite-cookies-explained/cookie-request-header.png" alt="Your browser sends cookies back in the Cookie header."></p>
+<p>You can also access the cookies available to that site in JavaScript using <code>document.cookie</code>. Making an assignment to <code>document.cookie</code> will create or overwrite a cookie with that key.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; document.cookie = &quot;promo_shown=1; Max-Age=2600000; Secure&quot;</span><br><span class="line">&lt; &quot;promo_shown=1; Max-Age=2600000; Secure&quot;</span><br></pre></td></tr></table></figure>
+
+<p>Reading <code>document.cookie</code> will output all the cookies accessible in the current context, with each cookie separated by a semicolon:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; document.cookie;</span><br><span class="line">&lt; &quot;promo_shown=1; color_theme=peachpuff; sidebar_loc=left&quot;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://webdev.imgix.net/samesite-cookies-explained/document-cookie.png" alt="JavaScript can access cookies using document.cookie."></p>
+<h2 id="What-are-first-party-and-third-party-cookies"><a href="#What-are-first-party-and-third-party-cookies" class="headerlink" title="What are first-party and third-party cookies?"></a>What are first-party and third-party cookies?</h2><p>Cookies that match the domain of the current site, i.e. what’s displayed in the browser’s address bar, are referred to as <strong>first-party</strong> cookies. </p>
+<p>Similarly, cookies from domains other than the current site are referred to as <strong>third-party</strong> cookies.</p>
+<p>This isn’t an absolute label but is relative to the user’s context; the same cookie can be either first-party or third-party depending on which site the user is on at the time.</p>
+<p><img src="https://webdev.imgix.net/samesite-cookies-explained/cross-site-set-cookie-response-header.png" alt="Cookies may come from a variety of different domains on one page."></p>
+<p><img src="https://webdev.imgix.net/samesite-cookies-explained/cross-site-cookie-request-header.png" alt="A cookie in a third-party context is sent when visiting different pages."></p>
+<p>Cross-site request forgery (CSRF) attacks rely on the fact that cookie are attached to any requests to a given origin, no matter who initiates the request. For example, if you visit <code>evil.example</code> then it can trigger requests to <code>your-blog.example</code>, and your browser will happily attach the associated cookies. If your blog isn’t careful with how it validates those requests then <code>evil.example</code> could trigger actions like deleting posts or adding their own content.</p>
+<h2 id="Explicitly-state-cookie-usage-with-the-SameSite-attribut"><a href="#Explicitly-state-cookie-usage-with-the-SameSite-attribut" class="headerlink" title="Explicitly state cookie usage with the SameSite attribut"></a>Explicitly state cookie usage with the SameSite attribut</h2><p>The introduction of the <code>SameSite</code> attribute allows you to declare if your cookie should be restricted to a first-party or same-site context. It’s helpful to understand exactly what ‘site’ means here. The site is the combination of the domain suffix and the part of the domain just before it. For example, the <code>www.web.dev</code> domain is part of the <code>web.dev</code> site.</p>
+<p>If the user is on <code>www.web.dev</code> and requests an image from <code>static.web.dev</code> then that is a <strong>same-site</strong> request.</p>
+<p>The public suffix list defines this, so it’s not just top-level domains like <code>.com</code> but also includes services like <code>github.io</code>. That enables <code>your-project.github.io</code> and <code>my-project.github.io</code> to count as separate sites.</p>
+<p>If the user is on <code>your-project.github.io</code> and requests an image from <code>my-project.github.io</code> that’s a cross-site request.</p>
+<ul>
+<li><strong>Strict</strong>: Cookies will only be sent in a first-party context.<br>In user terms, the cookie will only be sent if the site for the cookie matches the site currently shown in the browser’s URL bar.<br>This is good when you have cookies relating to functionality that will always be behind an initial navigation.</li>
+<li><strong>Lax</strong>: Allows the cookie to be sent with these top-level navigations.<br>This is a good choice for cookies affecting the display of the site.</li>
+<li><strong>None</strong>: No restrictions will applied. The cookie will be sent in all requests - both cross-site and same-site.<br>This means you can use <code>None</code> to clearly communicate that you intentionally want the cookie sent in a third-party context.<br>If you provide a service that other sites consume such as widgets, embedded content, affiliate programes, advertising, or sign-in across multipile sites then you should use <code>None</code> to ensure your intent is clear.</li>
+</ul>
+<p><img src="https://webdev.imgix.net/samesite-cookies-explained/samesite-none-lax-strict.png" alt="Explicitly mark the context of a cookie as None, Lax, or Strict."></p>
+<h2 id="Changes-to-the-default-behavior-without-SameSite"><a href="#Changes-to-the-default-behavior-without-SameSite" class="headerlink" title="Changes to the default behavior without SameSite"></a>Changes to the default behavior without SameSite</h2><ul>
+<li>Cookies without a <code>SameSite</code> attribute will be treated as <code>SameSite=Lax</code>.</li>
+<li>Cookies with <code>SameSite=None</code> must also specify <code>Secure</code>, meaning they require a secure context.</li>
+</ul>
+<p> Both of these changes are backwards-compatible with browsers that have correctly implemented the previous version of the <code>SameSite</code> attribute, or just do not support it at all. By applying these changes to your cookies, you are making their intended use explicit rather than relying on the default behavior of the browser. Likewise, any clients that do not recognize <code>SameSite=None</code> as of yet should ignore it and carry on as if the attribute was not set.</p>
+<h3 id="Warning"><a href="#Warning" class="headerlink" title="Warning"></a>Warning</h3><p> A number of older versions of browsers including Chrome, Safari, and UC browser are incompatible with the new <code>None</code> attribute and may ignore or restrict the cookie. This behavior is fixed in current versions, but you should check your traffic to determine what proportion of your users are affected. You can see the <a target="_blank" rel="noopener" href="https://www.chromium.org/updates/same-site/incompatible-clients">list of known incompatible clients on the Chromium site</a>.</p>
+<h2 id="SameSite-cookie-recipes"><a href="#SameSite-cookie-recipes" class="headerlink" title="SameSite cookie recipes"></a>SameSite cookie recipes</h2><p>For further detail on exactly how to update your cookies to successfully handle these changes to <code>SameSite=None</code> and the difference in browser behavior, head to the follow up article, <a target="_blank" rel="noopener" href="https://web.dev/samesite-cookie-recipes">SameSite cookie recipes</a>.</p>
+<p>Ref:<br><a target="_blank" rel="noopener" href="https://web.dev/samesite-cookies-explained/">https://web.dev/samesite-cookies-explained/</a><br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite">https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jiaopucun.com/2020/10/29/samesite-cookies/" data-id="clt1mpa0m004o2kvi7c53a12l" class="article-share-link">Share</a>
+      
+        <a href="https://jiaopucun.com/2020/10/29/samesite-cookies/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/11/02/object-create-in-javascript/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Object.create in JavaScript
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/10/29/xdomainrequest-restrictions-limitations-and-workarounds/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">XDomainRequest - Restrictions, Limitations and Workarounds</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  
+  <div id="disqus_thread"></div>
+  <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+      var disqus_config = function () {
+        this.page.url = 'https://jiaopucun.com/2020/10/29/samesite-cookies/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '1603959678000'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://jiaopucun.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/">Backend</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Database/">Database</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Debugging/">Debugging</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Testing/">Testing</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/">Tools</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/AWS-EC2/" style="font-size: 10px;">AWS EC2</a> <a href="/tags/Adminer/" style="font-size: 10px;">Adminer</a> <a href="/tags/Ant-Design/" style="font-size: 10px;">Ant Design</a> <a href="/tags/Ant-Design-Pro/" style="font-size: 10px;">Ant Design Pro</a> <a href="/tags/Apache/" style="font-size: 10px;">Apache</a> <a href="/tags/Charles/" style="font-size: 14px;">Charles</a> <a href="/tags/Chrome-DevTools/" style="font-size: 10px;">Chrome DevTools</a> <a href="/tags/Cloudflare/" style="font-size: 10px;">Cloudflare</a> <a href="/tags/CommonJS/" style="font-size: 10px;">CommonJS</a> <a href="/tags/DNS/" style="font-size: 10px;">DNS</a> <a href="/tags/Database/" style="font-size: 10px;">Database</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Docusaurus/" style="font-size: 10px;">Docusaurus</a> <a href="/tags/Domain/" style="font-size: 10px;">Domain</a> <a href="/tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="/tags/ESM/" style="font-size: 10px;">ESM</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Jest/" style="font-size: 12px;">Jest</a> <a href="/tags/Knex/" style="font-size: 10px;">Knex</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MySQL/" style="font-size: 12px;">MySQL</a> <a href="/tags/NPM/" style="font-size: 12px;">NPM</a> <a href="/tags/Node/" style="font-size: 14px;">Node</a> <a href="/tags/Nodemailer/" style="font-size: 10px;">Nodemailer</a> <a href="/tags/PostgreSQL/" style="font-size: 10px;">PostgreSQL</a> <a href="/tags/Prettier/" style="font-size: 10px;">Prettier</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/SQLite/" style="font-size: 10px;">SQLite</a> <a href="/tags/SWR/" style="font-size: 10px;">SWR</a> <a href="/tags/Strapi/" style="font-size: 14px;">Strapi</a> <a href="/tags/TypeScript/" style="font-size: 18px;">TypeScript</a> <a href="/tags/VS-Code/" style="font-size: 10px;">VS Code</a> <a href="/tags/Vite/" style="font-size: 16px;">Vite</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/WordPress/" style="font-size: 12px;">WordPress</a> <a href="/tags/Yarn/" style="font-size: 10px;">Yarn</a> <a href="/tags/database/" style="font-size: 10px;">database</a> <a href="/tags/hapi/" style="font-size: 10px;">hapi</a> <a href="/tags/proxy/" style="font-size: 10px;">proxy</a> <a href="/tags/rollup-js/" style="font-size: 10px;">rollup.js</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/02/25/how-to-disable-windows-defender/">How to disable Windows Defender</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/22/create-a-hapi-server-with-knex-and-mysql/">Create a Hapi Server with Knex and MySQL</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/01/test-react-custom-hooks-with-jest-and-testing-library/">Test React Custom Hooks with Jest and Testing Library</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/31/jest-vite-typescript/">Setup Jest with Vite and TypeScript</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/30/how-to-create-react-functional-components-in-typescript/">How to create React functional components in TypeScript</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2024 rainyjune<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/projects" class="mobile-nav-link">Projects</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+  
+  <script id="dsq-count-scr" src="//jiaopucun.disqus.com/count.js" async></script>
+
+</body>
+</html>

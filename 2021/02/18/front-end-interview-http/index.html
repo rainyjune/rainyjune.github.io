@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+
+  
+  <title>Front End Interview - HTTP | SummerTown</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="HTTP Code 409  This is an Nginx specific error code. It means “Client Closed Request”. Used when the client has closed the request before the server could send a response. So it’s a client side error">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Front End Interview - HTTP">
+<meta property="og:url" content="https://jiaopucun.com/2021/02/18/front-end-interview-http/index.html">
+<meta property="og:site_name" content="SummerTown">
+<meta property="og:description" content="HTTP Code 409  This is an Nginx specific error code. It means “Client Closed Request”. Used when the client has closed the request before the server could send a response. So it’s a client side error">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://www.cloudflare.com/resources/images/slt3lc6tev37/5aYOr5erfyNBq20X5djTco/3c859532c91f25d961b2884bf521c1eb/tls-ssl-handshake.png">
+<meta property="article:published_time" content="2021-02-18T08:24:40.000Z">
+<meta property="article:modified_time" content="2024-02-25T14:03:27.672Z">
+<meta property="article:author" content="rainyjune">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.cloudflare.com/resources/images/slt3lc6tev37/5aYOr5erfyNBq20X5djTco/3c859532c91f25d961b2884bf521c1eb/tls-ssl-handshake.png">
+  
+    <link rel="alternate" href="/atom.xml" title="SummerTown" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">SummerTown</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/projects">Projects</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form id="searchform" action="#" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button></form><div id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-front-end-interview-http" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/02/18/front-end-interview-http/" class="article-date">
+  <time datetime="2021-02-18T08:24:40.000Z" itemprop="datePublished">2021-02-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Front End Interview - HTTP
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        <ol>
+<li>HTTP Code 409</li>
+</ol>
+<p>This is an Nginx specific error code. It means “Client Closed Request”.</p>
+<p>Used when the client has closed the request before the server could send a response. So it’s a client side error.</p>
+<p>Possible reasons:</p>
+<ul>
+<li>The server takes too long to process the request, and the client side cancels it due to time out.</li>
+<li>The previous request issued by the client was immediately cancelled by the client.</li>
+</ul>
+<p>Solution</p>
+<ul>
+<li>Extend the client (could be browsers or load balancers) timeout to a bigger value.</li>
+<li>Set <code>proxy_ignore_client_abort on</code> on Nginx</li>
+</ul>
+<ol start="2">
+<li><p>The difference between HTTP 301 and 302?</p>
+</li>
+<li><p>How does HTTPS work?</p>
+</li>
+</ol>
+<p>HTTPS uses an encryption protocol to encrypt communications. The protocol is called Transport Layer Security (TLS), although formerly it was known as Secure Sockets Layer (SSL). This protocol secures communications by using what’s known as an asymmetric public key infrastructure. This type of security system uses two different keys to encrypt communications between two parties:</p>
+<ol>
+<li>The private key - this key is controlled by the owner of a website and it’s kept, as the reader may have speculated, private. This key lives on a web server and is used to decrypt information encrypted by the public key.</li>
+<li>The public key - this key is available to everyone who wants to interact with the server in a way that’s secure. Information that’s encrypted by the public key can only be decrypted by the private key.</li>
+</ol>
+<p>When a user connects to a webpage, the webpage will send over its SSL certificate which contains the public key necessary to start the secure session. The two computers, the client and the server, then go through a process called an SSL&#x2F;TLS handshake, which is a series of back-and-forth communications used to establish a secure connection.</p>
+<p>TLS handshakes are a foundational part of how HTTPS works. TLS handshakes occur after a TCP connection has been opened via a TCP handshake.</p>
+<p><img src="https://www.cloudflare.com/resources/images/slt3lc6tev37/5aYOr5erfyNBq20X5djTco/3c859532c91f25d961b2884bf521c1eb/tls-ssl-handshake.png" alt="https://www.cloudflare.com/resources/images/slt3lc6tev37/5aYOr5erfyNBq20X5djTco/3c859532c91f25d961b2884bf521c1eb/tls-ssl-handshake.png"></p>
+<p>The exact steps within a TLS handshake will vary depending upon the kind of key exchange algorithm used and the cipher suites supported by both sides. The RSA key exchange algorithm is used most often. It goes as follows:</p>
+<ol>
+<li>The ‘client hello’ message: The client initiates the handshake by sending a “hello” message to the server. The message will include which TLS version the client supports, the cipher suites supported, and a string of random bytes known as the “client random.”</li>
+<li>The ‘server hello’ message: In reply to the client hello message, the server sends a message containing the server’s SSL certificate, the server’s chosen cipher suite, and the “server random,” another random string of bytes that’s generated by the server.</li>
+<li>Authentication: The client verifies the server’s SSL certificate with the certificate authority that issued it. This confirms that the server is who it says it is, and that the client is interacting with the actual owner of the domain.</li>
+<li>The premaster secret: The client sends one more random string of bytes, the “premaster secret.” The premaster secret is encrypted with the public key and can only be decrypted with the private key by the server. (The client gets the public key from the server’s SSL certificate.)</li>
+<li>Private key used: The server decrypts the premaster secret.</li>
+<li>Session keys created: Both client and server generate session keys from the client random, the server random, and the premaster secret. They should arrive at the same results.</li>
+<li>Client is ready: The client sends a “finished” message that is encrypted with a session key.</li>
+<li>Server is ready: The server sends a “finished” message encrypted with a session key.</li>
+<li>Secure symmetric encryption achieved: The handshake is completed, and communication continues using the session keys.</li>
+</ol>
+<p> All TLS handshakes make use of asymmetric encryption (the public and private key).</p>
+<ol start="4">
+<li>the difference between asymmetric and symmetric encryption</li>
+</ol>
+<p>asymmetric encryption is different on each side; the sender and the recipient use two different keys. Asymmetric encryption, also known as public key encryption, uses a public key-private key pairing: data encrypted with the private key can only be decrypted with the public key, and vice versa.</p>
+<p>In symmetric encryption, the same key both encrypts and decrypts data. For symmetric encryption to work, the two or more communicating parties must know what the key is; for it to remain secure, no third party should be able to guess or steal the key.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jiaopucun.com/2021/02/18/front-end-interview-http/" data-id="clt1mpa0a002g2kvihfru1mi7" class="article-share-link">Share</a>
+      
+        <a href="https://jiaopucun.com/2021/02/18/front-end-interview-http/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/04/08/centering-in-CSS/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          centering in CSS
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/01/27/scrolling-text/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">scrolling text</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  
+  <div id="disqus_thread"></div>
+  <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+      var disqus_config = function () {
+        this.page.url = 'https://jiaopucun.com/2021/02/18/front-end-interview-http/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '1613636680000'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://jiaopucun.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/">Backend</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Database/">Database</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Debugging/">Debugging</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Testing/">Testing</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/">Tools</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/AWS-EC2/" style="font-size: 10px;">AWS EC2</a> <a href="/tags/Adminer/" style="font-size: 10px;">Adminer</a> <a href="/tags/Ant-Design/" style="font-size: 10px;">Ant Design</a> <a href="/tags/Ant-Design-Pro/" style="font-size: 10px;">Ant Design Pro</a> <a href="/tags/Apache/" style="font-size: 10px;">Apache</a> <a href="/tags/Charles/" style="font-size: 14px;">Charles</a> <a href="/tags/Chrome-DevTools/" style="font-size: 10px;">Chrome DevTools</a> <a href="/tags/Cloudflare/" style="font-size: 10px;">Cloudflare</a> <a href="/tags/CommonJS/" style="font-size: 10px;">CommonJS</a> <a href="/tags/DNS/" style="font-size: 10px;">DNS</a> <a href="/tags/Database/" style="font-size: 10px;">Database</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Docusaurus/" style="font-size: 10px;">Docusaurus</a> <a href="/tags/Domain/" style="font-size: 10px;">Domain</a> <a href="/tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="/tags/ESM/" style="font-size: 10px;">ESM</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Jest/" style="font-size: 12px;">Jest</a> <a href="/tags/Knex/" style="font-size: 10px;">Knex</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MySQL/" style="font-size: 12px;">MySQL</a> <a href="/tags/NPM/" style="font-size: 12px;">NPM</a> <a href="/tags/Node/" style="font-size: 14px;">Node</a> <a href="/tags/Nodemailer/" style="font-size: 10px;">Nodemailer</a> <a href="/tags/PostgreSQL/" style="font-size: 10px;">PostgreSQL</a> <a href="/tags/Prettier/" style="font-size: 10px;">Prettier</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/SQLite/" style="font-size: 10px;">SQLite</a> <a href="/tags/SWR/" style="font-size: 10px;">SWR</a> <a href="/tags/Strapi/" style="font-size: 14px;">Strapi</a> <a href="/tags/TypeScript/" style="font-size: 18px;">TypeScript</a> <a href="/tags/VS-Code/" style="font-size: 10px;">VS Code</a> <a href="/tags/Vite/" style="font-size: 16px;">Vite</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/WordPress/" style="font-size: 12px;">WordPress</a> <a href="/tags/Yarn/" style="font-size: 10px;">Yarn</a> <a href="/tags/database/" style="font-size: 10px;">database</a> <a href="/tags/hapi/" style="font-size: 10px;">hapi</a> <a href="/tags/proxy/" style="font-size: 10px;">proxy</a> <a href="/tags/rollup-js/" style="font-size: 10px;">rollup.js</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/02/25/how-to-disable-windows-defender/">How to disable Windows Defender</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/22/create-a-hapi-server-with-knex-and-mysql/">Create a Hapi Server with Knex and MySQL</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/01/test-react-custom-hooks-with-jest-and-testing-library/">Test React Custom Hooks with Jest and Testing Library</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/31/jest-vite-typescript/">Setup Jest with Vite and TypeScript</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/30/how-to-create-react-functional-components-in-typescript/">How to create React functional components in TypeScript</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2024 rainyjune<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/projects" class="mobile-nav-link">Projects</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+  
+  <script id="dsq-count-scr" src="//jiaopucun.disqus.com/count.js" async></script>
+
+</body>
+</html>

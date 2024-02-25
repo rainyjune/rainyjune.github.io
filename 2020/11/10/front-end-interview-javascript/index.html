@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+
+  
+  <title>Front-End Interview Questions - JavaScript | SummerTown</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="h3[id] {   cursor: pointer; }  h3[id] + div {   display: none; }   1. Explain event delegation Event delegation refers to the process of using event propagation (bubbling) to handle events at a highe">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Front-End Interview Questions - JavaScript">
+<meta property="og:url" content="https://jiaopucun.com/2020/11/10/front-end-interview-javascript/index.html">
+<meta property="og:site_name" content="SummerTown">
+<meta property="og:description" content="h3[id] {   cursor: pointer; }  h3[id] + div {   display: none; }   1. Explain event delegation Event delegation refers to the process of using event propagation (bubbling) to handle events at a highe">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-11-10T04:01:37.000Z">
+<meta property="article:modified_time" content="2024-02-25T14:03:27.672Z">
+<meta property="article:author" content="rainyjune">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="SummerTown" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">SummerTown</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/projects">Projects</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form id="searchform" action="#" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button></form><div id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-front-end-interview-javascript" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/11/10/front-end-interview-javascript/" class="article-date">
+  <time datetime="2020-11-10T04:01:37.000Z" itemprop="datePublished">2020-11-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Front-End Interview Questions - JavaScript
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Explain-event-delegation"><span class="toc-text">1. Explain event delegation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Explain-how-this-works-in-JavaScript"><span class="toc-text">2. Explain how this works in JavaScript</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Explain-how-prototypal-inheritance-works"><span class="toc-text">3. Explain how prototypal inheritance works.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-What-is-a-promise-Where-and-how-would-you-use-promise"><span class="toc-text">4. What is a promise? Where and how would you use promise?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-What-is-the-difference-between-while-and-do-while-loops-in-JavaScript"><span class="toc-text">5. What is the difference between while and do...while loops in JavaScript?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-Why-you-might-want-to-create-static-class-members"><span class="toc-text">6. Why you might want to create static class members?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-How-can-you-share-code-between-files"><span class="toc-text">7. How can you share code between files?</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-Explain-the-difference-between-synchronous-and-asynchronous-functions"><span class="toc-text">8.Explain the difference between synchronous and asynchronous functions.</span></a>
+      
+        <style>
+h3[id] {
+  cursor: pointer;
+}
+
+h3[id] + div {
+  display: none;
+}
+</style>
+
+<h3 id="1-Explain-event-delegation"><a href="#1-Explain-event-delegation" class="headerlink" title="1. Explain event delegation"></a>1. Explain event delegation</h3><div>
+Event delegation refers to the process of using event propagation (bubbling) to handle events at a higher level in the DOM than the element on which the event originated. It allows us to attach a single event listener, to a parent element, that will fire for all descendants, whether thoese descendants exist now or are added in the future. 
+</div>
+
+<h3 id="2-Explain-how-this-works-in-JavaScript"><a href="#2-Explain-how-this-works-in-JavaScript" class="headerlink" title="2. Explain how this works in JavaScript"></a>2. Explain how <code>this</code> works in JavaScript</h3><div>
+
+<p><strong>Global context</strong></p>
+<p>In the global execution context (outside of any function), <code>this</code> refers to the global object.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// In web browsers, the window object is also the global object:</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span> === <span class="variable language_">window</span>); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line">a = <span class="number">37</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">window</span>.<span class="property">a</span>); <span class="comment">// 37</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">this</span>.<span class="property">b</span> = <span class="string">&quot;MDN&quot;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">window</span>.<span class="property">b</span>)  <span class="comment">// &quot;MDN&quot;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(b)         <span class="comment">// &quot;MDN&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Function context</strong></p>
+<p>Inside a function, the value of <code>this</code> depends on how the function is called.</p>
+<p>In non-strict mode, the value of <code>this</code> defaults to the global object, which is <code>window</code> in a browser.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">f1</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="variable language_">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// In a browser:</span></span><br><span class="line"><span class="title function_">f1</span>() === <span class="variable language_">window</span>; <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// In Node:</span></span><br><span class="line"><span class="title function_">f1</span>() === globalThis; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>In strict mode, if the value of <code>this</code> is not set when entering an execution context, it remains as <code>undefined</code>.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">f2</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="string">&#x27;use strict&#x27;</span>; <span class="comment">// see strict mode</span></span><br><span class="line">  <span class="keyword">return</span> <span class="variable language_">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">f2</span>() === <span class="literal">undefined</span>; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Class context</strong></p>
+<p>The behavior of <code>this</code> in classes and functions is similar.</p>
+<p>Within a class constructor, <code>this</code> is a regular object. All non-static methods within the class are added to the prototype of <code>this</code>.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Example</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> proto = <span class="title class_">Object</span>.<span class="title function_">getPrototypeOf</span>(<span class="variable language_">this</span>);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Object</span>.<span class="title function_">getOwnPropertyNames</span>(proto));</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">first</span>(<span class="params"></span>)&#123;&#125;</span><br><span class="line">  <span class="title function_">second</span>(<span class="params"></span>)&#123;&#125;</span><br><span class="line">  <span class="keyword">static</span> <span class="title function_">third</span>(<span class="params"></span>)&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Example</span>(); <span class="comment">// [&#x27;constructor&#x27;, &#x27;first&#x27;, &#x27;second&#x27;]</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Arrow functions</strong></p>
+<p>In arrow functions, <code>this</code> retains the value of the enclosing lexical context’s <code>this</code>.</p>
+</div>
+
+<h3 id="3-Explain-how-prototypal-inheritance-works"><a href="#3-Explain-how-prototypal-inheritance-works" class="headerlink" title="3. Explain how prototypal inheritance works."></a>3. Explain how prototypal inheritance works.</h3><div>
+The core idea of prototypal inheritance is that an object can point to another object and inherit all its properties. The main purpose is to allow multiple instances of an object to share common properties.
+</div>
+
+<h3 id="4-What-is-a-promise-Where-and-how-would-you-use-promise"><a href="#4-What-is-a-promise-Where-and-how-would-you-use-promise" class="headerlink" title="4. What is a promise? Where and how would you use promise?"></a>4. What is a promise? Where and how would you use promise?</h3><div>
+
+<p>A promise is an object that my produce a single value some time in the future: either a resolved value, or a reason that’s not resolved. A promise may be in one of 3 possible states: fufilled, rejected, or pending. It can be chained with callback functions to handle the fufilled value or the reason for rejection.</p>
+<ul>
+<li>Complex async code made easier</li>
+<li>Promisifying XMLHttpRequest</li>
+<li>Chaining <code>then</code>s to transform values or run additional async actions one after another</li>
+</ul>
+</div>
+
+<h3 id="5-What-is-the-difference-between-while-and-do-while-loops-in-JavaScript"><a href="#5-What-is-the-difference-between-while-and-do-while-loops-in-JavaScript" class="headerlink" title="5. What is the difference between while and do...while loops in JavaScript?"></a>5. What is the difference between <code>while</code> and <code>do...while</code> loops in JavaScript?</h3><div>
+
+<p>The difference is a matter of when the condition is checked.</p>
+<ul>
+<li>A <code>while</code> loop checks the condition, then executes the loop.</li>
+<li>A <code>do...while</code> loop executes the loop and then checks the conditions.</li>
+</ul>
+</div>
+
+<h3 id="6-Why-you-might-want-to-create-static-class-members"><a href="#6-Why-you-might-want-to-create-static-class-members" class="headerlink" title="6. Why you might want to create static class members?"></a>6. Why you might want to create static class members?</h3><div>
+Static methods are used for the functionality that belongs to the class, it doesn't relate to a concrete class instance.
+
+<p>Static properties are used when we’d like to store class-level data, also not bound to an instance.</p>
+<p>Static properties and methods are inherited.</p>
+</div>
+
+<h3 id="7-How-can-you-share-code-between-files"><a href="#7-How-can-you-share-code-between-files" class="headerlink" title="7. How can you share code between files?"></a>7. How can you share code between files?</h3><div>
+
+<p><strong>Solution 1. Global object</strong></p>
+<p>utils.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> add = <span class="keyword">function</span>(<span class="params">num1, num2</span>)&#123;</span><br><span class="line">  <span class="keyword">return</span> num1 + num2;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> subtract = <span class="keyword">function</span>(<span class="params">num1, num2</span>)&#123;</span><br><span class="line">  <span class="keyword">return</span> num1 - num2</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">window</span>.<span class="property">globalobject</span> = &#123;</span><br><span class="line">  <span class="attr">add</span>: add,</span><br><span class="line">  <span class="attr">subtract</span>: subtrack</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>file1.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">globalobject.<span class="title function_">add</span>(<span class="number">4</span>, <span class="number">4</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>Solution 2. CommonJS</strong></p>
+<p>utils.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> add = <span class="keyword">function</span>(<span class="params">num1, num2</span>)&#123;</span><br><span class="line">  <span class="keyword">return</span> num1 + num2;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> subtract = <span class="keyword">function</span>(<span class="params">num1, num2</span>)&#123;</span><br><span class="line">  <span class="keyword">return</span> num1 - num2</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  add,</span><br><span class="line">  subtract</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>file1.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> &#123; add, subtract &#125; = <span class="built_in">require</span>(<span class="string">&#x27;./utils.js&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">add</span>(<span class="number">1</span>, <span class="number">2</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">subtract</span>(<span class="number">1</span>, <span class="number">2</span>));</span><br></pre></td></tr></table></figure>
+
+<p>*<strong>Solution 3. ESM</strong></p>
+<p>utils.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> add = <span class="keyword">function</span>(<span class="params">num1, num2</span>)&#123;</span><br><span class="line">  <span class="keyword">return</span> num1 + num2;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> subtract = <span class="keyword">function</span>(<span class="params">num1, num2</span>)&#123;</span><br><span class="line">  <span class="keyword">return</span> num1 - num2</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  add,</span><br><span class="line">  subtract</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>file1.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> globalobject <span class="keyword">from</span> <span class="string">&#x27;./utils.mjs&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> &#123; add, subtract &#125; = globalobject;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">add</span>(<span class="number">1</span>, <span class="number">2</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">subtract</span>(<span class="number">1</span>, <span class="number">2</span>));</span><br></pre></td></tr></table></figure>
+
+<p><strong>Solution 4. JSONP</strong><br>utils.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> add = <span class="keyword">function</span>(<span class="params">num1, num2</span>)&#123;</span><br><span class="line">  <span class="keyword">return</span> num1 + num2;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> subtract = <span class="keyword">function</span>(<span class="params">num1, num2</span>)&#123;</span><br><span class="line">  <span class="keyword">return</span> num1 - num2</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>file1.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">jsonp</span>(<span class="params">file, callback</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> s = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;script&#x27;</span>);</span><br><span class="line">  s.<span class="property">src</span> = file;</span><br><span class="line">  s.<span class="property">onload</span> = callback;</span><br><span class="line">  <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">appendChild</span>(s);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">jsonp</span>(<span class="string">&#x27;./a.js&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">add</span>(<span class="number">1</span>, <span class="number">2</span>));</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">subtract</span>(<span class="number">1</span>, <span class="number">2</span>));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+</div>
+
+<h2 id="8-Explain-the-difference-between-synchronous-and-asynchronous-functions"><a href="#8-Explain-the-difference-between-synchronous-and-asynchronous-functions" class="headerlink" title="8.Explain the difference between synchronous and asynchronous functions."></a>8.Explain the difference between synchronous and asynchronous functions.</h2><div>
+
+<p><strong>Synchronous functions</strong>: It waits for each operation to complete, after that only it executes the next operation.</p>
+<p><strong>Asynchronous functions</strong>: It never waits for each operation to complete, rather it executes all operations in the first only. The result of each operation will be handled once the result is available.</p>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  jQuery('h3[id]').on('click', function(){
+    jQuery(this).next('div').slideToggle();
+  })
+});
+</script>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jiaopucun.com/2020/11/10/front-end-interview-javascript/" data-id="clt1mpa09002b2kvi9zp1arb4" class="article-share-link">Share</a>
+      
+        <a href="https://jiaopucun.com/2020/11/10/front-end-interview-javascript/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/11/12/react-error-adjacent-jsx-elements-must-be-wrapped-in-an-enclosing-tag/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          React Error: Adjacent JSX elements must be wrapped in an enclosing tag
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/11/09/enable-https-for-apache-on-localhost/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Enable https for Apache on localhost</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  
+  <div id="disqus_thread"></div>
+  <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+      var disqus_config = function () {
+        this.page.url = 'https://jiaopucun.com/2020/11/10/front-end-interview-javascript/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '1604980897000'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://jiaopucun.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/">Backend</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Database/">Database</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Debugging/">Debugging</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Testing/">Testing</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/">Tools</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/AWS-EC2/" style="font-size: 10px;">AWS EC2</a> <a href="/tags/Adminer/" style="font-size: 10px;">Adminer</a> <a href="/tags/Ant-Design/" style="font-size: 10px;">Ant Design</a> <a href="/tags/Ant-Design-Pro/" style="font-size: 10px;">Ant Design Pro</a> <a href="/tags/Apache/" style="font-size: 10px;">Apache</a> <a href="/tags/Charles/" style="font-size: 14px;">Charles</a> <a href="/tags/Chrome-DevTools/" style="font-size: 10px;">Chrome DevTools</a> <a href="/tags/Cloudflare/" style="font-size: 10px;">Cloudflare</a> <a href="/tags/CommonJS/" style="font-size: 10px;">CommonJS</a> <a href="/tags/DNS/" style="font-size: 10px;">DNS</a> <a href="/tags/Database/" style="font-size: 10px;">Database</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Docusaurus/" style="font-size: 10px;">Docusaurus</a> <a href="/tags/Domain/" style="font-size: 10px;">Domain</a> <a href="/tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="/tags/ESM/" style="font-size: 10px;">ESM</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Jest/" style="font-size: 12px;">Jest</a> <a href="/tags/Knex/" style="font-size: 10px;">Knex</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MySQL/" style="font-size: 12px;">MySQL</a> <a href="/tags/NPM/" style="font-size: 12px;">NPM</a> <a href="/tags/Node/" style="font-size: 14px;">Node</a> <a href="/tags/Nodemailer/" style="font-size: 10px;">Nodemailer</a> <a href="/tags/PostgreSQL/" style="font-size: 10px;">PostgreSQL</a> <a href="/tags/Prettier/" style="font-size: 10px;">Prettier</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/SQLite/" style="font-size: 10px;">SQLite</a> <a href="/tags/SWR/" style="font-size: 10px;">SWR</a> <a href="/tags/Strapi/" style="font-size: 14px;">Strapi</a> <a href="/tags/TypeScript/" style="font-size: 18px;">TypeScript</a> <a href="/tags/VS-Code/" style="font-size: 10px;">VS Code</a> <a href="/tags/Vite/" style="font-size: 16px;">Vite</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/WordPress/" style="font-size: 12px;">WordPress</a> <a href="/tags/Yarn/" style="font-size: 10px;">Yarn</a> <a href="/tags/database/" style="font-size: 10px;">database</a> <a href="/tags/hapi/" style="font-size: 10px;">hapi</a> <a href="/tags/proxy/" style="font-size: 10px;">proxy</a> <a href="/tags/rollup-js/" style="font-size: 10px;">rollup.js</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/02/25/how-to-disable-windows-defender/">How to disable Windows Defender</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/22/create-a-hapi-server-with-knex-and-mysql/">Create a Hapi Server with Knex and MySQL</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/01/test-react-custom-hooks-with-jest-and-testing-library/">Test React Custom Hooks with Jest and Testing Library</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/31/jest-vite-typescript/">Setup Jest with Vite and TypeScript</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/30/how-to-create-react-functional-components-in-typescript/">How to create React functional components in TypeScript</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2024 rainyjune<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/projects" class="mobile-nav-link">Projects</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+  
+  <script id="dsq-count-scr" src="//jiaopucun.disqus.com/count.js" async></script>
+
+</body>
+</html>
