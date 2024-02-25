@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+
+  
+  <title>How to set up Charles proxy on a Windows PC | SummerTown</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Charles Proxy is a powerful website optimization and QA tool for developers, analysts, and engineers. With Charles you can monitor exactly how your application communicates with a remote server. Part">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to set up Charles proxy on a Windows PC">
+<meta property="og:url" content="https://jiaopucun.com/2021/10/13/how-to-set-up-charles-proxy-on-a-windows-pc/index.html">
+<meta property="og:site_name" content="SummerTown">
+<meta property="og:description" content="Charles Proxy is a powerful website optimization and QA tool for developers, analysts, and engineers. With Charles you can monitor exactly how your application communicates with a remote server. Part">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://jiaopucun.com/2021/10/13/how-to-set-up-charles-proxy-on-a-windows-pc/help-install-charles-root-certificate-1024x591.png">
+<meta property="og:image" content="https://jiaopucun.com/2021/10/13/how-to-set-up-charles-proxy-on-a-windows-pc/charles-windows-certificate.png">
+<meta property="og:image" content="https://jiaopucun.com/2021/10/13/how-to-set-up-charles-proxy-on-a-windows-pc/charles-certificate-import-wizard-768x751.png">
+<meta property="og:image" content="https://jiaopucun.com/2021/10/13/how-to-set-up-charles-proxy-on-a-windows-pc/step-4-charles-place-all-certificates-in-the-following-store-then-browse.png">
+<meta property="og:image" content="https://jiaopucun.com/2021/10/13/how-to-set-up-charles-proxy-on-a-windows-pc/charles-select-certificate-store-300x281.png">
+<meta property="og:image" content="https://jiaopucun.com/2021/10/13/how-to-set-up-charles-proxy-on-a-windows-pc/charles-windows-place-certificate-in-the-following-store-filled-in-768x751.png">
+<meta property="og:image" content="https://jiaopucun.com/2021/10/13/how-to-set-up-charles-proxy-on-a-windows-pc/charles-completing-the-certificate-import-wizard-768x751.png">
+<meta property="og:image" content="https://jiaopucun.com/2021/10/13/how-to-set-up-charles-proxy-on-a-windows-pc/charles-the-certificate-import-was-succesful-300x197.png">
+<meta property="og:image" content="https://jiaopucun.com/2021/10/13/how-to-set-up-charles-proxy-on-a-windows-pc/charles-windoes-proxy-option-768x671.png">
+<meta property="og:image" content="https://jiaopucun.com/2021/10/13/how-to-set-up-charles-proxy-on-a-windows-pc/charles-ssl-proxying-settings-menu-768x671.png">
+<meta property="og:image" content="https://jiaopucun.com/2021/10/13/how-to-set-up-charles-proxy-on-a-windows-pc/charles-ssl-proxying-settings-768x611.png">
+<meta property="og:image" content="https://jiaopucun.com/2021/10/13/how-to-set-up-charles-proxy-on-a-windows-pc/charles-ssl-proxying-settings-edit-location-set-to-google-analytics.png">
+<meta property="og:image" content="https://jiaopucun.com/2021/10/13/how-to-set-up-charles-proxy-on-a-windows-pc/charles-proxying-https-google-analytics-traffic-1024x498.png">
+<meta property="og:image" content="https://jiaopucun.com/2021/10/13/how-to-set-up-charles-proxy-on-a-windows-pc/windows-firewall-defender.png">
+<meta property="og:image" content="https://jiaopucun.com/2021/10/13/how-to-set-up-charles-proxy-on-a-windows-pc/step-11-optional-firewall-settings.png">
+<meta property="og:image" content="https://jiaopucun.com/2021/10/13/how-to-set-up-charles-proxy-on-a-windows-pc/step-11b-optional-allow-the-connection.png">
+<meta property="og:image" content="https://jiaopucun.com/2021/10/13/how-to-set-up-charles-proxy-on-a-windows-pc/charles-firewall-allowed-1024x578.png">
+<meta property="article:published_time" content="2021-10-13T08:47:59.000Z">
+<meta property="article:modified_time" content="2024-02-25T14:03:27.711Z">
+<meta property="article:author" content="rainyjune">
+<meta property="article:tag" content="Charles">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jiaopucun.com/2021/10/13/how-to-set-up-charles-proxy-on-a-windows-pc/help-install-charles-root-certificate-1024x591.png">
+  
+    <link rel="alternate" href="/atom.xml" title="SummerTown" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">SummerTown</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/projects">Projects</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form id="searchform" action="#" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button></form><div id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-how-to-set-up-charles-proxy-on-a-windows-pc" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/10/13/how-to-set-up-charles-proxy-on-a-windows-pc/" class="article-date">
+  <time datetime="2021-10-13T08:47:59.000Z" itemprop="datePublished">2021-10-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Debugging/">Debugging</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      How to set up Charles proxy on a Windows PC
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Part-1-%E2%80%93-Certificate-Set-Up"><span class="toc-text">Part 1 – Certificate Set Up</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Part-2-%E2%80%93-SSL-Proxying-Set-Up"><span class="toc-text">Part 2 – SSL Proxying Set Up</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Firewall-Set-Up-for-iPhone-and-Android-Proxying"><span class="toc-text">Firewall Set Up for iPhone and Android Proxying</span></a></li></ol>
+      
+        <p>Charles Proxy is a powerful website optimization and QA tool for developers, analysts, and engineers. With Charles you can monitor exactly how your application communicates with a remote server.</p>
+<h2 id="Part-1-–-Certificate-Set-Up"><a href="#Part-1-–-Certificate-Set-Up" class="headerlink" title="Part 1 – Certificate Set Up"></a>Part 1 – Certificate Set Up</h2><p>The first part of the guide will help you add the Charles SSL Certificate to your PC so that Charles can decrypt any local HTTPS traffic.</p>
+<p><strong>Step 0</strong> – Download and install Charles</p>
+<p><strong>Step 1</strong> – Open Charles then go to <strong>Help &gt; SSL Proxying &gt; Install Charles Root Certificate</strong></p>
+<p><img src="/2021/10/13/how-to-set-up-charles-proxy-on-a-windows-pc/help-install-charles-root-certificate-1024x591.png"></p>
+<p><strong>Step 2</strong> – Click “<strong>Install Certificate</strong>”</p>
+<p><img src="/2021/10/13/how-to-set-up-charles-proxy-on-a-windows-pc/charles-windows-certificate.png"></p>
+<p><strong>Step 3</strong> – Select either “Current User” or “Local Machine”. I recommend “<strong>Current User</strong>” for most users.</p>
+<p><img src="/2021/10/13/how-to-set-up-charles-proxy-on-a-windows-pc/charles-certificate-import-wizard-768x751.png"></p>
+<p><strong>Step 4</strong> – Select “<strong>Place all certificates in the following store</strong>” then click “<strong>Browse</strong>”</p>
+<p><img src="/2021/10/13/how-to-set-up-charles-proxy-on-a-windows-pc/step-4-charles-place-all-certificates-in-the-following-store-then-browse.png"></p>
+<p><strong>Step 5</strong> – Select “<strong>Trusted Root Certification Authorities</strong>” then click “<strong>OK</strong>“</p>
+<p><img src="/2021/10/13/how-to-set-up-charles-proxy-on-a-windows-pc/charles-select-certificate-store-300x281.png"></p>
+<p><strong>Step 6</strong> – Click “<strong>Next</strong>“</p>
+<p><img src="/2021/10/13/how-to-set-up-charles-proxy-on-a-windows-pc/charles-windows-place-certificate-in-the-following-store-filled-in-768x751.png"></p>
+<p><strong>Step 7</strong> – Click “<strong>Finish</strong>“</p>
+<p><img src="/2021/10/13/how-to-set-up-charles-proxy-on-a-windows-pc/charles-completing-the-certificate-import-wizard-768x751.png"></p>
+<p><strong>Step 8</strong> – You should see a message saying “The import was successful”, click “<strong>OK</strong>“</p>
+<p><img src="/2021/10/13/how-to-set-up-charles-proxy-on-a-windows-pc/charles-the-certificate-import-was-succesful-300x197.png"></p>
+<h2 id="Part-2-–-SSL-Proxying-Set-Up"><a href="#Part-2-–-SSL-Proxying-Set-Up" class="headerlink" title="Part 2 – SSL Proxying Set Up"></a>Part 2 – SSL Proxying Set Up</h2><p>This part will help you set up Charles so that it can decrypt HTTPS encrypted traffic.</p>
+<p><strong>Step 1</strong> – Enable Windows Proxy if it is not enabled already. Click on <strong>Proxy</strong> &gt; <strong>Windows Proxy</strong>. You should see a checkmark to indicate that the windows proxy is enabled.</p>
+<p><img src="/2021/10/13/how-to-set-up-charles-proxy-on-a-windows-pc/charles-windoes-proxy-option-768x671.png"></p>
+<p><strong>Step 2</strong> – Go to <strong>Proxy</strong> &gt; <strong>SSL Proxying Settings</strong></p>
+<p><img src="/2021/10/13/how-to-set-up-charles-proxy-on-a-windows-pc/charles-ssl-proxying-settings-menu-768x671.png"></p>
+<p><strong>Step 3</strong> – Click on the “<strong>Enable SSL Proxying</strong>” checkbox, then under “Include”, click “<strong>Add</strong>“.</p>
+<p><img src="/2021/10/13/how-to-set-up-charles-proxy-on-a-windows-pc/charles-ssl-proxying-settings-768x611.png"></p>
+<p><strong>Step 4</strong> – Enter the host and port that you want to decrypt. Then click “<strong>OK</strong>“, then click “<strong>OK</strong>” again to go back to the main Charles window.</p>
+<p><img src="/2021/10/13/how-to-set-up-charles-proxy-on-a-windows-pc/charles-ssl-proxying-settings-edit-location-set-to-google-analytics.png"></p>
+<p><strong>Step 5</strong> – Close Charles and Re-Open</p>
+<p><strong>Step 6</strong> – Enter “<strong>google-analytics</strong>” as the Filter and on a new browser tab, go to <code>https://app.analystadmin.com/</code>, you should see the HTTPS analytics tracking beacon go out.</p>
+<p><img src="/2021/10/13/how-to-set-up-charles-proxy-on-a-windows-pc/charles-proxying-https-google-analytics-traffic-1024x498.png"></p>
+<p>For users who only need to intercept HTTPS on your local machine (Ex: web browser), you can stop here.</p>
+<h2 id="Firewall-Set-Up-for-iPhone-and-Android-Proxying"><a href="#Firewall-Set-Up-for-iPhone-and-Android-Proxying" class="headerlink" title="Firewall Set Up for iPhone and Android Proxying"></a>Firewall Set Up for iPhone and Android Proxying</h2><p>This part only applies to users who need to proxy traffic to your PC from an external device. For example, if you have an iPhone and need to capture a Charles log with your PC.</p>
+<p>In some cases, Windows 10 PCs are set up with very strict firewall rules. Use this section to check if Charles is set up correctly with your firewall.</p>
+<p><strong>Step 1</strong> – Press the <strong>Windows key</strong> and start typing “<strong>Windows Defender Firewall with Advanced Security</strong>“. Then open the application.</p>
+<p><img src="/2021/10/13/how-to-set-up-charles-proxy-on-a-windows-pc/windows-firewall-defender.png"></p>
+<p><strong>Step 2</strong> – Under <strong>Inbound Rules</strong>, look for <strong>Charles Web Debugging Proxy</strong>.</p>
+<p><img src="/2021/10/13/how-to-set-up-charles-proxy-on-a-windows-pc/step-11-optional-firewall-settings.png"></p>
+<p>-&gt; <strong>Stop</strong> here if you see green next to both Charles rules.</p>
+<p>-&gt; <strong>Continue</strong> to Step 3 if you see a prohibited (blocked) sign next to any Charles rules</p>
+<p><strong>Step 3</strong> – Double click on a blocked Charles rule, then click on “<strong>Allow the connection</strong>” and click “<strong>OK</strong>“. Repeat for the second rule if needed.</p>
+<p><img src="/2021/10/13/how-to-set-up-charles-proxy-on-a-windows-pc/step-11b-optional-allow-the-connection.png"></p>
+<p><strong>Step 4</strong> – You should see a green circle with a checkmark next to the Charles rules now.</p>
+<p><img src="/2021/10/13/how-to-set-up-charles-proxy-on-a-windows-pc/charles-firewall-allowed-1024x578.png"></p>
+<p>You’re done! Now you have a Windows 10 PC that can proxy local traffic as well as external traffic from phones and tablets.</p>
+<p>Source: <a target="_blank" rel="noopener" href="https://analystadmin.com/how-to-set-up-charles-proxy-on-a-windows-pc/">https://analystadmin.com/how-to-set-up-charles-proxy-on-a-windows-pc/</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jiaopucun.com/2021/10/13/how-to-set-up-charles-proxy-on-a-windows-pc/" data-id="clt1mgvhn003g80view6vemha" class="article-share-link">Share</a>
+      
+        <a href="https://jiaopucun.com/2021/10/13/how-to-set-up-charles-proxy-on-a-windows-pc/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Charles/" rel="tag">Charles</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/10/18/setting-up-charles-to-proxy-your-android-device/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Setting up Charles to proxy your Android device
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/10/13/how-to-use-callback-with-usestate/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">How to use callback with useState hook in React?</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  
+  <div id="disqus_thread"></div>
+  <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+      var disqus_config = function () {
+        this.page.url = 'https://jiaopucun.com/2021/10/13/how-to-set-up-charles-proxy-on-a-windows-pc/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '1634114879000'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://jiaopucun.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/">Backend</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Database/">Database</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Debugging/">Debugging</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Testing/">Testing</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/">Tools</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/AWS-EC2/" style="font-size: 10px;">AWS EC2</a> <a href="/tags/Adminer/" style="font-size: 10px;">Adminer</a> <a href="/tags/Ant-Design/" style="font-size: 10px;">Ant Design</a> <a href="/tags/Ant-Design-Pro/" style="font-size: 10px;">Ant Design Pro</a> <a href="/tags/Apache/" style="font-size: 10px;">Apache</a> <a href="/tags/Charles/" style="font-size: 14px;">Charles</a> <a href="/tags/Chrome-DevTools/" style="font-size: 10px;">Chrome DevTools</a> <a href="/tags/Cloudflare/" style="font-size: 10px;">Cloudflare</a> <a href="/tags/CommonJS/" style="font-size: 10px;">CommonJS</a> <a href="/tags/DNS/" style="font-size: 10px;">DNS</a> <a href="/tags/Database/" style="font-size: 10px;">Database</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Docusaurus/" style="font-size: 10px;">Docusaurus</a> <a href="/tags/Domain/" style="font-size: 10px;">Domain</a> <a href="/tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="/tags/ESM/" style="font-size: 10px;">ESM</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Jest/" style="font-size: 12px;">Jest</a> <a href="/tags/Knex/" style="font-size: 10px;">Knex</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MySQL/" style="font-size: 12px;">MySQL</a> <a href="/tags/NPM/" style="font-size: 12px;">NPM</a> <a href="/tags/Node/" style="font-size: 14px;">Node</a> <a href="/tags/Nodemailer/" style="font-size: 10px;">Nodemailer</a> <a href="/tags/PostgreSQL/" style="font-size: 10px;">PostgreSQL</a> <a href="/tags/Prettier/" style="font-size: 10px;">Prettier</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/SQLite/" style="font-size: 10px;">SQLite</a> <a href="/tags/SWR/" style="font-size: 10px;">SWR</a> <a href="/tags/Strapi/" style="font-size: 14px;">Strapi</a> <a href="/tags/TypeScript/" style="font-size: 18px;">TypeScript</a> <a href="/tags/VS-Code/" style="font-size: 10px;">VS Code</a> <a href="/tags/Vite/" style="font-size: 16px;">Vite</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/WordPress/" style="font-size: 12px;">WordPress</a> <a href="/tags/Yarn/" style="font-size: 10px;">Yarn</a> <a href="/tags/database/" style="font-size: 10px;">database</a> <a href="/tags/hapi/" style="font-size: 10px;">hapi</a> <a href="/tags/proxy/" style="font-size: 10px;">proxy</a> <a href="/tags/rollup-js/" style="font-size: 10px;">rollup.js</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/02/25/how-to-disable-windows-defender/">How to disable Windows Defender</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/22/create-a-hapi-server-with-knex-and-mysql/">Create a Hapi Server with Knex and MySQL</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/01/test-react-custom-hooks-with-jest-and-testing-library/">Test React Custom Hooks with Jest and Testing Library</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/31/jest-vite-typescript/">Setup Jest with Vite and TypeScript</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/30/how-to-create-react-functional-components-in-typescript/">How to create React functional components in TypeScript</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2024 rainyjune<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/projects" class="mobile-nav-link">Projects</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+  
+  <script id="dsq-count-scr" src="//jiaopucun.disqus.com/count.js" async></script>
+
+</body>
+</html>

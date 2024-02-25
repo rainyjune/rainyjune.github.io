@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+
+  
+  <title>Download a File Using JavaScript | SummerTown</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="In this article, we will learn how to download files using JavaScript. Automatic downloading files help us retrieve files directly from the URL with a JavaScript function without contacting any server">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Download a File Using JavaScript">
+<meta property="og:url" content="https://jiaopucun.com/2021/12/07/javascript-download/index.html">
+<meta property="og:site_name" content="SummerTown">
+<meta property="og:description" content="In this article, we will learn how to download files using JavaScript. Automatic downloading files help us retrieve files directly from the URL with a JavaScript function without contacting any server">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-12-07T09:11:19.000Z">
+<meta property="article:modified_time" content="2024-02-25T14:03:27.756Z">
+<meta property="article:author" content="rainyjune">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="SummerTown" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">SummerTown</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/projects">Projects</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form id="searchform" action="#" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button></form><div id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-javascript-download" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/12/07/javascript-download/" class="article-date">
+  <time datetime="2021-12-07T09:11:19.000Z" itemprop="datePublished">2021-12-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Download a File Using JavaScript
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Use-download-Attribute-in-HTML-to-Download-Files"><span class="toc-text">Use download Attribute in HTML to Download Files</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Using-a-Custom-Written-Function-to-Create-and-Download-Text-Files-in-JavaScript"><span class="toc-text">Using a Custom-Written Function to Create and Download Text Files in JavaScript</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Use-Axios-Library-to-Download-Files"><span class="toc-text">Use Axios Library to Download Files</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Blob"><span class="toc-text">Blob</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Download-Files"><span class="toc-text">Download Files</span></a></li></ol></li></ol>
+      
+        <p>In this article, we will learn how to download files using JavaScript. Automatic downloading files help us retrieve files directly from the URL with a JavaScript function without contacting any servers. We will achieve this using our custom written functions and using the download attribute of HTML 5.</p>
+<h2 id="Use-download-Attribute-in-HTML-to-Download-Files"><a href="#Use-download-Attribute-in-HTML-to-Download-Files" class="headerlink" title="Use download Attribute in HTML to Download Files"></a>Use <code>download</code> Attribute in HTML to Download Files</h2><p>The <code>download</code> attribute in HTML 5 is used to download files when users click on the hyperlink. It is used with anchor tags - <code>&lt;a&gt;</code> and <code>&lt;area&gt;</code>. We are required to set the <code>href</code> attribute specifying the source of the file. The value of the <code>download</code> attribute determines the name of the downloaded file. If this value is removed, then the downloaded filename will be the same as the original file name.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>How to Download files Using JavaScript <span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">body</span>&gt;</span>     </span><br><span class="line">         <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;apple.png&quot;</span> <span class="attr">download</span>=<span class="string">&quot;apple&quot;</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span>&gt;</span>Download<span class="tag">&lt;/<span class="name">button</span>&gt;</span> </span><br><span class="line">         <span class="tag">&lt;/<span class="name">a</span>&gt;</span> </span><br><span class="line">   <span class="tag">&lt;/<span class="name">body</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span> </span><br></pre></td></tr></table></figure>
+
+<p>In the above code, we download an image <code>apple.png</code> using the <code>download</code> attribute. We first create the anchor tag containing the image’s address and add the <code>download</code> attribute to it. Then we also created a download button to facilitate downloading files.</p>
+<h2 id="Using-a-Custom-Written-Function-to-Create-and-Download-Text-Files-in-JavaScript"><a href="#Using-a-Custom-Written-Function-to-Create-and-Download-Text-Files-in-JavaScript" class="headerlink" title="Using a Custom-Written Function to Create and Download Text Files in JavaScript"></a>Using a Custom-Written Function to Create and Download Text Files in JavaScript</h2><p>This approach will create text data on the fly and then use JavaScript to create a text file and then download it.</p>
+<ol>
+<li>Create a text area to enter the text data.</li>
+<li>Create an anchor tag <code>&lt;a&gt;</code> using the <code>createElement</code> property and assign <code>download</code> and <code>href</code> attributes to it.</li>
+<li>Use the <code>encodeURIComponent</code> to encode the text and append it to URI as its component. This will help us to replace certain special characters with a combination of escape sequences.</li>
+<li>Set the date type to <code>text/plain</code> and encoding to <code>UTF-8</code> using the <code>data:text/plain; charset = utf-8</code> as the attribute value of <code>href</code>.</li>
+<li>Append this created element to the body of the document(HTML page).</li>
+<li>Use <code>element.click()</code> to simulate a mouse click.</li>
+<li>Remove the element from the body of the document(HTML page).</li>
+</ol>
+<p>Attach an event listener looking for a click to a download button. Call the download function with text from the text area and the text file’s filename as parameters.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">title</span>&gt;</span></span><br><span class="line">            How to Download files Using JavaScript</span><br><span class="line">      <span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="tag">&lt;<span class="name">textarea</span> <span class="attr">id</span>=<span class="string">&quot;text&quot;</span>&gt;</span>DelftStack<span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">id</span>=<span class="string">&quot;btn&quot;</span> <span class="attr">value</span>=<span class="string">&quot;Download&quot;</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">function</span> <span class="title function_">download</span>(<span class="params">filename, textInput</span>) &#123;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">                  <span class="keyword">var</span> element = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;a&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">                  element.<span class="title function_">setAttribute</span>(<span class="string">&#x27;href&#x27;</span>,<span class="string">&#x27;data:text/plain;charset=utf-8, &#x27;</span> + <span class="built_in">encodeURIComponent</span>(textInput));</span></span><br><span class="line"><span class="language-javascript">                  element.<span class="title function_">setAttribute</span>(<span class="string">&#x27;download&#x27;</span>, filename);</span></span><br><span class="line"><span class="language-javascript">                  <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">appendChild</span>(element);</span></span><br><span class="line"><span class="language-javascript">                  element.<span class="title function_">click</span>();</span></span><br><span class="line"><span class="language-javascript">                  <span class="comment">//document.body.removeChild(element);</span></span></span><br><span class="line"><span class="language-javascript">            &#125;</span></span><br><span class="line"><span class="language-javascript">            <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;btn&quot;</span>)</span></span><br><span class="line"><span class="language-javascript">                  .<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">                        <span class="keyword">var</span> text = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;text&quot;</span>).<span class="property">value</span>;</span></span><br><span class="line"><span class="language-javascript">                        <span class="keyword">var</span> filename = <span class="string">&quot;output.txt&quot;</span>;</span></span><br><span class="line"><span class="language-javascript">                        <span class="title function_">download</span>(filename, text);</span></span><br><span class="line"><span class="language-javascript">                  &#125;, <span class="literal">false</span>);</span></span><br><span class="line"><span class="language-javascript">      </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Use-Axios-Library-to-Download-Files"><a href="#Use-Axios-Library-to-Download-Files" class="headerlink" title="Use Axios Library to Download Files"></a>Use Axios Library to Download Files</h2><p>In this approach, we will use the <code>Axios</code> library to download files. Before proceeding with the approach’s details, let us understand what <code>Blob</code> is, the data type used to download files using Axios.</p>
+<h3 id="Blob"><a href="#Blob" class="headerlink" title="Blob"></a>Blob</h3><p><code>Blob</code> stands for <code>Binary Large Object</code> and is a data type that can store binary data. It represents data like programs, code snippets, multimedia objects, and other things that don’t support JavaScript native format.</p>
+<h3 id="Download-Files"><a href="#Download-Files" class="headerlink" title="Download Files"></a>Download Files</h3><ol>
+<li>Create an Axios get request with URL as the source of the file and the responseType as a blob.</li>
+<li>Resolve the promise returned by the Axios request by performing the following steps:</li>
+<li>Create a DOMString that contains the URL representing the Blob object.</li>
+<li>Create an anchor tag <code>&lt;a&gt;</code> using the <code>createElement</code> property and assign <code>download</code> and <code>href</code> attributes to it.</li>
+<li>Set <code>href</code> as the URL created in the first step and <code>download</code> attribute as the downloaded file’s name.</li>
+<li>Attach this link to the document and simulate a click using the <code>.click()</code> method.</li>
+<li>Remove this link from the document.</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">title</span>&gt;</span>How to download files using JavaScript<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">&quot;download()&quot;</span>&gt;</span></span><br><span class="line">            Download Image</span><br><span class="line">      <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">function</span> <span class="title function_">download</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">                  <span class="title function_">axios</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">                        <span class="attr">url</span>: <span class="string">&#x27;https://source.unsplash.com/random/500x500&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">                        <span class="attr">method</span>: <span class="string">&#x27;GET&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">                        <span class="attr">responseType</span>: <span class="string">&#x27;blob&#x27;</span></span></span><br><span class="line"><span class="language-javascript">                  &#125;)</span></span><br><span class="line"><span class="language-javascript">                        .<span class="title function_">then</span>(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">                              <span class="keyword">const</span> url = <span class="variable language_">window</span>.<span class="property">URL</span></span></span><br><span class="line"><span class="language-javascript">                                    .<span class="title function_">createObjectURL</span>(<span class="keyword">new</span> <span class="title class_">Blob</span>([response.<span class="property">data</span>]));</span></span><br><span class="line"><span class="language-javascript">                              <span class="keyword">const</span> link = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;a&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">                              link.<span class="property">href</span> = url;</span></span><br><span class="line"><span class="language-javascript">                              link.<span class="title function_">setAttribute</span>(<span class="string">&#x27;download&#x27;</span>, <span class="string">&#x27;image.jpg&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">                              <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">appendChild</span>(link);</span></span><br><span class="line"><span class="language-javascript">                              link.<span class="title function_">click</span>();</span></span><br><span class="line"><span class="language-javascript">                              <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">removeChild</span>(link);</span></span><br><span class="line"><span class="language-javascript">                        &#125;)</span></span><br><span class="line"><span class="language-javascript">            &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Here we get random images from a site, use <code>Axios</code> to request those images in the form of blobs, and then download them using the anchor tag’s <code>download</code> attribute. This method is not restricted to the plain text entered by the user like the previous method. We can request any sort of data from an API and then use this approach to save data inside our computer.</p>
+<p>All the major browsers support all the above methods except the method using the <code>Axios</code> library. Internet Explorer still does not supports the native ES6 promises, and Axios depends heavily on them.</p>
+<p>Demo</p>
+<p>HTML code:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>How to download files using JavaScript<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">&quot;download()&quot;</span>&gt;</span></span><br><span class="line">      Download App</span><br><span class="line">    <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Percent: <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;perc&quot;</span>&gt;</span>0<span class="tag">&lt;/<span class="name">span</span>&gt;</span>%<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">function</span> <span class="title function_">download</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="title function_">axios</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="attr">url</span>:</span></span><br><span class="line"><span class="language-javascript">            <span class="string">&quot;https://app.maimaidl.cn/maimai_android_6.1.30.60130_zhihuad10.apk&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">          <span class="attr">method</span>: <span class="string">&quot;GET&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">          <span class="attr">responseType</span>: <span class="string">&quot;blob&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">          <span class="attr">onDownloadProgress</span>: <span class="function">(<span class="params">progressEvent</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">let</span> percentCompleted = <span class="title class_">Math</span>.<span class="title function_">round</span>(</span></span><br><span class="line"><span class="language-javascript">              (progressEvent.<span class="property">loaded</span> * <span class="number">100</span>) / progressEvent.<span class="property">total</span></span></span><br><span class="line"><span class="language-javascript">            );</span></span><br><span class="line"><span class="language-javascript">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;percentCompleted:&quot;</span>, percentCompleted);</span></span><br><span class="line"><span class="language-javascript">            <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;#perc&quot;</span>).<span class="property">textContent</span> = percentCompleted;</span></span><br><span class="line"><span class="language-javascript">          &#125;</span></span><br><span class="line"><span class="language-javascript">        &#125;).<span class="title function_">then</span>(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> url = <span class="variable language_">window</span>.<span class="property">URL</span>.<span class="title function_">createObjectURL</span>(<span class="keyword">new</span> <span class="title class_">Blob</span>([response.<span class="property">data</span>]));</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> link = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&quot;a&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">          link.<span class="property">href</span> = url;</span></span><br><span class="line"><span class="language-javascript">          link.<span class="title function_">setAttribute</span>(<span class="string">&quot;download&quot;</span>, <span class="string">&quot;test.apk&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">          <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">appendChild</span>(link);</span></span><br><span class="line"><span class="language-javascript">          link.<span class="title function_">click</span>();</span></span><br><span class="line"><span class="language-javascript">          <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">removeChild</span>(link);</span></span><br><span class="line"><span class="language-javascript">        &#125;);</span></span><br><span class="line"><span class="language-javascript">      &#125;</span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<iframe src="https://codesandbox.io/embed/romantic-poitras-sxn17?fontsize=14&hidenavigation=1&theme=light&view=preview"
+  style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+  title="romantic-poitras-sxn17"
+  allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>
+
+
+
+<p>Source:</p>
+<p><a target="_blank" rel="noopener" href="https://www.delftstack.com/howto/javascript/javascript-download/">https://www.delftstack.com/howto/javascript/javascript-download/</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jiaopucun.com/2021/12/07/javascript-download/" data-id="clt1mgvhp003x80vi52yudnat" class="article-share-link">Share</a>
+      
+        <a href="https://jiaopucun.com/2021/12/07/javascript-download/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/12/08/react-shouldcomponentupdate/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          React shouldComponentUpdate()
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/11/10/debug-webpages-on-android-with-chrome-devtools/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Debug Webpages on Android with Chrome DevTools</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  
+  <div id="disqus_thread"></div>
+  <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+      var disqus_config = function () {
+        this.page.url = 'https://jiaopucun.com/2021/12/07/javascript-download/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '1638868279000'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://jiaopucun.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/">Backend</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Database/">Database</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Debugging/">Debugging</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Testing/">Testing</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/">Tools</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/AWS-EC2/" style="font-size: 10px;">AWS EC2</a> <a href="/tags/Adminer/" style="font-size: 10px;">Adminer</a> <a href="/tags/Ant-Design/" style="font-size: 10px;">Ant Design</a> <a href="/tags/Ant-Design-Pro/" style="font-size: 10px;">Ant Design Pro</a> <a href="/tags/Apache/" style="font-size: 10px;">Apache</a> <a href="/tags/Charles/" style="font-size: 14px;">Charles</a> <a href="/tags/Chrome-DevTools/" style="font-size: 10px;">Chrome DevTools</a> <a href="/tags/Cloudflare/" style="font-size: 10px;">Cloudflare</a> <a href="/tags/CommonJS/" style="font-size: 10px;">CommonJS</a> <a href="/tags/DNS/" style="font-size: 10px;">DNS</a> <a href="/tags/Database/" style="font-size: 10px;">Database</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Docusaurus/" style="font-size: 10px;">Docusaurus</a> <a href="/tags/Domain/" style="font-size: 10px;">Domain</a> <a href="/tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="/tags/ESM/" style="font-size: 10px;">ESM</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Jest/" style="font-size: 12px;">Jest</a> <a href="/tags/Knex/" style="font-size: 10px;">Knex</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MySQL/" style="font-size: 12px;">MySQL</a> <a href="/tags/NPM/" style="font-size: 12px;">NPM</a> <a href="/tags/Node/" style="font-size: 14px;">Node</a> <a href="/tags/Nodemailer/" style="font-size: 10px;">Nodemailer</a> <a href="/tags/PostgreSQL/" style="font-size: 10px;">PostgreSQL</a> <a href="/tags/Prettier/" style="font-size: 10px;">Prettier</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/SQLite/" style="font-size: 10px;">SQLite</a> <a href="/tags/SWR/" style="font-size: 10px;">SWR</a> <a href="/tags/Strapi/" style="font-size: 14px;">Strapi</a> <a href="/tags/TypeScript/" style="font-size: 18px;">TypeScript</a> <a href="/tags/VS-Code/" style="font-size: 10px;">VS Code</a> <a href="/tags/Vite/" style="font-size: 16px;">Vite</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/WordPress/" style="font-size: 12px;">WordPress</a> <a href="/tags/Yarn/" style="font-size: 10px;">Yarn</a> <a href="/tags/database/" style="font-size: 10px;">database</a> <a href="/tags/hapi/" style="font-size: 10px;">hapi</a> <a href="/tags/proxy/" style="font-size: 10px;">proxy</a> <a href="/tags/rollup-js/" style="font-size: 10px;">rollup.js</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/02/25/how-to-disable-windows-defender/">How to disable Windows Defender</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/22/create-a-hapi-server-with-knex-and-mysql/">Create a Hapi Server with Knex and MySQL</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/01/test-react-custom-hooks-with-jest-and-testing-library/">Test React Custom Hooks with Jest and Testing Library</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/31/jest-vite-typescript/">Setup Jest with Vite and TypeScript</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/30/how-to-create-react-functional-components-in-typescript/">How to create React functional components in TypeScript</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2024 rainyjune<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/projects" class="mobile-nav-link">Projects</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+  
+  <script id="dsq-count-scr" src="//jiaopucun.disqus.com/count.js" async></script>
+
+</body>
+</html>

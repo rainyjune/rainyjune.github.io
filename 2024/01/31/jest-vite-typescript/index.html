@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+
+  
+  <title>Setup Jest with Vite and TypeScript | SummerTown</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="First, install jest:  12345# NPMnpm i jest --save-dev# yarnyarn add -D jest   Install react-testing-library packages:  12345# npmnpm i @testing-library&#x2F;jest-dom @testing-library&#x2F;react @testing-librar">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Setup Jest with Vite and TypeScript">
+<meta property="og:url" content="https://jiaopucun.com/2024/01/31/jest-vite-typescript/index.html">
+<meta property="og:site_name" content="SummerTown">
+<meta property="og:description" content="First, install jest:  12345# NPMnpm i jest --save-dev# yarnyarn add -D jest   Install react-testing-library packages:  12345# npmnpm i @testing-library&#x2F;jest-dom @testing-library&#x2F;react @testing-librar">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-01-31T13:35:38.000Z">
+<meta property="article:modified_time" content="2024-02-25T14:03:27.756Z">
+<meta property="article:author" content="rainyjune">
+<meta property="article:tag" content="TypeScript">
+<meta property="article:tag" content="Vite">
+<meta property="article:tag" content="Jest">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="SummerTown" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">SummerTown</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/projects">Projects</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form id="searchform" action="#" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button></form><div id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-jest-vite-typescript" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2024/01/31/jest-vite-typescript/" class="article-date">
+  <time datetime="2024-01-31T13:35:38.000Z" itemprop="datePublished">2024-01-31</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Testing/">Testing</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Setup Jest with Vite and TypeScript
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        <ol>
+<li>First, install <code>jest</code>:</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># NPM</span></span><br><span class="line">npm i jest --save-dev</span><br><span class="line"></span><br><span class="line"><span class="comment"># yarn</span></span><br><span class="line">yarn add -D jest</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>Install <code>react-testing-library</code> packages:</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># npm</span></span><br><span class="line">npm i @testing-library/jest-dom @testing-library/react @testing-library/user-event --save-dev</span><br><span class="line"></span><br><span class="line"><span class="comment"># yarn</span></span><br><span class="line">yarn add -D @testing-library/jest-dom @testing-library/react @testing-library/user-event</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>Add a script test to <code>package.json</code>:</li>
+</ol>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;test&quot;</span><span class="punctuation">:</span> <span class="string">&quot;jest&quot;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>Install SWC by this command:</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># npm</span></span><br><span class="line">npm i @swc/core @swc/jest --save-dev</span><br><span class="line"></span><br><span class="line"><span class="comment"># yarn</span></span><br><span class="line">yarn add -D @swc/core @swc/jest</span><br></pre></td></tr></table></figure>
+
+<p>Configure swc by creating <code>.swcrc</code> file at the root of the project:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// .swcrc</span></span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;jsc&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;target&quot;</span><span class="punctuation">:</span> <span class="string">&quot;es2017&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;parser&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;syntax&quot;</span><span class="punctuation">:</span> <span class="string">&quot;typescript&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;tsx&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;decorators&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;dynamicImport&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;transform&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;react&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;pragma&quot;</span><span class="punctuation">:</span> <span class="string">&quot;React.createElement&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;pragmaFrag&quot;</span><span class="punctuation">:</span> <span class="string">&quot;React.Fragment&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;throwIfNamespace&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;development&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;useBuiltins&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;runtime&quot;</span><span class="punctuation">:</span> <span class="string">&quot;automatic&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;hidden&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;jest&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;module&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;commonjs&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;strict&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;strictMode&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;lazy&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;noInterop&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>Note that if you use JSX, you need to set <code>jsc.transform.react.runtime</code> to <code>automatic</code> (as above). If you use <code>React.createElement</code>, you must set it to <code>classic</code>.</p>
+<ol start="5">
+<li>Configure Jest</li>
+</ol>
+<p>Create a file <code>jest.config.cjs</code> at the root project:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">roots</span>: [<span class="string">&quot;&lt;rootDir&gt;/src&quot;</span>],</span><br><span class="line">  <span class="attr">collectCoverageFrom</span>: [</span><br><span class="line">    <span class="string">&quot;src/**/*.&#123;js,jsx,ts,tsx&#125;&quot;</span>,</span><br><span class="line">    <span class="string">&quot;!src/**/*.d.ts&quot;</span>,</span><br><span class="line">    <span class="string">&quot;!src/mocks/**&quot;</span>,</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">coveragePathIgnorePatterns</span>: [],</span><br><span class="line">  <span class="attr">setupFilesAfterEnv</span>: [<span class="string">&quot;./config/jest/setupTests.js&quot;</span>],</span><br><span class="line">  <span class="attr">testEnvironment</span>: <span class="string">&quot;jsdom&quot;</span>,</span><br><span class="line">  <span class="attr">modulePaths</span>: [<span class="string">&quot;&lt;rootDir&gt;/src&quot;</span>],</span><br><span class="line">  <span class="attr">transform</span>: &#123;</span><br><span class="line">    <span class="string">&quot;^.+\\.(ts|js|tsx|jsx)$&quot;</span>: <span class="string">&quot;@swc/jest&quot;</span>,</span><br><span class="line">    <span class="string">&quot;^.+\\.css$&quot;</span>: <span class="string">&quot;&lt;rootDir&gt;/config/jest/cssTransform.cjs&quot;</span>,</span><br><span class="line">    <span class="string">&quot;^(?!.*\\.(js|jsx|mjs|cjs|ts|tsx|css|json)$)&quot;</span>:</span><br><span class="line">      <span class="string">&quot;&lt;rootDir&gt;/config/jest/fileTransform.cjs&quot;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">transformIgnorePatterns</span>: [</span><br><span class="line">    <span class="string">&quot;[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|cjs|ts|tsx)$&quot;</span>,</span><br><span class="line">    <span class="string">&quot;^.+\\.module\\.(css|sass|scss)$&quot;</span>,</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">modulePaths</span>: [<span class="string">&quot;&lt;rootDir&gt;/src&quot;</span>],</span><br><span class="line">  <span class="attr">moduleNameMapper</span>: &#123;</span><br><span class="line">    <span class="string">&quot;^react-native$&quot;</span>: <span class="string">&quot;react-native-web&quot;</span>,</span><br><span class="line">    <span class="string">&quot;^.+\\.module\\.(css|sass|scss)$&quot;</span>: <span class="string">&quot;identity-obj-proxy&quot;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">moduleFileExtensions</span>: [</span><br><span class="line">    <span class="comment">// Place tsx and ts to beginning as suggestion from Jest team</span></span><br><span class="line">    <span class="comment">// https://jestjs.io/docs/configuration#modulefileextensions-arraystring</span></span><br><span class="line">    <span class="string">&quot;tsx&quot;</span>,</span><br><span class="line">    <span class="string">&quot;ts&quot;</span>,</span><br><span class="line">    <span class="string">&quot;web.js&quot;</span>,</span><br><span class="line">    <span class="string">&quot;js&quot;</span>,</span><br><span class="line">    <span class="string">&quot;web.ts&quot;</span>,</span><br><span class="line">    <span class="string">&quot;web.tsx&quot;</span>,</span><br><span class="line">    <span class="string">&quot;json&quot;</span>,</span><br><span class="line">    <span class="string">&quot;web.jsx&quot;</span>,</span><br><span class="line">    <span class="string">&quot;jsx&quot;</span>,</span><br><span class="line">    <span class="string">&quot;node&quot;</span>,</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">watchPlugins</span>: [</span><br><span class="line">    <span class="string">&quot;jest-watch-typeahead/filename&quot;</span>,</span><br><span class="line">    <span class="string">&quot;jest-watch-typeahead/testname&quot;</span>,</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">resetMocks</span>: <span class="literal">true</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ol start="6">
+<li>Create <code>config/jest/cssTransform.cjs</code> and <code>config/jest/fileTransform.cjs</code> to transform css and files. Those two files are from CRA.</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// config/jest/cssTransform.cjs</span></span><br><span class="line"><span class="meta">&quot;use strict&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// This is a custom Jest transformer turning style imports into empty objects.</span></span><br><span class="line"><span class="comment">// http://facebook.github.io/jest/docs/en/webpack.html</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="title function_">process</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;module.exports = &#123;&#125;;&quot;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="title function_">getCacheKey</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// The output is always the same.</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;cssTransform&quot;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// config/jest/fileTransform.cjs</span></span><br><span class="line"><span class="meta">&quot;use strict&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&quot;path&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> camelcase = <span class="built_in">require</span>(<span class="string">&quot;camelcase&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// This is a custom Jest transformer turning file imports into filenames.</span></span><br><span class="line"><span class="comment">// http://facebook.github.io/jest/docs/en/webpack.html</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="title function_">process</span>(<span class="params">src, filename</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> assetFilename = <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(path.<span class="title function_">basename</span>(filename));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (filename.<span class="title function_">match</span>(<span class="regexp">/\.svg$/</span>)) &#123;</span><br><span class="line">      <span class="comment">// Based on how SVGR generates a component name:</span></span><br><span class="line">      <span class="comment">// https://github.com/smooth-code/svgr/blob/01b194cf967347d43d4cbe6b434404731b87cf27/packages/core/src/state.js#L6</span></span><br><span class="line">      <span class="keyword">const</span> pascalCaseFilename = <span class="title function_">camelcase</span>(path.<span class="title function_">parse</span>(filename).<span class="property">name</span>, &#123;</span><br><span class="line">        <span class="attr">pascalCase</span>: <span class="literal">true</span>,</span><br><span class="line">      &#125;);</span><br><span class="line">      <span class="keyword">const</span> componentName = <span class="string">`Svg<span class="subst">$&#123;pascalCaseFilename&#125;</span>`</span>;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">`const React = require(&#x27;react&#x27;);</span></span><br><span class="line"><span class="string">      module.exports = &#123;</span></span><br><span class="line"><span class="string">        __esModule: true,</span></span><br><span class="line"><span class="string">        default: <span class="subst">$&#123;assetFilename&#125;</span>,</span></span><br><span class="line"><span class="string">        ReactComponent: React.forwardRef(function <span class="subst">$&#123;componentName&#125;</span>(props, ref) &#123;</span></span><br><span class="line"><span class="string">          return &#123;</span></span><br><span class="line"><span class="string">            $$typeof: Symbol.for(&#x27;react.element&#x27;),</span></span><br><span class="line"><span class="string">            type: &#x27;svg&#x27;,</span></span><br><span class="line"><span class="string">            ref: ref,</span></span><br><span class="line"><span class="string">            key: null,</span></span><br><span class="line"><span class="string">            props: Object.assign(&#123;&#125;, props, &#123;</span></span><br><span class="line"><span class="string">              children: <span class="subst">$&#123;assetFilename&#125;</span></span></span><br><span class="line"><span class="string">            &#125;)</span></span><br><span class="line"><span class="string">          &#125;;</span></span><br><span class="line"><span class="string">        &#125;),</span></span><br><span class="line"><span class="string">      &#125;;`</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="string">`module.exports = <span class="subst">$&#123;assetFilename&#125;</span>;`</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>Remember to install <code>camelcase</code> as a dev dependency (do not install version 7, since it dropped the support for CommonJS):</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># npm</span></span><br><span class="line">npm install --save-dev camelcase@6</span><br><span class="line"></span><br><span class="line"><span class="comment"># yarn</span></span><br><span class="line">yarn add -D camelcase@6</span><br></pre></td></tr></table></figure>
+
+<ol start="7">
+<li>add ability to search test files and test names in pattern mode. Note that if you using Jest ≤ 26, please install <a href="mailto:&#x6a;&#x65;&#x73;&#x74;&#45;&#x77;&#x61;&#116;&#99;&#104;&#x2d;&#116;&#x79;&#112;&#101;&#x61;&#104;&#101;&#97;&#100;&#64;&#x30;&#x2e;&#x36;&#46;&#53;">&#x6a;&#x65;&#x73;&#x74;&#45;&#x77;&#x61;&#116;&#99;&#104;&#x2d;&#116;&#x79;&#112;&#101;&#x61;&#104;&#101;&#97;&#100;&#64;&#x30;&#x2e;&#x36;&#46;&#53;</a>, if you use Jest ≥ 27, please use jest-watch-typeahead^1.0.0:</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># npm</span></span><br><span class="line">// For jest &lt;= 26</span><br><span class="line">npm i jest-watch-typeahead@0.6.5 --save-dev</span><br><span class="line">// For jest &gt;= 27</span><br><span class="line">npm i jest-watch-typeahead --save-dev</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># yarn</span></span><br><span class="line">// For jest &lt;= 26</span><br><span class="line">yarn add -D jest-watch-typeahead@0.6.5</span><br><span class="line">// For jest &gt;= 27</span><br><span class="line">yarn add -D jest-watch-typeahead</span><br></pre></td></tr></table></figure>
+
+<ol start="8">
+<li>Everything you want to do to your test environment such as extends the jest matchers with @testing-library&#x2F;jest-dom, mock some APIs that’s not implemented in jdom, you can put to <code>config/jest/setupTests.js</code>:</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// config/jest/setupTests.js</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;@testing-library/jest-dom&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">window</span>.<span class="property">matchMedia</span> = <span class="function">(<span class="params">query</span>) =&gt;</span> (&#123;</span><br><span class="line">  <span class="attr">matches</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="attr">media</span>: query,</span><br><span class="line">  <span class="attr">onchange</span>: <span class="literal">null</span>,</span><br><span class="line">  <span class="attr">addEventListener</span>: jest.<span class="title function_">fn</span>(),</span><br><span class="line">  <span class="attr">removeEventListener</span>: jest.<span class="title function_">fn</span>(),</span><br><span class="line">  <span class="attr">dispatchEvent</span>: jest.<span class="title function_">fn</span>(),</span><br><span class="line">  <span class="attr">addListener</span>: jest.<span class="title function_">fn</span>(),</span><br><span class="line">  <span class="attr">removeListener</span>: jest.<span class="title function_">fn</span>(),</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">defineProperty</span>(<span class="variable constant_">URL</span>, <span class="string">&quot;createObjectURL&quot;</span>, &#123;</span><br><span class="line">  <span class="attr">writable</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">value</span>: jest.<span class="title function_">fn</span>(),</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ol start="9">
+<li>To get started with the JSDOM test environment, the jest-environment-jsdom package must be installed if it’s not already:</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># npm</span></span><br><span class="line">npm install --save-dev jest-environment-jsdom</span><br><span class="line"></span><br><span class="line"><span class="comment"># yarn</span></span><br><span class="line">yarn add --dev jest-environment-jsdom</span><br></pre></td></tr></table></figure>
+
+<ol start="10">
+<li>Install other testing libraries, such as <code>react-test-renderer</code>:</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># npm</span></span><br><span class="line">npm install --save-dev react-test-renderer</span><br><span class="line"></span><br><span class="line"><span class="comment"># yarn</span></span><br><span class="line">yarn add -D react-test-renderer</span><br></pre></td></tr></table></figure>
+
+<ol start="11">
+<li>Run this command in your terminal:</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># npm</span></span><br><span class="line">npm <span class="built_in">test</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># yarn</span></span><br><span class="line">yarn <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jiaopucun.com/2024/01/31/jest-vite-typescript/" data-id="clt1mgvhp003z80vih7v691wo" class="article-share-link">Share</a>
+      
+        <a href="https://jiaopucun.com/2024/01/31/jest-vite-typescript/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jest/" rel="tag">Jest</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TypeScript/" rel="tag">TypeScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vite/" rel="tag">Vite</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/02/01/test-react-custom-hooks-with-jest-and-testing-library/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Test React Custom Hooks with Jest and Testing Library
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/01/30/how-to-create-react-functional-components-in-typescript/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">How to create React functional components in TypeScript</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  
+  <div id="disqus_thread"></div>
+  <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+      var disqus_config = function () {
+        this.page.url = 'https://jiaopucun.com/2024/01/31/jest-vite-typescript/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '1706708138000'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://jiaopucun.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/">Backend</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Database/">Database</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Debugging/">Debugging</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Testing/">Testing</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/">Tools</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/AWS-EC2/" style="font-size: 10px;">AWS EC2</a> <a href="/tags/Adminer/" style="font-size: 10px;">Adminer</a> <a href="/tags/Ant-Design/" style="font-size: 10px;">Ant Design</a> <a href="/tags/Ant-Design-Pro/" style="font-size: 10px;">Ant Design Pro</a> <a href="/tags/Apache/" style="font-size: 10px;">Apache</a> <a href="/tags/Charles/" style="font-size: 14px;">Charles</a> <a href="/tags/Chrome-DevTools/" style="font-size: 10px;">Chrome DevTools</a> <a href="/tags/Cloudflare/" style="font-size: 10px;">Cloudflare</a> <a href="/tags/CommonJS/" style="font-size: 10px;">CommonJS</a> <a href="/tags/DNS/" style="font-size: 10px;">DNS</a> <a href="/tags/Database/" style="font-size: 10px;">Database</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Docusaurus/" style="font-size: 10px;">Docusaurus</a> <a href="/tags/Domain/" style="font-size: 10px;">Domain</a> <a href="/tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="/tags/ESM/" style="font-size: 10px;">ESM</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Jest/" style="font-size: 12px;">Jest</a> <a href="/tags/Knex/" style="font-size: 10px;">Knex</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MySQL/" style="font-size: 12px;">MySQL</a> <a href="/tags/NPM/" style="font-size: 12px;">NPM</a> <a href="/tags/Node/" style="font-size: 14px;">Node</a> <a href="/tags/Nodemailer/" style="font-size: 10px;">Nodemailer</a> <a href="/tags/PostgreSQL/" style="font-size: 10px;">PostgreSQL</a> <a href="/tags/Prettier/" style="font-size: 10px;">Prettier</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/SQLite/" style="font-size: 10px;">SQLite</a> <a href="/tags/SWR/" style="font-size: 10px;">SWR</a> <a href="/tags/Strapi/" style="font-size: 14px;">Strapi</a> <a href="/tags/TypeScript/" style="font-size: 18px;">TypeScript</a> <a href="/tags/VS-Code/" style="font-size: 10px;">VS Code</a> <a href="/tags/Vite/" style="font-size: 16px;">Vite</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/WordPress/" style="font-size: 12px;">WordPress</a> <a href="/tags/Yarn/" style="font-size: 10px;">Yarn</a> <a href="/tags/database/" style="font-size: 10px;">database</a> <a href="/tags/hapi/" style="font-size: 10px;">hapi</a> <a href="/tags/proxy/" style="font-size: 10px;">proxy</a> <a href="/tags/rollup-js/" style="font-size: 10px;">rollup.js</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/02/25/how-to-disable-windows-defender/">How to disable Windows Defender</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/22/create-a-hapi-server-with-knex-and-mysql/">Create a Hapi Server with Knex and MySQL</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/01/test-react-custom-hooks-with-jest-and-testing-library/">Test React Custom Hooks with Jest and Testing Library</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/31/jest-vite-typescript/">Setup Jest with Vite and TypeScript</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/30/how-to-create-react-functional-components-in-typescript/">How to create React functional components in TypeScript</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2024 rainyjune<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/projects" class="mobile-nav-link">Projects</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+  
+  <script id="dsq-count-scr" src="//jiaopucun.disqus.com/count.js" async></script>
+
+</body>
+</html>

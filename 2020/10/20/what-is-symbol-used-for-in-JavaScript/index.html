@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+
+  
+  <title>what is symbol used for in JavaScript | SummerTown</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="A new primitive data type was introduced in ES2015 - Symbol. It’s relative new, you might not be familiar with it yet.  In this article we will explain what a Symbol is and how it can be used in real">
+<meta property="og:type" content="article">
+<meta property="og:title" content="what is symbol used for in JavaScript">
+<meta property="og:url" content="https://jiaopucun.com/2020/10/20/what-is-symbol-used-for-in-JavaScript/index.html">
+<meta property="og:site_name" content="SummerTown">
+<meta property="og:description" content="A new primitive data type was introduced in ES2015 - Symbol. It’s relative new, you might not be familiar with it yet.  In this article we will explain what a Symbol is and how it can be used in real">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-10-20T06:23:53.000Z">
+<meta property="article:modified_time" content="2024-02-25T14:03:27.787Z">
+<meta property="article:author" content="rainyjune">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="SummerTown" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">SummerTown</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/projects">Projects</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form id="searchform" action="#" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button></form><div id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-what-is-symbol-used-for-in-JavaScript" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/10/20/what-is-symbol-used-for-in-JavaScript/" class="article-date">
+  <time datetime="2020-10-20T06:23:53.000Z" itemprop="datePublished">2020-10-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      what is symbol used for in JavaScript
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-symbol"><span class="toc-text">What is symbol?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Use-cases"><span class="toc-text">Use cases</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Used-as-an-identifier-for-object-properties"><span class="toc-text">1.Used as an identifier for object properties</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Enable-private-properties"><span class="toc-text">2. Enable private properties.</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Predefined-Symbols"><span class="toc-text">Predefined Symbols</span></a></li></ol>
+      
+        <p>A new primitive data type was introduced in ES2015 - Symbol. It’s relative new, you might not be familiar with it yet. </p>
+<p>In this article we will explain what a Symbol is and how it can be used in real life apps.</p>
+<h2 id="What-is-symbol"><a href="#What-is-symbol" class="headerlink" title="What is symbol?"></a>What is symbol?</h2><p>The data type symbol is a primitive data type, it is one of JavaScript’s 6 primitive data types: string, number, boolean, undefined, bigint and symbol.</p>
+<p>There is a <code>Symbol()</code> function available, it returns a value of type symbol. Every value returned is unique, you can never create two identical values, even though calling this function with the same parameter. </p>
+<p>Symbol can accept an optional description as parameter, but only for debugging purpose.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> symbol1 = <span class="title class_">Symbol</span>();</span><br><span class="line"><span class="keyword">const</span> symbol2 = <span class="title class_">Symbol</span>();</span><br><span class="line"><span class="keyword">const</span> symbol3 = <span class="title class_">Symbol</span>(<span class="string">&#x27;foo&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> symbol4 = <span class="title class_">Symbol</span>(<span class="string">&#x27;foo&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> symbol1); <span class="comment">// &quot;symbol&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(symbol1 === symbol2); <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(symbol3 === symbol4); <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Use the description property to get the its description.</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(symbol3.<span class="property">description</span>); <span class="comment">// &quot;foo&quot;. </span></span><br></pre></td></tr></table></figure>
+
+<p>In case you want to get an already created symbol, you can use <code>Symbol.for()</code> method. This method creates a symbol available in a global symbol registry list if the given key was not found, otherwise the existing one was returned.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Symbol</span>.<span class="title function_">for</span>(<span class="string">&#x27;a&#x27;</span>); <span class="comment">// create a new global symbol</span></span><br><span class="line"><span class="title class_">Symbol</span>.<span class="title function_">for</span>(<span class="string">&#x27;a&#x27;</span>); <span class="comment">// retrieve the already created symbol</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Symbol</span>.<span class="title function_">for</span>(<span class="string">&#x27;bar&#x27;</span>) === <span class="title class_">Symbol</span>.<span class="title function_">for</span>(<span class="string">&#x27;bar&#x27;</span>));</span><br><span class="line"><span class="comment">// expected output: true</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Symbol</span>(<span class="string">&#x27;bar&#x27;</span>) === <span class="title class_">Symbol</span>(<span class="string">&#x27;bar&#x27;</span>));</span><br><span class="line"><span class="comment">// expected output: false</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> symbol1 = <span class="title class_">Symbol</span>.<span class="title function_">for</span>(<span class="string">&#x27;foo&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(symbol1.<span class="title function_">toString</span>()); <span class="comment">// &quot;Symbol(foo)&quot;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Symbol</span>.<span class="title function_">for</span>(<span class="string">&#x27;foo&#x27;</span>) === symbol1); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Use-cases"><a href="#Use-cases" class="headerlink" title="Use cases"></a>Use cases</h2><h3 id="1-Used-as-an-identifier-for-object-properties"><a href="#1-Used-as-an-identifier-for-object-properties" class="headerlink" title="1.Used as an identifier for object properties"></a>1.Used as an identifier for object properties</h3><p>By using symbols, you don’t need to worry about key collisions in objects, this is the data type’s primary purpose.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> thirdPartyObject = &#123;</span><br><span class="line">  <span class="attr">prop1</span>: <span class="string">&#x27;3rd party prop1&#x27;</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">thirdPartyObject[<span class="title class_">Symbol</span>(<span class="string">&#x27;prop1&#x27;</span>)] = <span class="string">&#x27;changed&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(thirdPartyObject);</span><br><span class="line"><span class="comment">// &#123;prop1: &quot;3rd party prop1&quot;, Symbol(prop1): &quot;changed&quot;&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Others may try to add their own prop1 attribute</span></span><br><span class="line">thirdPartyObject[<span class="title class_">Symbol</span>(<span class="string">&#x27;prop1&#x27;</span>)] = <span class="string">&#x27;changed again&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(thirdPartyObject);</span><br><span class="line"><span class="comment">// &#123;prop1: &quot;3rd party prop1&quot;, Symbol(prop1): &quot;changed&quot;, Symbol(prop1): &quot;changed again&quot;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-Enable-private-properties"><a href="#2-Enable-private-properties" class="headerlink" title="2. Enable private properties."></a>2. Enable private properties.</h3><p>The original motivation for introducing symbols is to enable private properties in JavaScript. </p>
+<p>Symbols are not enumerable in for…in iterations. </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;&#125;</span><br><span class="line"></span><br><span class="line">obj[<span class="title class_">Symbol</span>(<span class="string">&#x27;a&#x27;</span>)] = <span class="string">&#x27;a&#x27;</span></span><br><span class="line">obj[<span class="title class_">Symbol</span>.<span class="title function_">for</span>(<span class="string">&#x27;b&#x27;</span>)] = <span class="string">&#x27;b&#x27;</span></span><br><span class="line">obj[<span class="string">&#x27;c&#x27;</span>] = <span class="string">&#x27;c&#x27;</span></span><br><span class="line">obj.<span class="property">d</span> = <span class="string">&#x27;d&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">in</span> obj) &#123;</span><br><span class="line">   <span class="variable language_">console</span>.<span class="title function_">log</span>(i)  <span class="comment">// logs &quot;c&quot; and &quot;d&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Symbol-keyed properties are ignored when using JSON.stringify() as well:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">JSON</span>.<span class="title function_">stringify</span>(&#123;[<span class="title class_">Symbol</span>(<span class="string">&#x27;foo&#x27;</span>)]: <span class="string">&#x27;foo&#x27;</span>&#125;)</span><br><span class="line"><span class="comment">// &#x27;&#123;&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>However, they are not 100% hidden, you can still get these properties, use <code>Object.getOwnPropertySymbols()</code> or <code>Reflect.ownKeys()</code>:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;&#125;</span><br><span class="line"></span><br><span class="line">obj[<span class="title class_">Symbol</span>(<span class="string">&#x27;a&#x27;</span>)] = <span class="string">&#x27;a&#x27;</span></span><br><span class="line">obj[<span class="title class_">Symbol</span>.<span class="title function_">for</span>(<span class="string">&#x27;b&#x27;</span>)] = <span class="string">&#x27;b&#x27;</span></span><br><span class="line">obj[<span class="string">&#x27;c&#x27;</span>] = <span class="string">&#x27;c&#x27;</span></span><br><span class="line">obj.<span class="property">d</span> = <span class="string">&#x27;d&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Reflect</span>.<span class="title function_">ownKeys</span>(obj)); <span class="comment">// [&quot;c&quot;, &quot;d&quot;, Symbol(a), Symbol(b)]</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Object</span>.<span class="title function_">getOwnPropertySymbols</span>(obj)); <span class="comment">// [Symbol(a), Symbol(b)]</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Predefined-Symbols"><a href="#Predefined-Symbols" class="headerlink" title="Predefined Symbols"></a>Predefined Symbols</h2><p>It has several properties that expose several members of built-in object. These are predefined symbols, they are also called well-known symbols.</p>
+<ul>
+<li>Symbol.asyncIterator - A method that returns the default AsyncIterator for an object. Used by for await…of.</li>
+<li>Symbol.hasInstance - A method determining if a constructor object recognizes an object as its instance. Used by instanceof.</li>
+<li>Symbol.isConcatSpreadable - A Boolean value indicating if an object should be flattened to its array elements. Used by Array.prototype.concat().</li>
+<li>Symbol.iterator - A method returning the default iterator for an object. Used by for…of.</li>
+<li>Symbol.match - A method that matches against a string, also used to determine if an object may be used as a regular expression. Used by String.prototype.match().</li>
+<li>Symbol.matchAll - A method that returns an iterator, that yields matches of the regular expression against a string. Used by String.prototype.matchAll().</li>
+<li>Symbol.replace - A method that replaces matched substrings of a string. Used by String.prototype.replace().</li>
+<li>Symbol.search - A method that returns the index within a string that matches the regular expression. Used by String.prototype.search().</li>
+<li>Symbol.split - A method that splits a string at the indices that match a regular expression. Used by String.prototype.split().</li>
+<li>Symbol.species - A constructor function that is used to create derived objects.</li>
+<li>Symbol.toPrimitive - A method converting an object to a primitive value.</li>
+<li>Symbol.toStringTag - A string value used for the default description of an object. Used by Object.prototype.toString().</li>
+<li>Symbol.unscopables - An object value of whose own and inherited property names are excluded from the with environment bindings of the associated object.</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jiaopucun.com/2020/10/20/what-is-symbol-used-for-in-JavaScript/" data-id="clt1mgvhy005i80vigfq7a16k" class="article-share-link">Share</a>
+      
+        <a href="https://jiaopucun.com/2020/10/20/what-is-symbol-used-for-in-JavaScript/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/10/21/sessionStorage-in-iframes/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          sessionStorage in iframes
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/10/20/embedding-an-image-using-markdown-in-Hexo/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">embedding an image using markdown in Hexo</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  
+  <div id="disqus_thread"></div>
+  <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+      var disqus_config = function () {
+        this.page.url = 'https://jiaopucun.com/2020/10/20/what-is-symbol-used-for-in-JavaScript/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '1603175033000'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://jiaopucun.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/">Backend</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Database/">Database</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Debugging/">Debugging</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Testing/">Testing</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/">Tools</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/AWS-EC2/" style="font-size: 10px;">AWS EC2</a> <a href="/tags/Adminer/" style="font-size: 10px;">Adminer</a> <a href="/tags/Ant-Design/" style="font-size: 10px;">Ant Design</a> <a href="/tags/Ant-Design-Pro/" style="font-size: 10px;">Ant Design Pro</a> <a href="/tags/Apache/" style="font-size: 10px;">Apache</a> <a href="/tags/Charles/" style="font-size: 14px;">Charles</a> <a href="/tags/Chrome-DevTools/" style="font-size: 10px;">Chrome DevTools</a> <a href="/tags/Cloudflare/" style="font-size: 10px;">Cloudflare</a> <a href="/tags/CommonJS/" style="font-size: 10px;">CommonJS</a> <a href="/tags/DNS/" style="font-size: 10px;">DNS</a> <a href="/tags/Database/" style="font-size: 10px;">Database</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Docusaurus/" style="font-size: 10px;">Docusaurus</a> <a href="/tags/Domain/" style="font-size: 10px;">Domain</a> <a href="/tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="/tags/ESM/" style="font-size: 10px;">ESM</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Jest/" style="font-size: 12px;">Jest</a> <a href="/tags/Knex/" style="font-size: 10px;">Knex</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MySQL/" style="font-size: 12px;">MySQL</a> <a href="/tags/NPM/" style="font-size: 12px;">NPM</a> <a href="/tags/Node/" style="font-size: 14px;">Node</a> <a href="/tags/Nodemailer/" style="font-size: 10px;">Nodemailer</a> <a href="/tags/PostgreSQL/" style="font-size: 10px;">PostgreSQL</a> <a href="/tags/Prettier/" style="font-size: 10px;">Prettier</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/SQLite/" style="font-size: 10px;">SQLite</a> <a href="/tags/SWR/" style="font-size: 10px;">SWR</a> <a href="/tags/Strapi/" style="font-size: 14px;">Strapi</a> <a href="/tags/TypeScript/" style="font-size: 18px;">TypeScript</a> <a href="/tags/VS-Code/" style="font-size: 10px;">VS Code</a> <a href="/tags/Vite/" style="font-size: 16px;">Vite</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/WordPress/" style="font-size: 12px;">WordPress</a> <a href="/tags/Yarn/" style="font-size: 10px;">Yarn</a> <a href="/tags/database/" style="font-size: 10px;">database</a> <a href="/tags/hapi/" style="font-size: 10px;">hapi</a> <a href="/tags/proxy/" style="font-size: 10px;">proxy</a> <a href="/tags/rollup-js/" style="font-size: 10px;">rollup.js</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/02/25/how-to-disable-windows-defender/">How to disable Windows Defender</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/22/create-a-hapi-server-with-knex-and-mysql/">Create a Hapi Server with Knex and MySQL</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/01/test-react-custom-hooks-with-jest-and-testing-library/">Test React Custom Hooks with Jest and Testing Library</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/31/jest-vite-typescript/">Setup Jest with Vite and TypeScript</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/30/how-to-create-react-functional-components-in-typescript/">How to create React functional components in TypeScript</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2024 rainyjune<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/projects" class="mobile-nav-link">Projects</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+  
+  <script id="dsq-count-scr" src="//jiaopucun.disqus.com/count.js" async></script>
+
+</body>
+</html>

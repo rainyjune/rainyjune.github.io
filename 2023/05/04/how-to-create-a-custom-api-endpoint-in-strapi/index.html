@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+
+  
+  <title>How to Create a Custom API Endpoint in Strapi | SummerTown</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="In this article, we will be creating a custom API endpoint from scratch. Installing StrapiTo create a new Strapi project based on a template, run the following command: 12345# use yarnyarn create stra">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to Create a Custom API Endpoint in Strapi">
+<meta property="og:url" content="https://jiaopucun.com/2023/05/04/how-to-create-a-custom-api-endpoint-in-strapi/index.html">
+<meta property="og:site_name" content="SummerTown">
+<meta property="og:description" content="In this article, we will be creating a custom API endpoint from scratch. Installing StrapiTo create a new Strapi project based on a template, run the following command: 12345# use yarnyarn create stra">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://jiaopucun.com/2023/05/04/how-to-create-a-custom-api-endpoint-in-strapi/s_27799A4C5AE5EB6BE5512B43881D4F101A6ECBA3EFB7A80F19E9F08911D732AE_1645339274420_image.png">
+<meta property="og:image" content="https://jiaopucun.com/2023/05/04/how-to-create-a-custom-api-endpoint-in-strapi/MW_Rh_RKIT_5e25568ffc.png">
+<meta property="og:image" content="https://jiaopucun.com/2023/05/04/how-to-create-a-custom-api-endpoint-in-strapi/o_H53_7_P1_83922e0455.png">
+<meta property="og:image" content="https://jiaopucun.com/2023/05/04/how-to-create-a-custom-api-endpoint-in-strapi/Yy_Pbd_Vh_A_f4e1d3e073.png">
+<meta property="og:image" content="https://jiaopucun.com/2023/05/04/how-to-create-a-custom-api-endpoint-in-strapi/VF_Hl_R_Auk_10a3293468.png">
+<meta property="og:image" content="https://jiaopucun.com/2023/05/04/how-to-create-a-custom-api-endpoint-in-strapi/xllf_M_Laq_cb59e4b9da.png">
+<meta property="og:image" content="https://jiaopucun.com/2023/05/04/how-to-create-a-custom-api-endpoint-in-strapi/Hfs_R_Wn_T4_c4d445230f.png">
+<meta property="article:published_time" content="2023-05-04T08:44:06.000Z">
+<meta property="article:modified_time" content="2024-02-25T14:03:27.676Z">
+<meta property="article:author" content="rainyjune">
+<meta property="article:tag" content="Strapi">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jiaopucun.com/2023/05/04/how-to-create-a-custom-api-endpoint-in-strapi/s_27799A4C5AE5EB6BE5512B43881D4F101A6ECBA3EFB7A80F19E9F08911D732AE_1645339274420_image.png">
+  
+    <link rel="alternate" href="/atom.xml" title="SummerTown" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">SummerTown</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/projects">Projects</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form id="searchform" action="#" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button></form><div id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-how-to-create-a-custom-api-endpoint-in-strapi" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/05/04/how-to-create-a-custom-api-endpoint-in-strapi/" class="article-date">
+  <time datetime="2023-05-04T08:44:06.000Z" itemprop="datePublished">2023-05-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Backend/">Backend</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      How to Create a Custom API Endpoint in Strapi
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Installing-Strapi"><span class="toc-text">Installing Strapi</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Generating-a-Basic-API"><span class="toc-text">Generating a Basic API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Routes"><span class="toc-text">Routes</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Controllers-vs-Services"><span class="toc-text">Controllers vs Services</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Creating-a-Service"><span class="toc-text">Creating a Service</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Creating-a-Controller"><span class="toc-text">Creating a Controller</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Setting-Permissions-for-the-API"><span class="toc-text">Setting Permissions for the API</span></a></li></ol>
+      
+        <p>In this article, we will be creating a custom API endpoint from scratch.</p>
+<h2 id="Installing-Strapi"><a href="#Installing-Strapi" class="headerlink" title="Installing Strapi"></a>Installing Strapi</h2><p>To create a new Strapi project based on a template, run the following command:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># use yarn</span><br><span class="line">yarn create strapi-app my-project --template &lt;template-package&gt;</span><br><span class="line"></span><br><span class="line"># use npm</span><br><span class="line">npx create-strapi-app@latest my-project --template &lt;template-package&gt;</span><br></pre></td></tr></table></figure>
+
+<p>For example:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># use the full template name</span><br><span class="line">yarn create strapi-app my-project --template @strapi/template-blog</span><br><span class="line"></span><br><span class="line"># use the shorthand</span><br><span class="line">yarn create strapi-app my-project --template blog</span><br></pre></td></tr></table></figure>
+
+<p>Once the installation is complete, the browser automatically opens a new tab. If not, navigate to <code>http://localhost:1337/admin/</code>.</p>
+<p>If port is already used by an another process, please check the alternate port mentioned mentioned in the CLI output. Most of the time, it would be <code>8000</code> , <code>8080</code> or <code>1337</code>.</p>
+<p>Complete the form to create the first administrator user of this Strapi application.</p>
+<p><img src="/2023/05/04/how-to-create-a-custom-api-endpoint-in-strapi/s_27799A4C5AE5EB6BE5512B43881D4F101A6ECBA3EFB7A80F19E9F08911D732AE_1645339274420_image.png"></p>
+<p>The <code>blog</code> template generates components, collection types, and a single type out of the box.</p>
+<p><img src="/2023/05/04/how-to-create-a-custom-api-endpoint-in-strapi/MW_Rh_RKIT_5e25568ffc.png"></p>
+<p>In this example, we show you how to create a custom API Endpoint GET <code>/api/posts-report</code> which will provide a simplified report of collection type article.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="string">&quot;id&quot;</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="string">&quot;title&quot;</span>: <span class="string">&quot;The internet&#x27;s Own boy&quot;</span>,</span><br><span class="line">    <span class="string">&quot;category&quot;</span>: <span class="string">&quot;story&quot;</span>,</span><br><span class="line">    <span class="string">&quot;publishedDate&quot;</span>: <span class="string">&quot;Fri May 20 2022&quot;</span>,</span><br><span class="line">    <span class="string">&quot;authorName&quot;</span>: <span class="string">&quot;David Doe&quot;</span>,</span><br><span class="line">    <span class="string">&quot;authorEmail&quot;</span>: <span class="string">&quot;daviddoe@strapi.io&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="string">&quot;id&quot;</span>: <span class="number">2</span>,</span><br><span class="line">    <span class="string">&quot;title&quot;</span>: <span class="string">&quot;This shrimp is awesome&quot;</span>,</span><br><span class="line">    <span class="string">&quot;category&quot;</span>: <span class="string">&quot;nature&quot;</span>,</span><br><span class="line">    <span class="string">&quot;publishedDate&quot;</span>: <span class="string">&quot;Fri May 20 2022&quot;</span>,</span><br><span class="line">    <span class="string">&quot;authorName&quot;</span>: <span class="string">&quot;David Doe&quot;</span>,</span><br><span class="line">    <span class="string">&quot;authorEmail&quot;</span>: <span class="string">&quot;daviddoe@strapi.io&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="string">&quot;id&quot;</span>: <span class="number">3</span>,</span><br><span class="line">    <span class="string">&quot;title&quot;</span>: <span class="string">&quot;A bug is becoming a meme on the internet&quot;</span>,</span><br><span class="line">    <span class="string">&quot;category&quot;</span>: <span class="string">&quot;tech&quot;</span>,</span><br><span class="line">    <span class="string">&quot;publishedDate&quot;</span>: <span class="string">&quot;Fri May 20 2022&quot;</span>,</span><br><span class="line">    <span class="string">&quot;authorName&quot;</span>: <span class="string">&quot;Sarah Baker&quot;</span>,</span><br><span class="line">    <span class="string">&quot;authorEmail&quot;</span>: <span class="string">&quot;sarahbaker@strapi.io&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="string">&quot;id&quot;</span>: <span class="number">4</span>,</span><br><span class="line">    <span class="string">&quot;title&quot;</span>: <span class="string">&quot;Beautiful picture&quot;</span>,</span><br><span class="line">    <span class="string">&quot;category&quot;</span>: <span class="string">&quot;nature&quot;</span>,</span><br><span class="line">    <span class="string">&quot;publishedDate&quot;</span>: <span class="string">&quot;Fri May 20 2022&quot;</span>,</span><br><span class="line">    <span class="string">&quot;authorName&quot;</span>: <span class="string">&quot;Sarah Baker&quot;</span>,</span><br><span class="line">    <span class="string">&quot;authorEmail&quot;</span>: <span class="string">&quot;sarahbaker@strapi.io&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="string">&quot;id&quot;</span>: <span class="number">5</span>,</span><br><span class="line">    <span class="string">&quot;title&quot;</span>: <span class="string">&quot;What&#x27;s inside a Black Hole&quot;</span>,</span><br><span class="line">    <span class="string">&quot;category&quot;</span>: <span class="string">&quot;news&quot;</span>,</span><br><span class="line">    <span class="string">&quot;publishedDate&quot;</span>: <span class="string">&quot;Fri May 20 2022&quot;</span>,</span><br><span class="line">    <span class="string">&quot;authorName&quot;</span>: <span class="string">&quot;Sarah Baker&quot;</span>,</span><br><span class="line">    <span class="string">&quot;authorEmail&quot;</span>: <span class="string">&quot;sarahbaker@strapi.io&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<h2 id="Generating-a-Basic-API"><a href="#Generating-a-Basic-API" class="headerlink" title="Generating a Basic API"></a>Generating a Basic API</h2><p>Navigate to your <code>my-project</code> folder and run <code>npx strapi generate</code> to create a custom API endpoint.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">? Strapi Generators (Use arrow keys)</span><br><span class="line">❯ api - Generate a basic API</span><br><span class="line">  controller - Generate a controller for an API</span><br><span class="line">  content-type - Generate a content type for an API</span><br><span class="line">  plugin - Generate a basic plugin</span><br><span class="line">  policy - Generate a policy for an API</span><br><span class="line">  middleware - Generate a middleware for an API</span><br><span class="line">  service - Generate a service for an API</span><br></pre></td></tr></table></figure>
+
+<p>Make sure the api option is selected and click enter.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">? Strapi Generators api - Generate a basic API </span><br><span class="line">? API name // name your api</span><br></pre></td></tr></table></figure>
+
+<p>I am going to call my posts-report and select N for “Is this API for a plugin?”</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">? Strapi Generators api - Generate a basic API </span><br><span class="line">? API name posts-report </span><br><span class="line">? Is this API for a plugin? (Y/n)</span><br></pre></td></tr></table></figure>
+
+<p>This will generate these files below</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">? Strapi Generators api - Generate a basic API</span><br><span class="line">? API name posts-report</span><br><span class="line">? Is this API for a plugin? No</span><br><span class="line"></span><br><span class="line">✔  ++ /api/posts-report/routes/posts-report.js</span><br><span class="line">✔  ++ /api/posts-report/controllers/posts-report.js</span><br><span class="line">✔  ++ /api/posts-report/services/posts-report.js</span><br></pre></td></tr></table></figure>
+
+<p>We can find these in the <code>/src/api/posts-report</code> folder.<br>This command creates a directory called <code>posts-report</code> within <code>src/api</code> directory. The <code>posts-report</code> contains three directories called <code>controllers</code>, <code>routes</code>, and <code>services</code>.</p>
+<h2 id="Routes"><a href="#Routes" class="headerlink" title="Routes"></a>Routes</h2><p>Requests sent to Strapi on any URL are handled by routes. By default, Strapi generates routes for all the content-types. Routes can be added and configured. Once a route exists, reaching it executes some code handled by a controller.</p>
+<p>Replace the code in <code>/src/api/posts-report/routes/posts-report.js</code> with the following lines of code.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">routes</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">method</span>: <span class="string">&quot;GET&quot;</span>,</span><br><span class="line">      <span class="attr">path</span>: <span class="string">&quot;/posts-report&quot;</span>,</span><br><span class="line">      <span class="attr">handler</span>: <span class="string">&quot;posts-report.postsReport&quot;</span>,</span><br><span class="line">      <span class="attr">config</span>: &#123;</span><br><span class="line">        <span class="attr">policies</span>: [],</span><br><span class="line">        <span class="attr">middlewares</span>: [],</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Controllers-vs-Services"><a href="#Controllers-vs-Services" class="headerlink" title="Controllers vs Services"></a>Controllers vs Services</h2><p>Controllers are JavaScript files that contain a set of methods called actions, reached by the client according to the requested route. Whenever a client requests the route, the action performs the business logic code and sends back the response. Controllers represent the C in the model-view-controller (MVC) pattern. In most cases, the controllers will contain the bulk of a project’s business logic. But as a controller’s logic becomes more and more complicated, it’s a good practice to use services to organise the code into re-usable parts.</p>
+<p>Services are a set of reusable functions. They are particularly useful to respect the DRY (don’t repeat yourself) programming concept and to simplify controllers logic.</p>
+<h2 id="Creating-a-Service"><a href="#Creating-a-Service" class="headerlink" title="Creating a Service"></a>Creating a Service</h2><p>Services are basically not aware of the Koa’s <code>ctx</code> object(request and the response). It is supposed to be a flexible and reusable function.</p>
+<p>Replace the contents of <code>/src/api/posts-report/services/posts-report.js</code> with the following lines of code that use Strapi’s Entity Service API to fetch all pages:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">postsReport</span>: <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="comment">// fetching data</span></span><br><span class="line">      <span class="keyword">const</span> entries = <span class="keyword">await</span> strapi.<span class="property">entityService</span>.<span class="title function_">findMany</span>(</span><br><span class="line">        <span class="string">&quot;api::article.article&quot;</span>,</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">fields</span>: [<span class="string">&quot;id&quot;</span>, <span class="string">&quot;title&quot;</span>, <span class="string">&quot;slug&quot;</span>, <span class="string">&quot;createdAt&quot;</span>],</span><br><span class="line">          <span class="attr">populate</span>: &#123;</span><br><span class="line">            <span class="attr">author</span>: &#123;</span><br><span class="line">              <span class="attr">fields</span>: [<span class="string">&quot;name&quot;</span>, <span class="string">&quot;email&quot;</span>],</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="attr">category</span>: &#123;</span><br><span class="line">              <span class="attr">fields</span>: [<span class="string">&quot;name&quot;</span>],</span><br><span class="line">            &#125;,</span><br><span class="line">          &#125;,</span><br><span class="line">        &#125;</span><br><span class="line">      );</span><br><span class="line"></span><br><span class="line">      <span class="comment">// reduce the data to the format we want to return</span></span><br><span class="line">      <span class="keyword">let</span> entriesReduced;</span><br><span class="line">      <span class="keyword">if</span> (entries &amp;&amp; <span class="title class_">Array</span>.<span class="title function_">isArray</span>(entries)) &#123;</span><br><span class="line">        entriesReduced = entries.<span class="title function_">reduce</span>(<span class="function">(<span class="params">acc, item</span>) =&gt;</span> &#123;</span><br><span class="line">          acc = acc || [];</span><br><span class="line">          acc.<span class="title function_">push</span>(&#123;</span><br><span class="line">            <span class="attr">id</span>: item.<span class="property">id</span>,</span><br><span class="line">            <span class="attr">title</span>: item.<span class="property">title</span> || <span class="string">&quot;&quot;</span>,</span><br><span class="line">            <span class="attr">category</span>: item.<span class="property">category</span>.<span class="property">name</span> || <span class="string">&quot;&quot;</span>,</span><br><span class="line">            <span class="attr">publishedDate</span>: <span class="keyword">new</span> <span class="title class_">Date</span>(item.<span class="property">createdAt</span>).<span class="title function_">toDateString</span>() || <span class="string">&quot;&quot;</span>,</span><br><span class="line">            <span class="attr">authorName</span>: item.<span class="property">author</span>?.<span class="property">name</span> || <span class="string">&quot;&quot;</span>,</span><br><span class="line">            <span class="attr">authorEmail</span>: item.<span class="property">author</span>?.<span class="property">email</span> || <span class="string">&quot;&quot;</span>,</span><br><span class="line">          &#125;);</span><br><span class="line">          <span class="keyword">return</span> acc;</span><br><span class="line">        &#125;, []);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// return the reduced data</span></span><br><span class="line">      <span class="keyword">return</span> entriesReduced;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">      <span class="keyword">return</span> err;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>In this code we are using Strapi’s Entity Service API to fetch all pages. To learn more about the flexible ways of populating the response, read the Populating the Entity Service API documentation.</p>
+<p>Once a service is created, it’s accessible from controllers or from other services:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// access an API service</span></span><br><span class="line">strapi.<span class="title function_">service</span>(<span class="string">&#x27;api::apiName.serviceName&#x27;</span>);</span><br><span class="line"><span class="comment">// access a plugin service</span></span><br><span class="line">strapi.<span class="title function_">service</span>(<span class="string">&#x27;plugin::pluginName.serviceName&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>The list of services available can be logged from controllers and services:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;strapi.services &#x27;</span>, strapi.<span class="property">services</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;pages-report&#x27;</span>, strapi.<span class="title function_">service</span>(<span class="string">&#x27;api::pages-report.pages-report&#x27;</span>));</span><br></pre></td></tr></table></figure>
+
+<h2 id="Creating-a-Controller"><a href="#Creating-a-Controller" class="headerlink" title="Creating a Controller"></a>Creating a Controller</h2><p>Controllers are functions that have direct access to the Koa’s <code>ctx</code>, hence a controller function is responsible for invoking our service on <code>request</code> and returning the results to the <code>response</code>.</p>
+<p>Replace the code in <code>/src/api/posts-report/controllers/posts-report.js</code> with the following lines of code:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="keyword">async</span> <span class="title function_">postsReport</span>(<span class="params">ctx, next</span>) &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> data = <span class="keyword">await</span> strapi</span><br><span class="line">        .<span class="title function_">service</span>(<span class="string">&quot;api::posts-report.posts-report&quot;</span>)</span><br><span class="line">        .<span class="title function_">postsReport</span>();</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(data, <span class="string">&quot;data&quot;</span>);</span><br><span class="line"></span><br><span class="line">      ctx.<span class="property">body</span> = data;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">      ctx.<span class="title function_">badRequest</span>(<span class="string">&quot;Post report controller error&quot;</span>, &#123; <span class="attr">moreDetails</span>: err &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>You may need to stop and re-start the server. Stop the server using <code>ctrl + c</code> in the terminal. Start the server using <code>yarn develop</code>. Make sure that your current directory is <code>my-project</code>.</p>
+<p><img src="/2023/05/04/how-to-create-a-custom-api-endpoint-in-strapi/o_H53_7_P1_83922e0455.png"></p>
+<h2 id="Setting-Permissions-for-the-API"><a href="#Setting-Permissions-for-the-API" class="headerlink" title="Setting Permissions for the API"></a>Setting Permissions for the API</h2><p>That’s all the code required for the use case. Send a get request to <code>/api/posts-report</code>. You will most probably get a 403 error.</p>
+<p><img src="/2023/05/04/how-to-create-a-custom-api-endpoint-in-strapi/Yy_Pbd_Vh_A_f4e1d3e073.png"></p>
+<p>In order to make the end-point accessible only to the authenticated users, go to the Settings &gt; Roles &gt; Authenticated. To be able to publicly access the end-point, please go to the Setting &gt; Roles &gt; Public in the Strapi dashboard.</p>
+<p><img src="/2023/05/04/how-to-create-a-custom-api-endpoint-in-strapi/VF_Hl_R_Auk_10a3293468.png"></p>
+<p>Please, check the postsReport for the Posts-report route and hit the save button.</p>
+<p><img src="/2023/05/04/how-to-create-a-custom-api-endpoint-in-strapi/xllf_M_Laq_cb59e4b9da.png"></p>
+<p>Now, the custom API is ready for the public:</p>
+<p>You can either just go here directly in your browser <code>http://localhost:1337/api/posts-report</code> or make a GET request using a service like postman or insomnia.</p>
+<p>You should now see your data coming from your custom controller.</p>
+<p><img src="/2023/05/04/how-to-create-a-custom-api-endpoint-in-strapi/Hfs_R_Wn_T4_c4d445230f.png"></p>
+<p>Source: <a target="_blank" rel="noopener" href="https://strapi.io/blog/how-to-create-a-custom-api-endpoint-in-strapi">https://strapi.io/blog/how-to-create-a-custom-api-endpoint-in-strapi</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jiaopucun.com/2023/05/04/how-to-create-a-custom-api-endpoint-in-strapi/" data-id="clt1mgvhj002r80vi5f89g9s3" class="article-share-link">Share</a>
+      
+        <a href="https://jiaopucun.com/2023/05/04/how-to-create-a-custom-api-endpoint-in-strapi/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Strapi/" rel="tag">Strapi</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/05/06/zip-and-unzip-commands-in-linux/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          zip and unzip commands in Linux
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/05/03/strapi-troubleshooting/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Strapi Troubleshooting</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  
+  <div id="disqus_thread"></div>
+  <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+      var disqus_config = function () {
+        this.page.url = 'https://jiaopucun.com/2023/05/04/how-to-create-a-custom-api-endpoint-in-strapi/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '1683189846000'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://jiaopucun.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/">Backend</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Database/">Database</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Debugging/">Debugging</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Testing/">Testing</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/">Tools</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/AWS-EC2/" style="font-size: 10px;">AWS EC2</a> <a href="/tags/Adminer/" style="font-size: 10px;">Adminer</a> <a href="/tags/Ant-Design/" style="font-size: 10px;">Ant Design</a> <a href="/tags/Ant-Design-Pro/" style="font-size: 10px;">Ant Design Pro</a> <a href="/tags/Apache/" style="font-size: 10px;">Apache</a> <a href="/tags/Charles/" style="font-size: 14px;">Charles</a> <a href="/tags/Chrome-DevTools/" style="font-size: 10px;">Chrome DevTools</a> <a href="/tags/Cloudflare/" style="font-size: 10px;">Cloudflare</a> <a href="/tags/CommonJS/" style="font-size: 10px;">CommonJS</a> <a href="/tags/DNS/" style="font-size: 10px;">DNS</a> <a href="/tags/Database/" style="font-size: 10px;">Database</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Docusaurus/" style="font-size: 10px;">Docusaurus</a> <a href="/tags/Domain/" style="font-size: 10px;">Domain</a> <a href="/tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="/tags/ESM/" style="font-size: 10px;">ESM</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Jest/" style="font-size: 12px;">Jest</a> <a href="/tags/Knex/" style="font-size: 10px;">Knex</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MySQL/" style="font-size: 12px;">MySQL</a> <a href="/tags/NPM/" style="font-size: 12px;">NPM</a> <a href="/tags/Node/" style="font-size: 14px;">Node</a> <a href="/tags/Nodemailer/" style="font-size: 10px;">Nodemailer</a> <a href="/tags/PostgreSQL/" style="font-size: 10px;">PostgreSQL</a> <a href="/tags/Prettier/" style="font-size: 10px;">Prettier</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/SQLite/" style="font-size: 10px;">SQLite</a> <a href="/tags/SWR/" style="font-size: 10px;">SWR</a> <a href="/tags/Strapi/" style="font-size: 14px;">Strapi</a> <a href="/tags/TypeScript/" style="font-size: 18px;">TypeScript</a> <a href="/tags/VS-Code/" style="font-size: 10px;">VS Code</a> <a href="/tags/Vite/" style="font-size: 16px;">Vite</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/WordPress/" style="font-size: 12px;">WordPress</a> <a href="/tags/Yarn/" style="font-size: 10px;">Yarn</a> <a href="/tags/database/" style="font-size: 10px;">database</a> <a href="/tags/hapi/" style="font-size: 10px;">hapi</a> <a href="/tags/proxy/" style="font-size: 10px;">proxy</a> <a href="/tags/rollup-js/" style="font-size: 10px;">rollup.js</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/02/25/how-to-disable-windows-defender/">How to disable Windows Defender</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/22/create-a-hapi-server-with-knex-and-mysql/">Create a Hapi Server with Knex and MySQL</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/01/test-react-custom-hooks-with-jest-and-testing-library/">Test React Custom Hooks with Jest and Testing Library</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/31/jest-vite-typescript/">Setup Jest with Vite and TypeScript</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/30/how-to-create-react-functional-components-in-typescript/">How to create React functional components in TypeScript</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2024 rainyjune<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/projects" class="mobile-nav-link">Projects</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+  
+  <script id="dsq-count-scr" src="//jiaopucun.disqus.com/count.js" async></script>
+
+</body>
+</html>

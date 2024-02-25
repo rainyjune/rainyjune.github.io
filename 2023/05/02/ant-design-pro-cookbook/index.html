@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+
+  
+  <title>Ant Design Pro Cookbook | SummerTown</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="This article is based on Ant Design Pro 5.2.0. Set the default language to Chinese globallyEdit config&#x2F;config.ts: 123456789101112131415export default defineConfig(&amp;#123;  layout: &amp;#123;    locale: fal">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ant Design Pro Cookbook">
+<meta property="og:url" content="https://jiaopucun.com/2023/05/02/ant-design-pro-cookbook/index.html">
+<meta property="og:site_name" content="SummerTown">
+<meta property="og:description" content="This article is based on Ant Design Pro 5.2.0. Set the default language to Chinese globallyEdit config&#x2F;config.ts: 123456789101112131415export default defineConfig(&amp;#123;  layout: &amp;#123;    locale: fal">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://jiaopucun.com/2023/05/02/ant-design-pro-cookbook/protable_overview.png">
+<meta property="article:published_time" content="2023-05-02T14:53:58.000Z">
+<meta property="article:modified_time" content="2024-02-25T14:03:27.613Z">
+<meta property="article:author" content="rainyjune">
+<meta property="article:tag" content="React">
+<meta property="article:tag" content="Ant Design">
+<meta property="article:tag" content="Ant Design Pro">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jiaopucun.com/2023/05/02/ant-design-pro-cookbook/protable_overview.png">
+  
+    <link rel="alternate" href="/atom.xml" title="SummerTown" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">SummerTown</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/projects">Projects</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form id="searchform" action="#" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button></form><div id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ant-design-pro-cookbook" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/05/02/ant-design-pro-cookbook/" class="article-date">
+  <time datetime="2023-05-02T14:53:58.000Z" itemprop="datePublished">2023-05-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Frontend/">Frontend</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Ant Design Pro Cookbook
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Set-the-default-language-to-Chinese-globally"><span class="toc-text">Set the default language to Chinese globally</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Add-a-menu-on-the-navigation-bar"><span class="toc-text">Add a menu on the navigation bar</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ProTable-sort-data-from-server"><span class="toc-text">ProTable sort data from server</span></a></li></ol>
+      
+        <p>This article is based on Ant Design Pro 5.2.0.</p>
+<h2 id="Set-the-default-language-to-Chinese-globally"><a href="#Set-the-default-language-to-Chinese-globally" class="headerlink" title="Set the default language to Chinese globally"></a>Set the default language to Chinese globally</h2><p>Edit <code>config/config.ts</code>:</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">defineConfig</span>(&#123;</span><br><span class="line">  <span class="attr">layout</span>: &#123;</span><br><span class="line">    <span class="attr">locale</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// ... other options</span></span><br><span class="line">  <span class="comment">// https://umijs.org/zh-CN/plugins/plugin-locale</span></span><br><span class="line">  <span class="attr">locale</span>: &#123;</span><br><span class="line">    <span class="attr">default</span>: <span class="string">&#x27;zh-CN&#x27;</span>,</span><br><span class="line">    <span class="attr">antd</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="comment">// default true, when it is true, will use `navigator.language` overwrite default</span></span><br><span class="line">    <span class="attr">baseNavigator</span>: <span class="literal">false</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// ... other options</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="Add-a-menu-on-the-navigation-bar"><a href="#Add-a-menu-on-the-navigation-bar" class="headerlink" title="Add a menu on the navigation bar"></a>Add a menu on the navigation bar</h2><p>First of all, edit <code>config/routes.ts</code> and add a new item for your new menu link:</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> [</span><br><span class="line">  <span class="comment">// ... other routes</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">path</span>: <span class="string">&#x27;/mypage&#x27;</span>,</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;My Page&#x27;</span>,</span><br><span class="line">    <span class="attr">icon</span>: <span class="string">&#x27;table&#x27;</span>,</span><br><span class="line">    <span class="attr">component</span>: <span class="string">&#x27;./MyPage&#x27;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+
+<p>In the previous code snippet, we created a menu item call <code>My Page</code> on the navigation bar, which has a path of <code>/mypage</code> in the URL, and it uses a component saved in the file <code>src/pages/MyPage/index.tsx</code>.</p>
+<p>Next, we create the file <code>src/pages/MyPage/index.tsx</code> with the following content:</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>A new page<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  )</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>Then you will be able to visit this ‘&#x2F;mypage’ route, for example <code>http://localhost:8000/mypage</code>.</p>
+<h2 id="ProTable-sort-data-from-server"><a href="#ProTable-sort-data-from-server" class="headerlink" title="ProTable sort data from server"></a>ProTable sort data from server</h2><p><a target="_blank" rel="noopener" href="https://procomponents.ant.design/en-US/components/table">ProTable</a> is a component which can be used to build a CRUD page, it has the following sections:</p>
+<p><img src="/2023/05/02/ant-design-pro-cookbook/protable_overview.png"></p>
+<p>There is an attribute called <code>columns</code>, which is used to specify the columns of the table. For example:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> columns = [</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">title</span>: <span class="string">&#x27;Product name&#x27;</span>,</span><br><span class="line">    <span class="attr">dataIndex</span>: <span class="string">&#x27;title&#x27;</span>,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">title</span>: <span class="string">&#x27;Price&#x27;</span>,</span><br><span class="line">    <span class="attr">sorter</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">valueType</span>: <span class="string">&#x27;money&#x27;</span>,</span><br><span class="line">    <span class="attr">dataIndex</span>: <span class="string">&#x27;price&#x27;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+
+<p>If you click a specific table field header, all the data in the table should be sorted locally or on the server side by this field in ascending order or descending order.</p>
+<p>We are going to sort all the records by the <code>price</code> field on the server side.</p>
+<p>ProTable use the <code>request</code> attribute to fetch data from a remote API endpoint, for example:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="title class_">ProTable</span></span><br><span class="line">  columns=&#123;columns&#125;</span><br><span class="line">  request=&#123;<span class="function">(<span class="params">params,sort,filter</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="comment">// fetch data from remote server</span></span><br><span class="line">    <span class="keyword">const</span> res = <span class="keyword">await</span> <span class="title function_">fetchDataFromServer</span>(&#123;...params&#125;); <span class="comment">// `fetchDataFromServer` should be an async function which return the data needed</span></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      <span class="attr">data</span>: res.<span class="property">data</span>, <span class="comment">// The data to be displayed on current table</span></span><br><span class="line">      <span class="attr">success</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="attr">total</span>: <span class="number">123</span>, <span class="comment">// Total number of recoreds</span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;&#125;</span><br><span class="line">/&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Next, we need to listen to the change event triggered by the click on the field head by using the <code>onChange</code> attribute. Also, in order to trigger the request automatically, we resort to the <code>params</code> attribute, everytime when its values changes, the request callback function will be called.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> [formParams, setFormParams] = <span class="title function_">useState</span>();</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">ProTable</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">  <span class="attr">params</span>=<span class="string">&#123;formParams&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">  <span class="attr">columns</span>=<span class="string">&#123;columns&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">  <span class="attr">request</span>=<span class="string">&#123;(params,sort,filter)</span>=&gt;</span>&#123;</span></span><br><span class="line"><span class="language-xml">    // fetch data from remote server</span></span><br><span class="line"><span class="language-xml">    const res = await fetchDataFromServer(&#123;...params&#125;); // `fetchDataFromServer` should be an async function which return the data needed</span></span><br><span class="line"><span class="language-xml">    return &#123;</span></span><br><span class="line"><span class="language-xml">      data: res.data, // The data to be displayed on current table</span></span><br><span class="line"><span class="language-xml">      success: true,</span></span><br><span class="line"><span class="language-xml">      total: 123, // Total number of recoreds</span></span><br><span class="line"><span class="language-xml">    &#125;;</span></span><br><span class="line"><span class="language-xml">  &#125;&#125;</span></span><br><span class="line"><span class="language-xml">  onChange=&#123;(pagination, filters, sorter, extra) =&gt; &#123;</span></span><br><span class="line"><span class="language-xml">    if (extra.action === &#x27;sort&#x27;) &#123;</span></span><br><span class="line"><span class="language-xml">      // Update formParams</span></span><br><span class="line"><span class="language-xml">      setFormParams(sorter.order ? &#123;</span></span><br><span class="line"><span class="language-xml">        sort: &#123;</span></span><br><span class="line"><span class="language-xml">          field: sorter.field,</span></span><br><span class="line"><span class="language-xml">          order: sorter.order</span></span><br><span class="line"><span class="language-xml">        &#125;</span></span><br><span class="line"><span class="language-xml">      &#125; : &#123;&#125;);</span></span><br><span class="line"><span class="language-xml">    &#125;</span></span><br><span class="line"><span class="language-xml">  &#125;&#125;</span></span><br><span class="line"><span class="language-xml">/&gt;</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jiaopucun.com/2023/05/02/ant-design-pro-cookbook/" data-id="clt1mgvh8000w80vi66vd6wa3" class="article-share-link">Share</a>
+      
+        <a href="https://jiaopucun.com/2023/05/02/ant-design-pro-cookbook/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ant-Design/" rel="tag">Ant Design</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ant-Design-Pro/" rel="tag">Ant Design Pro</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/05/03/strapi-troubleshooting/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Strapi Troubleshooting
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/04/23/how-to-access-a-local-sqlite-database/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">How to access a local SQLite database</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  
+  <div id="disqus_thread"></div>
+  <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+      var disqus_config = function () {
+        this.page.url = 'https://jiaopucun.com/2023/05/02/ant-design-pro-cookbook/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '1683039238000'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://jiaopucun.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/">Backend</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Database/">Database</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Debugging/">Debugging</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Testing/">Testing</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/">Tools</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/AWS-EC2/" style="font-size: 10px;">AWS EC2</a> <a href="/tags/Adminer/" style="font-size: 10px;">Adminer</a> <a href="/tags/Ant-Design/" style="font-size: 10px;">Ant Design</a> <a href="/tags/Ant-Design-Pro/" style="font-size: 10px;">Ant Design Pro</a> <a href="/tags/Apache/" style="font-size: 10px;">Apache</a> <a href="/tags/Charles/" style="font-size: 14px;">Charles</a> <a href="/tags/Chrome-DevTools/" style="font-size: 10px;">Chrome DevTools</a> <a href="/tags/Cloudflare/" style="font-size: 10px;">Cloudflare</a> <a href="/tags/CommonJS/" style="font-size: 10px;">CommonJS</a> <a href="/tags/DNS/" style="font-size: 10px;">DNS</a> <a href="/tags/Database/" style="font-size: 10px;">Database</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Docusaurus/" style="font-size: 10px;">Docusaurus</a> <a href="/tags/Domain/" style="font-size: 10px;">Domain</a> <a href="/tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="/tags/ESM/" style="font-size: 10px;">ESM</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Jest/" style="font-size: 12px;">Jest</a> <a href="/tags/Knex/" style="font-size: 10px;">Knex</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MySQL/" style="font-size: 12px;">MySQL</a> <a href="/tags/NPM/" style="font-size: 12px;">NPM</a> <a href="/tags/Node/" style="font-size: 14px;">Node</a> <a href="/tags/Nodemailer/" style="font-size: 10px;">Nodemailer</a> <a href="/tags/PostgreSQL/" style="font-size: 10px;">PostgreSQL</a> <a href="/tags/Prettier/" style="font-size: 10px;">Prettier</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/SQLite/" style="font-size: 10px;">SQLite</a> <a href="/tags/SWR/" style="font-size: 10px;">SWR</a> <a href="/tags/Strapi/" style="font-size: 14px;">Strapi</a> <a href="/tags/TypeScript/" style="font-size: 18px;">TypeScript</a> <a href="/tags/VS-Code/" style="font-size: 10px;">VS Code</a> <a href="/tags/Vite/" style="font-size: 16px;">Vite</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/WordPress/" style="font-size: 12px;">WordPress</a> <a href="/tags/Yarn/" style="font-size: 10px;">Yarn</a> <a href="/tags/database/" style="font-size: 10px;">database</a> <a href="/tags/hapi/" style="font-size: 10px;">hapi</a> <a href="/tags/proxy/" style="font-size: 10px;">proxy</a> <a href="/tags/rollup-js/" style="font-size: 10px;">rollup.js</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/02/25/how-to-disable-windows-defender/">How to disable Windows Defender</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/22/create-a-hapi-server-with-knex-and-mysql/">Create a Hapi Server with Knex and MySQL</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/01/test-react-custom-hooks-with-jest-and-testing-library/">Test React Custom Hooks with Jest and Testing Library</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/31/jest-vite-typescript/">Setup Jest with Vite and TypeScript</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/30/how-to-create-react-functional-components-in-typescript/">How to create React functional components in TypeScript</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2024 rainyjune<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/projects" class="mobile-nav-link">Projects</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+  
+  <script id="dsq-count-scr" src="//jiaopucun.disqus.com/count.js" async></script>
+
+</body>
+</html>
