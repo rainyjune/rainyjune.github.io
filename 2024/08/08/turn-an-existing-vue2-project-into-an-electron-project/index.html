@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+
+  
+  <title>Turn an existing Vue 2 project into an Electron project | SummerTown</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Install Electron and required packgesFirst of all, make sure you have installed Vue CLI: 1npm install -g @vue&#x2F;cli  Install Electron and Electron builder in your project: 1vue add electron-builder  Upd">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Turn an existing Vue 2 project into an Electron project">
+<meta property="og:url" content="https://jiaopucun.com/2024/08/08/turn-an-existing-vue2-project-into-an-electron-project/index.html">
+<meta property="og:site_name" content="SummerTown">
+<meta property="og:description" content="Install Electron and required packgesFirst of all, make sure you have installed Vue CLI: 1npm install -g @vue&#x2F;cli  Install Electron and Electron builder in your project: 1vue add electron-builder  Upd">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-08-08T09:08:43.000Z">
+<meta property="article:modified_time" content="2026-09-03T15:14:02.275Z">
+<meta property="article:author" content="rainyjune">
+<meta property="article:tag" content="Electron">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="SummerTown" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">SummerTown</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/projects">Projects</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <button id="theme-toggle" type="button" class="button action has-icon theme-switcher-menu small" aria-haspopup="menu">
+          <span class="button-wrap">
+            <span class="icon icon-theme"></span>
+            Theme
+          </span>
+        </button>
+      </nav>
+      <div id="search-form-wrap">
+        <form id="searchform" action="#" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button></form><div id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-turn-an-existing-vue2-project-into-an-electron-project" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2024/08/08/turn-an-existing-vue2-project-into-an-electron-project/" class="article-date">
+  <time datetime="2024-08-08T09:08:43.000Z" itemprop="datePublished">2024-08-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Turn an existing Vue 2 project into an Electron project
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Install-Electron-and-required-packges"><span class="toc-text">Install Electron and required packges</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Update-vue-config-js"><span class="toc-text">Update vue.config.js</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Update-background-js"><span class="toc-text">Update background.js</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Run-your-electron-app"><span class="toc-text">Run your electron app</span></a></li></ol>
+      
+        <h2 id="Install-Electron-and-required-packges"><a href="#Install-Electron-and-required-packges" class="headerlink" title="Install Electron and required packges"></a>Install Electron and required packges</h2><p>First of all, make sure you have installed Vue CLI:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g @vue/cli</span><br></pre></td></tr></table></figure>
+
+<p>Install Electron and Electron builder in your project:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue add electron-builder</span><br></pre></td></tr></table></figure>
+
+<h2 id="Update-vue-config-js"><a href="#Update-vue-config-js" class="headerlink" title="Update vue.config.js"></a>Update <code>vue.config.js</code></h2><p>Create or update <code>vue.config.js</code> in the root of your project to include Electron Builder configuration.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">pluginOptions</span>: &#123;</span><br><span class="line">    <span class="attr">electronBuilder</span>: &#123;</span><br><span class="line">      <span class="attr">builderOptions</span>: &#123;</span><br><span class="line">        <span class="attr">appId</span>: <span class="string">&quot;com.example.app&quot;</span>,</span><br><span class="line">        <span class="attr">productName</span>: <span class="string">&quot;My Vue Electron App&quot;</span>,</span><br><span class="line">        <span class="comment">// See more https://www.electron.build/configuration/configuration</span></span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Update-background-js"><a href="#Update-background-js" class="headerlink" title="Update background.js"></a>Update <code>background.js</code></h2><p>Electron builder will create a file named <code>background.js</code> under the folder <code>src</code> as the main file. Modify this file when needed.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&quot;use strict&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; app, protocol, <span class="title class_">BrowserWindow</span> &#125; <span class="keyword">from</span> <span class="string">&quot;electron&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">  createProtocol,</span><br><span class="line">  <span class="comment">/* installVueDevtools */</span></span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">&quot;vue-cli-plugin-electron-builder/lib&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> path <span class="keyword">from</span> <span class="string">&quot;path&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> isDevelopment = process.<span class="property">env</span>.<span class="property">NODE_ENV</span> !== <span class="string">&quot;production&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Scheme must be registered before the app is ready</span></span><br><span class="line">protocol.<span class="title function_">registerSchemesAsPrivileged</span>([</span><br><span class="line">  &#123; <span class="attr">scheme</span>: <span class="string">&quot;app&quot;</span>, <span class="attr">privileges</span>: &#123; <span class="attr">secure</span>: <span class="literal">true</span>, <span class="attr">standard</span>: <span class="literal">true</span> &#125; &#125;,</span><br><span class="line">]);</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">createWindow</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// Create the browser window.</span></span><br><span class="line">  <span class="keyword">const</span> win = <span class="keyword">new</span> <span class="title class_">BrowserWindow</span>(&#123;</span><br><span class="line">    <span class="attr">width</span>: <span class="number">800</span>,</span><br><span class="line">    <span class="attr">height</span>: <span class="number">600</span>,</span><br><span class="line">    <span class="attr">webPreferences</span>: &#123;</span><br><span class="line">      <span class="comment">// Use pluginOptions.nodeIntegration, leave this alone</span></span><br><span class="line">      <span class="attr">contextIsolation</span>: !process.<span class="property">env</span>.<span class="property">ELECTRON_NODE_INTEGRATION</span>,</span><br><span class="line">      <span class="attr">enableRemoteModule</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="attr">preload</span>: path.<span class="title function_">join</span>(__dirname, <span class="string">&quot;preload.js&quot;</span>),</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (process.<span class="property">env</span>.<span class="property">WEBPACK_DEV_SERVER_URL</span>) &#123;</span><br><span class="line">    <span class="comment">// Load the url of the dev server if in development mode</span></span><br><span class="line">    <span class="keyword">await</span> win.<span class="title function_">loadURL</span>(process.<span class="property">env</span>.<span class="property">WEBPACK_DEV_SERVER_URL</span>);</span><br><span class="line">    <span class="keyword">if</span> (!process.<span class="property">env</span>.<span class="property">IS_TEST</span>) win.<span class="property">webContents</span>.<span class="title function_">openDevTools</span>();</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="title function_">createProtocol</span>(<span class="string">&quot;app&quot;</span>);</span><br><span class="line">    <span class="comment">// Load the index.html when not in development</span></span><br><span class="line">    win.<span class="title function_">loadURL</span>(<span class="string">&quot;app://./index.html&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Quit when all windows are closed.</span></span><br><span class="line">app.<span class="title function_">on</span>(<span class="string">&quot;window-all-closed&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// On macOS it is common for applications and their menu bar</span></span><br><span class="line">  <span class="comment">// to stay active until the user quits explicitly with Cmd + Q</span></span><br><span class="line">  <span class="keyword">if</span> (process.<span class="property">platform</span> !== <span class="string">&quot;darwin&quot;</span>) &#123;</span><br><span class="line">    app.<span class="title function_">quit</span>();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">on</span>(<span class="string">&quot;activate&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// On macOS it is common to re-create a window even after all windows have been closed</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="title class_">BrowserWindow</span>.<span class="title function_">getAllWindows</span>().<span class="property">length</span> === <span class="number">0</span>) <span class="title function_">createWindow</span>();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// This method will be called when Electron has finished</span></span><br><span class="line"><span class="comment">// initialization and is ready to create browser windows.</span></span><br><span class="line"><span class="comment">// Some APIs can only be used after this event occurs.</span></span><br><span class="line">app.<span class="title function_">on</span>(<span class="string">&quot;ready&quot;</span>, <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">  <span class="keyword">if</span> (isDevelopment &amp;&amp; !process.<span class="property">env</span>.<span class="property">IS_TEST</span>) &#123;</span><br><span class="line">    <span class="comment">// Install Vue Devtools</span></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="comment">// await installVueDevtools()</span></span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&quot;Vue Devtools failed to install:&quot;</span>, e.<span class="title function_">toString</span>());</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">createWindow</span>();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Exit cleanly on request from parent process in development mode.</span></span><br><span class="line"><span class="keyword">if</span> (isDevelopment) &#123;</span><br><span class="line">  <span class="keyword">if</span> (process.<span class="property">platform</span> === <span class="string">&quot;win32&quot;</span>) &#123;</span><br><span class="line">    process.<span class="title function_">on</span>(<span class="string">&quot;message&quot;</span>, <span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (data === <span class="string">&quot;graceful-exit&quot;</span>) &#123;</span><br><span class="line">        app.<span class="title function_">quit</span>();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    process.<span class="title function_">on</span>(<span class="string">&quot;SIGTERM&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">      app.<span class="title function_">quit</span>();</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Run-your-electron-app"><a href="#Run-your-electron-app" class="headerlink" title="Run your electron app"></a>Run your electron app</h2><p>Finally, run your Electron app with the following command:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run electron:serve</span><br></pre></td></tr></table></figure>
+
+<p>To build your app:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run electron:build</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jiaopucun.com/2024/08/08/turn-an-existing-vue2-project-into-an-electron-project/" data-id="cmtlpow6q008bbjo5b2ggcqvf" class="article-share-link">Share</a>
+      
+        <a href="https://jiaopucun.com/2024/08/08/turn-an-existing-vue2-project-into-an-electron-project/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Electron/" rel="tag">Electron</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/08/11/lazy-loading-components-in-react/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          lazy loading components in react
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/08/08/generate-word-documents-from-a-template-using-nodejs/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Generate word documents(.docx) from a template using Node.js</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  
+  <div id="disqus_thread"></div>
+  <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+      var disqus_config = function () {
+        this.page.url = 'https://jiaopucun.com/2024/08/08/turn-an-existing-vue2-project-into-an-electron-project/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '1723108123000'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://jiaopucun.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/">Backend</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Database/">Database</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Debugging/">Debugging</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Testing/">Testing</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/">Tools</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ADB/" style="font-size: 10px;">ADB</a> <a href="/tags/AVD/" style="font-size: 10px;">AVD</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/AWS-EC2/" style="font-size: 10px;">AWS EC2</a> <a href="/tags/Adminer/" style="font-size: 11.43px;">Adminer</a> <a href="/tags/Android/" style="font-size: 12.86px;">Android</a> <a href="/tags/Android-Studio/" style="font-size: 10px;">Android Studio</a> <a href="/tags/Android-TV/" style="font-size: 10px;">Android TV</a> <a href="/tags/Ant-Design/" style="font-size: 10px;">Ant Design</a> <a href="/tags/Ant-Design-Pro/" style="font-size: 10px;">Ant Design Pro</a> <a href="/tags/Apache/" style="font-size: 12.86px;">Apache</a> <a href="/tags/Babel/" style="font-size: 10px;">Babel</a> <a href="/tags/Bitbucket/" style="font-size: 11.43px;">Bitbucket</a> <a href="/tags/Charles/" style="font-size: 12.86px;">Charles</a> <a href="/tags/Chrome-DevTools/" style="font-size: 10px;">Chrome DevTools</a> <a href="/tags/Cloudflare/" style="font-size: 10px;">Cloudflare</a> <a href="/tags/CommonJS/" style="font-size: 10px;">CommonJS</a> <a href="/tags/DNS/" style="font-size: 10px;">DNS</a> <a href="/tags/Database/" style="font-size: 10px;">Database</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Docusaurus/" style="font-size: 10px;">Docusaurus</a> <a href="/tags/Domain/" style="font-size: 10px;">Domain</a> <a href="/tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="/tags/ESM/" style="font-size: 10px;">ESM</a> <a href="/tags/Electron/" style="font-size: 15.71px;">Electron</a> <a href="/tags/Electron-Forge/" style="font-size: 10px;">Electron Forge</a> <a href="/tags/Expo/" style="font-size: 10px;">Expo</a> <a href="/tags/Fiddler/" style="font-size: 10px;">Fiddler</a> <a href="/tags/Git/" style="font-size: 11.43px;">Git</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/ISO/" style="font-size: 10px;">ISO</a> <a href="/tags/Jest/" style="font-size: 11.43px;">Jest</a> <a href="/tags/Knex/" style="font-size: 10px;">Knex</a> <a href="/tags/Koa/" style="font-size: 10px;">Koa</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac-OS/" style="font-size: 10px;">Mac OS</a> <a href="/tags/Memcache/" style="font-size: 10px;">Memcache</a> <a href="/tags/Memcached/" style="font-size: 10px;">Memcached</a> <a href="/tags/Micro-Frontend/" style="font-size: 10px;">Micro Frontend</a> <a href="/tags/Micro-Frontends/" style="font-size: 10px;">Micro Frontends</a> <a href="/tags/Mini-Program/" style="font-size: 11.43px;">Mini Program</a> <a href="/tags/Module-Federation/" style="font-size: 10px;">Module Federation</a> <a href="/tags/MySQL/" style="font-size: 12.86px;">MySQL</a> <a href="/tags/NPM/" style="font-size: 12.86px;">NPM</a> <a href="/tags/NVM/" style="font-size: 11.43px;">NVM</a> <a href="/tags/Node/" style="font-size: 15.71px;">Node</a> <a href="/tags/Nodemailer/" style="font-size: 10px;">Nodemailer</a> <a href="/tags/PHP/" style="font-size: 12.86px;">PHP</a> <a href="/tags/PostgreSQL/" style="font-size: 10px;">PostgreSQL</a> <a href="/tags/Postman/" style="font-size: 10px;">Postman</a> <a href="/tags/PowerShell/" style="font-size: 10px;">PowerShell</a> <a href="/tags/Prettier/" style="font-size: 10px;">Prettier</a> <a href="/tags/Privoxy/" style="font-size: 11.43px;">Privoxy</a> <a href="/tags/Proxy/" style="font-size: 12.86px;">Proxy</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-Native/" style="font-size: 12.86px;">React Native</a> <a href="/tags/SQLite/" style="font-size: 10px;">SQLite</a> <a href="/tags/SSH/" style="font-size: 10px;">SSH</a> <a href="/tags/SWR/" style="font-size: 10px;">SWR</a> <a href="/tags/Strapi/" style="font-size: 12.86px;">Strapi</a> <a href="/tags/TanStack-Router/" style="font-size: 10px;">TanStack Router</a> <a href="/tags/TypeScript/" style="font-size: 18.57px;">TypeScript</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/VS-Code/" style="font-size: 10px;">VS Code</a> <a href="/tags/VirtualBox/" style="font-size: 10px;">VirtualBox</a> <a href="/tags/Vite/" style="font-size: 15.71px;">Vite</a> <a href="/tags/Vue/" style="font-size: 17.14px;">Vue</a> <a href="/tags/Vuex/" style="font-size: 10px;">Vuex</a> <a href="/tags/Webpack/" style="font-size: 12.86px;">Webpack</a> <a href="/tags/Windows/" style="font-size: 14.29px;">Windows</a> <a href="/tags/Windows-11/" style="font-size: 14.29px;">Windows 11</a> <a href="/tags/WordPress/" style="font-size: 14.29px;">WordPress</a> <a href="/tags/XAMPP/" style="font-size: 10px;">XAMPP</a> <a href="/tags/Yarn/" style="font-size: 11.43px;">Yarn</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/database/" style="font-size: 10px;">database</a> <a href="/tags/hapi/" style="font-size: 10px;">hapi</a> <a href="/tags/paged-js/" style="font-size: 10px;">paged.js</a> <a href="/tags/phpMyAdmin/" style="font-size: 10px;">phpMyAdmin</a> <a href="/tags/proxy/" style="font-size: 10px;">proxy</a> <a href="/tags/qiankun/" style="font-size: 10px;">qiankun</a> <a href="/tags/rollup-js/" style="font-size: 10px;">rollup.js</a> <a href="/tags/unzip/" style="font-size: 10px;">unzip</a> <a href="/tags/zip/" style="font-size: 10px;">zip</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/09/">September 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/02/">February 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/12/">December 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/11/">November 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/10/">October 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/09/">September 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">June 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/04/">April 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/01/">January 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">November 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/09/">September 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/08/">August 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">July 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/09/03/accessing-bitbucket-git-repositories-over-ssh/">Accessing Bitbucket Git repositories over SSH</a>
+          </li>
+        
+          <li>
+            <a href="/2026/02/07/decode-a-micro-frontend-framework/">decode a micro frontend framework</a>
+          </li>
+        
+          <li>
+            <a href="/2025/12/16/getting-started-with-tanstack-router/">getting-started-with-tanstack-router</a>
+          </li>
+        
+          <li>
+            <a href="/2025/11/10/pagedjs-notes/">paged.js notes</a>
+          </li>
+        
+          <li>
+            <a href="/2025/10/22/setup-react-typescript-project-from-scratch-with-webpack5/">Setup React TypeScript project from scratch with Webpack5</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2026 rainyjune<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/projects" class="mobile-nav-link">Projects</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+<script src="/js/code-copy.js"></script>
+
+  </div>
+  
+  <script id="dsq-count-scr" src="//jiaopucun.disqus.com/count.js" async></script>
+
+</body>
+</html>

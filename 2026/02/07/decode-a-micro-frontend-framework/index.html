@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+
+  
+  <title>decode a micro frontend framework | SummerTown</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="One of the projects I am working on uses a proprietary micro frontend framework as the foundation, which is mainly based on Webpack Module Federation. In this post, I am going to decode the overall fr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="decode a micro frontend framework">
+<meta property="og:url" content="https://jiaopucun.com/2026/02/07/decode-a-micro-frontend-framework/index.html">
+<meta property="og:site_name" content="SummerTown">
+<meta property="og:description" content="One of the projects I am working on uses a proprietary micro frontend framework as the foundation, which is mainly based on Webpack Module Federation. In this post, I am going to decode the overall fr">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-02-07T07:46:20.000Z">
+<meta property="article:modified_time" content="2026-09-03T15:14:02.236Z">
+<meta property="article:author" content="rainyjune">
+<meta property="article:tag" content="Module Federation">
+<meta property="article:tag" content="Micro Frontend">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="SummerTown" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">SummerTown</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/projects">Projects</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <button id="theme-toggle" type="button" class="button action has-icon theme-switcher-menu small" aria-haspopup="menu">
+          <span class="button-wrap">
+            <span class="icon icon-theme"></span>
+            Theme
+          </span>
+        </button>
+      </nav>
+      <div id="search-form-wrap">
+        <form id="searchform" action="#" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button></form><div id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-decode-a-micro-frontend-framework" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2026/02/07/decode-a-micro-frontend-framework/" class="article-date">
+  <time datetime="2026-02-07T07:46:20.000Z" itemprop="datePublished">2026-02-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      decode a micro frontend framework
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#The-main-Tech-Stack"><span class="toc-text">The main Tech Stack</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Repository-structure"><span class="toc-text">Repository structure</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-main-stitcher"><span class="toc-text">The main stitcher</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-mini-stitchers"><span class="toc-text">The mini stitchers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-MFE-repositories"><span class="toc-text">The MFE repositories</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-a-MFE-is-loaded"><span class="toc-text">How a MFE is loaded</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Build"><span class="toc-text">Build</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Deployment"><span class="toc-text">Deployment</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Running-on-the-production-server"><span class="toc-text">Running on the production server</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UI-library"><span class="toc-text">UI library</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Testing"><span class="toc-text">Testing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Security"><span class="toc-text">Security</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Monitoring"><span class="toc-text">Monitoring</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#File-structure-in-a-repo"><span class="toc-text">File structure in a repo</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#File-structure-in-the-src-folder"><span class="toc-text">File structure in the src folder</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#State-Management"><span class="toc-text">State Management</span></a></li></ol>
+      
+        <p>One of the projects I am working on uses a proprietary micro frontend framework as the foundation, which is mainly based on Webpack Module Federation. In this post, I am going to decode the overall framework design.</p>
+<h2 id="The-main-Tech-Stack"><a href="#The-main-Tech-Stack" class="headerlink" title="The main Tech Stack"></a>The main Tech Stack</h2><ul>
+<li>Webpack Module Federation</li>
+<li>React</li>
+<li>Tailwind</li>
+</ul>
+<h2 id="Repository-structure"><a href="#Repository-structure" class="headerlink" title="Repository structure"></a>Repository structure</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">main-stitcher (MAIN STITCHER)</span><br><span class="line">  - admin-stitcher (MINI STITCHER)</span><br><span class="line">    - user-mgmt (MFE)</span><br><span class="line">    - config (MFE)</span><br><span class="line">  - task-list-stitcher (MINI STITCHER)</span><br><span class="line">    - task-list (MFE)</span><br><span class="line">  - appl-stitcher (MINI STITCHER)</span><br><span class="line">    - application (MFE)</span><br><span class="line">    - borrower (MFE)</span><br></pre></td></tr></table></figure>
+
+<p>Each of them is a Node.js project,which has <code>package.json</code>, <code>webpackge.config.js</code> and <code>Dockerfile</code> in the root folder.</p>
+<h2 id="The-main-stitcher"><a href="#The-main-stitcher" class="headerlink" title="The main stitcher"></a>The main stitcher</h2><p>There are two business modules in it, most others are in the MFE repositories:</p>
+<ul>
+<li>Dashboard</li>
+<li>Login</li>
+</ul>
+<p>There is also a <code>register-config.json</code> file which has mini stitcher information.</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;stitcher&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;publicPath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;miniStitcherGroups&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;domainPath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/url/path/to/admin-stitcher&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;miniPublicPath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/admin&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;applicationConfigPath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;http://example.com/url/path/to/admin-stitcher-config.json&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;subApps&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>Note: The file content of the <code>applicationConfigPath</code> file is defined in the mini stitcher repository, which we will see in the next section.</p>
+<h2 id="The-mini-stitchers"><a href="#The-mini-stitchers" class="headerlink" title="The mini stitchers"></a>The mini stitchers</h2><p>There can be many mini stitchers in this structure. There are not many interesting things in a mini stitcher, it’s just a container for closely related sub applications. </p>
+<p>There is a <code>sourcelist.json</code> and <code>mini-stitcher-config.json</code> file in a mini stitcher.</p>
+<p>All sub apps are defined in the <code>sourcelist.json</code> file, it is used by pipeline to pull code from specific repositories and generate the deployable image. </p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">[</span></span><br><span class="line">  <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;repo&quot;</span><span class="punctuation">:</span> <span class="string">&quot;http://git.example.com/path/to/user-mgmt.git&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;branch&quot;</span><span class="punctuation">:</span> <span class="string">&quot;branch_name&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;directory&quot;</span><span class="punctuation">:</span> <span class="string">&quot;user-mgmt&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">]</span></span><br></pre></td></tr></table></figure>
+
+<p>The <code>mini-sitcher-config.json</code> file has runtime configurations in the subapps.</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;subApps&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;user-mgmt&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;entry&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/url/path/to/user-mgmt/index.html&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;alias&quot;</span><span class="punctuation">:</span> <span class="string">&quot;user-mgmt&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;activeRule&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/path/to/active/rule/user&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;container&quot;</span><span class="punctuation">:</span> <span class="string">&quot;#user-mgmt&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;props&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;configuration&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;loginRequired&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="The-MFE-repositories"><a href="#The-MFE-repositories" class="headerlink" title="The MFE repositories"></a>The MFE repositories</h2><p>They are in the lowest layer in the structure. In order to be loaded in the main stitcher, modules need to be exposed in <code>webpack.config.js</code>:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">ModuleFederationPlugin</span>(&#123;</span><br><span class="line">  <span class="attr">exposes</span>: &#123;</span><br><span class="line">    [<span class="string">`./<span class="subst">$&#123;entryName&#125;</span>.index`</span>]: <span class="string">`./src/<span class="subst">$&#123;entryName&#125;</span>.index`</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>We will get a URL for this sub app, something like:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://cdn.example.com/remote/remote-entry.js</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="How-a-MFE-is-loaded"><a href="#How-a-MFE-is-loaded" class="headerlink" title="How a MFE is loaded"></a>How a MFE is loaded</h2><p>When a menu in the main stitcher clicked, the code in the Dashboard will try to get the MFE repository information. Then inject the remote script in the HTML document:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> script = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;script&#x27;</span>);</span><br><span class="line"><span class="variable language_">document</span>.<span class="property">head</span>.<span class="title function_">appendChild</span>(script);</span><br><span class="line"></span><br><span class="line">script.<span class="property">async</span> = <span class="literal">true</span>;</span><br><span class="line">script.<span class="property">onload</span> = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// remote-entry.js has been downloaded and executed.</span></span><br><span class="line">&#125;</span><br><span class="line">script.<span class="property">src</span> = <span class="string">&#x27;https://cdn.example.com/remote/remote-entry.js&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>Note: <code>remote-entry.js</code> does not contain the actual business logic, it is more like a factory.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">window[&quot;remoteApp&quot;] = &#123;</span><br><span class="line">  get: (module) =&gt; &#123; /* returns a module factory */ &#125;,</span><br><span class="line">  init: (shareScope) =&gt; &#123; /* Init shared dependencies */ &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>To call the actual business code, we need to load the component:</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">loadComponent</span>(<span class="params">scope: <span class="built_in">any</span>, <span class="variable language_">module</span>: <span class="built_in">string</span></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">    <span class="comment">// Initializes the share scope. This fills it with known provided modules from this build and all remotes.</span></span><br><span class="line">    <span class="keyword">await</span> <span class="title function_">__webpack_init_sharing__</span>(<span class="string">&#x27;default&#x27;</span>);</span><br><span class="line">    <span class="keyword">const</span> container = scope; <span class="comment">// window[scope] or get the container somewhere else</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!container?.<span class="property">init</span>) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Initialize the container, it may provide shared modules.</span></span><br><span class="line">    <span class="comment">// This will make sure that there is only 1 React instance, etc.</span></span><br><span class="line">    <span class="keyword">await</span> container.<span class="title function_">init</span>(_webpack_share_scopes__.<span class="property">default_</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Download the actual chunk</span></span><br><span class="line">    <span class="keyword">const</span> factory = <span class="keyword">await</span> scope.<span class="title function_">get</span>(<span class="variable language_">module</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Run the module</span></span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">factory</span>();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Build"><a href="#Build" class="headerlink" title="Build"></a>Build</h2><p>There is a <code>build</code> script in the main stitcher and a MFE repository, but not in a mini stitcher.</p>
+<p>This job is done by a seperate pipeline repository <code>microservice_microfrontend.git</code> for mini stitchers. It will read the <code>sourcelist.json</code> file content in a mini stitcher during the deployment, and checkout all the repositores in it, run <code>npm run build</code> command seperately in each repository, finially copy all the generated files into a folder created for this mini stitcher.</p>
+<h2 id="Deployment"><a href="#Deployment" class="headerlink" title="Deployment"></a>Deployment</h2><ul>
+<li>We deploy the mini stitcher instead of individual MFE repos.</li>
+<li>Whenever we make changes in MFE, we will re-deploy the mini stitcher.</li>
+<li>The stitcher images are deployed by Jenkins pipelines using Helm to OpenShift.</li>
+</ul>
+<h2 id="Running-on-the-production-server"><a href="#Running-on-the-production-server" class="headerlink" title="Running on the production server"></a>Running on the production server</h2><ul>
+<li>A Pod is created for each stitcher deployment, which has Apache httpd server installed.</li>
+<li>The built static files during the Jenkins build stage are copied into an Apache image.</li>
+<li>When the Pod starts, Apache servers the static assets, include js files.</li>
+</ul>
+<h2 id="UI-library"><a href="#UI-library" class="headerlink" title="UI library"></a>UI library</h2><p>There is a custom UI library built with React for all the MFE repositories.</p>
+<h2 id="Testing"><a href="#Testing" class="headerlink" title="Testing"></a>Testing</h2><ul>
+<li>Jest</li>
+<li>React Testing library</li>
+</ul>
+<h2 id="Security"><a href="#Security" class="headerlink" title="Security"></a>Security</h2><ul>
+<li>Black Duck</li>
+<li>Sonar Scan</li>
+</ul>
+<h2 id="Monitoring"><a href="#Monitoring" class="headerlink" title="Monitoring"></a>Monitoring</h2><ul>
+<li>Elastic RUM (Real User Monitoring)</li>
+</ul>
+<h2 id="File-structure-in-a-repo"><a href="#File-structure-in-a-repo" class="headerlink" title="File structure in a repo"></a>File structure in a repo</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">|-- config</span><br><span class="line">|-- public</span><br><span class="line">|-- scripts</span><br><span class="line">|-- src</span><br><span class="line">|-- .eslintrc</span><br><span class="line">|-- .prettierrc.js</span><br><span class="line">|-- babel.config.js</span><br><span class="line">|-- Dockerfile</span><br><span class="line">|-- jest.config.js</span><br><span class="line">|-- package.json</span><br><span class="line">|-- sonar.properties</span><br><span class="line">|-- tsconfig.json</span><br><span class="line">|-- webpack.config.js</span><br></pre></td></tr></table></figure>
+
+<h3 id="File-structure-in-the-src-folder"><a href="#File-structure-in-the-src-folder" class="headerlink" title="File structure in the src folder"></a>File structure in the <code>src</code> folder</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">|-- app</span><br><span class="line">|-- assets</span><br><span class="line">|-- i18n</span><br><span class="line">|-- styles</span><br><span class="line">|-- types</span><br><span class="line">|-- App.app.tsx</span><br><span class="line">|-- App.bootstrap.tsx // The entry point</span><br><span class="line">|-- App.communication.ts</span><br><span class="line">|-- App.config.ts</span><br><span class="line">|-- App.constants.ts</span><br><span class="line">|-- App.index.tsx</span><br><span class="line">|-- App.interface.ts</span><br><span class="line">|-- typings.d.ts</span><br></pre></td></tr></table></figure>
+
+<h2 id="State-Management"><a href="#State-Management" class="headerlink" title="State Management"></a>State Management</h2><p>The framework uses <code>@ngneat/elf</code> and <code>@ngneat/elf-persist-state</code> to store and manage the global state.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jiaopucun.com/2026/02/07/decode-a-micro-frontend-framework/" data-id="cmtlpow52002ibjo504p45ir9" class="article-share-link">Share</a>
+      
+        <a href="https://jiaopucun.com/2026/02/07/decode-a-micro-frontend-framework/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Micro-Frontend/" rel="tag">Micro Frontend</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Module-Federation/" rel="tag">Module Federation</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2026/09/03/accessing-bitbucket-git-repositories-over-ssh/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Accessing Bitbucket Git repositories over SSH
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2025/12/16/getting-started-with-tanstack-router/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">getting-started-with-tanstack-router</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  
+  <div id="disqus_thread"></div>
+  <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+      var disqus_config = function () {
+        this.page.url = 'https://jiaopucun.com/2026/02/07/decode-a-micro-frontend-framework/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '1770450380000'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://jiaopucun.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/">Backend</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Database/">Database</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Debugging/">Debugging</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Testing/">Testing</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/">Tools</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ADB/" style="font-size: 10px;">ADB</a> <a href="/tags/AVD/" style="font-size: 10px;">AVD</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/AWS-EC2/" style="font-size: 10px;">AWS EC2</a> <a href="/tags/Adminer/" style="font-size: 11.43px;">Adminer</a> <a href="/tags/Android/" style="font-size: 12.86px;">Android</a> <a href="/tags/Android-Studio/" style="font-size: 10px;">Android Studio</a> <a href="/tags/Android-TV/" style="font-size: 10px;">Android TV</a> <a href="/tags/Ant-Design/" style="font-size: 10px;">Ant Design</a> <a href="/tags/Ant-Design-Pro/" style="font-size: 10px;">Ant Design Pro</a> <a href="/tags/Apache/" style="font-size: 12.86px;">Apache</a> <a href="/tags/Babel/" style="font-size: 10px;">Babel</a> <a href="/tags/Bitbucket/" style="font-size: 11.43px;">Bitbucket</a> <a href="/tags/Charles/" style="font-size: 12.86px;">Charles</a> <a href="/tags/Chrome-DevTools/" style="font-size: 10px;">Chrome DevTools</a> <a href="/tags/Cloudflare/" style="font-size: 10px;">Cloudflare</a> <a href="/tags/CommonJS/" style="font-size: 10px;">CommonJS</a> <a href="/tags/DNS/" style="font-size: 10px;">DNS</a> <a href="/tags/Database/" style="font-size: 10px;">Database</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Docusaurus/" style="font-size: 10px;">Docusaurus</a> <a href="/tags/Domain/" style="font-size: 10px;">Domain</a> <a href="/tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="/tags/ESM/" style="font-size: 10px;">ESM</a> <a href="/tags/Electron/" style="font-size: 15.71px;">Electron</a> <a href="/tags/Electron-Forge/" style="font-size: 10px;">Electron Forge</a> <a href="/tags/Expo/" style="font-size: 10px;">Expo</a> <a href="/tags/Fiddler/" style="font-size: 10px;">Fiddler</a> <a href="/tags/Git/" style="font-size: 11.43px;">Git</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/ISO/" style="font-size: 10px;">ISO</a> <a href="/tags/Jest/" style="font-size: 11.43px;">Jest</a> <a href="/tags/Knex/" style="font-size: 10px;">Knex</a> <a href="/tags/Koa/" style="font-size: 10px;">Koa</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac-OS/" style="font-size: 10px;">Mac OS</a> <a href="/tags/Memcache/" style="font-size: 10px;">Memcache</a> <a href="/tags/Memcached/" style="font-size: 10px;">Memcached</a> <a href="/tags/Micro-Frontend/" style="font-size: 10px;">Micro Frontend</a> <a href="/tags/Micro-Frontends/" style="font-size: 10px;">Micro Frontends</a> <a href="/tags/Mini-Program/" style="font-size: 11.43px;">Mini Program</a> <a href="/tags/Module-Federation/" style="font-size: 10px;">Module Federation</a> <a href="/tags/MySQL/" style="font-size: 12.86px;">MySQL</a> <a href="/tags/NPM/" style="font-size: 12.86px;">NPM</a> <a href="/tags/NVM/" style="font-size: 11.43px;">NVM</a> <a href="/tags/Node/" style="font-size: 15.71px;">Node</a> <a href="/tags/Nodemailer/" style="font-size: 10px;">Nodemailer</a> <a href="/tags/PHP/" style="font-size: 12.86px;">PHP</a> <a href="/tags/PostgreSQL/" style="font-size: 10px;">PostgreSQL</a> <a href="/tags/Postman/" style="font-size: 10px;">Postman</a> <a href="/tags/PowerShell/" style="font-size: 10px;">PowerShell</a> <a href="/tags/Prettier/" style="font-size: 10px;">Prettier</a> <a href="/tags/Privoxy/" style="font-size: 11.43px;">Privoxy</a> <a href="/tags/Proxy/" style="font-size: 12.86px;">Proxy</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-Native/" style="font-size: 12.86px;">React Native</a> <a href="/tags/SQLite/" style="font-size: 10px;">SQLite</a> <a href="/tags/SSH/" style="font-size: 10px;">SSH</a> <a href="/tags/SWR/" style="font-size: 10px;">SWR</a> <a href="/tags/Strapi/" style="font-size: 12.86px;">Strapi</a> <a href="/tags/TanStack-Router/" style="font-size: 10px;">TanStack Router</a> <a href="/tags/TypeScript/" style="font-size: 18.57px;">TypeScript</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/VS-Code/" style="font-size: 10px;">VS Code</a> <a href="/tags/VirtualBox/" style="font-size: 10px;">VirtualBox</a> <a href="/tags/Vite/" style="font-size: 15.71px;">Vite</a> <a href="/tags/Vue/" style="font-size: 17.14px;">Vue</a> <a href="/tags/Vuex/" style="font-size: 10px;">Vuex</a> <a href="/tags/Webpack/" style="font-size: 12.86px;">Webpack</a> <a href="/tags/Windows/" style="font-size: 14.29px;">Windows</a> <a href="/tags/Windows-11/" style="font-size: 14.29px;">Windows 11</a> <a href="/tags/WordPress/" style="font-size: 14.29px;">WordPress</a> <a href="/tags/XAMPP/" style="font-size: 10px;">XAMPP</a> <a href="/tags/Yarn/" style="font-size: 11.43px;">Yarn</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/database/" style="font-size: 10px;">database</a> <a href="/tags/hapi/" style="font-size: 10px;">hapi</a> <a href="/tags/paged-js/" style="font-size: 10px;">paged.js</a> <a href="/tags/phpMyAdmin/" style="font-size: 10px;">phpMyAdmin</a> <a href="/tags/proxy/" style="font-size: 10px;">proxy</a> <a href="/tags/qiankun/" style="font-size: 10px;">qiankun</a> <a href="/tags/rollup-js/" style="font-size: 10px;">rollup.js</a> <a href="/tags/unzip/" style="font-size: 10px;">unzip</a> <a href="/tags/zip/" style="font-size: 10px;">zip</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/09/">September 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/02/">February 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/12/">December 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/11/">November 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/10/">October 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/09/">September 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">June 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/04/">April 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/01/">January 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">November 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/09/">September 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/08/">August 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">July 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/09/03/accessing-bitbucket-git-repositories-over-ssh/">Accessing Bitbucket Git repositories over SSH</a>
+          </li>
+        
+          <li>
+            <a href="/2026/02/07/decode-a-micro-frontend-framework/">decode a micro frontend framework</a>
+          </li>
+        
+          <li>
+            <a href="/2025/12/16/getting-started-with-tanstack-router/">getting-started-with-tanstack-router</a>
+          </li>
+        
+          <li>
+            <a href="/2025/11/10/pagedjs-notes/">paged.js notes</a>
+          </li>
+        
+          <li>
+            <a href="/2025/10/22/setup-react-typescript-project-from-scratch-with-webpack5/">Setup React TypeScript project from scratch with Webpack5</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2026 rainyjune<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/projects" class="mobile-nav-link">Projects</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+<script src="/js/code-copy.js"></script>
+
+  </div>
+  
+  <script id="dsq-count-scr" src="//jiaopucun.disqus.com/count.js" async></script>
+
+</body>
+</html>
