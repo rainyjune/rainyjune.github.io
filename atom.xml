@@ -6,7 +6,7 @@
   <link href="https://jiaopucun.com/atom.xml" rel="self"/>
   
   <link href="https://jiaopucun.com/"/>
-  <updated>2026-09-03T15:58:25.134Z</updated>
+  <updated>2026-09-05T01:27:08.026Z</updated>
   <id>https://jiaopucun.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Uninstall an Ubuntu app installed from a deb package</title>
+    <link href="https://jiaopucun.com/2026/09/05/uninstall-an-ubuntu-app-installed-from-a-deb-package/"/>
+    <id>https://jiaopucun.com/2026/09/05/uninstall-an-ubuntu-app-installed-from-a-deb-package/</id>
+    <published>2026-09-05T01:05:18.000Z</published>
+    <updated>2026-09-05T01:27:08.026Z</updated>
+    
+    <content type="html"><![CDATA[<p>If you have installed an Ubuntu app from a <code>.deb</code> package, you can uninstall it using <code>apt</code> and <code>dpkg</code>.</p><h2 id="Find-the-package-name"><a href="#Find-the-package-name" class="headerlink" title="Find the package name"></a>Find the package name</h2><p>If you still have the <code>.deb</code> file:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dpkg-deb -f your-app.deb Package</span><br></pre></td></tr></table></figure><p>For example:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dpkg-deb -f code.deb Package</span><br></pre></td></tr></table></figure><p>It might return:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">code</span><br></pre></td></tr></table></figure><p>Tip: If you don’t have the <code>.deb</code> file, search your installed packages:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dpkg -l | grep -i <span class="string">&quot;app-name&quot;</span></span><br></pre></td></tr></table></figure><p>For example, if you installed Visual Studio Code:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dpkg -l | grep -i code</span><br></pre></td></tr></table></figure><p>You might see:</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ii  code 1.134.0-1787078834 amd64 Code editing. Redefined.</span><br></pre></td></tr></table></figure><h2 id="Uninstall-it"><a href="#Uninstall-it" class="headerlink" title="Uninstall it"></a>Uninstall it</h2><p>Use:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt remove package-name</span><br></pre></td></tr></table></figure><p>For example:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt remove code</span><br></pre></td></tr></table></figure><p>This removes the application but generally keeps its configuration files.</p><h2 id="Completely-remove-it"><a href="#Completely-remove-it" class="headerlink" title="Completely remove it"></a>Completely remove it</h2><p>If you want to remove the package’s system-level configuration files:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt purge package-name</span><br></pre></td></tr></table></figure><p>Then clean up unused dependencies:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt autoremove</span><br></pre></td></tr></table></figure><p>It is generally recommended to use <code>apt remove</code> rather than manually deleting files. This properly removes the files registered by the <code>.deb</code> package.</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;If you have installed an Ubuntu app from a &lt;code&gt;.deb&lt;/code&gt; package, you can uninstall it using &lt;code&gt;apt&lt;/code&gt; and &lt;code&gt;dpkg&lt;/code&gt;.&lt;</summary>
+      
+    
+    
+    
+    
+    <category term="Ubuntu" scheme="https://jiaopucun.com/tags/Ubuntu/"/>
+    
+  </entry>
   
   <entry>
     <title>Accessing Bitbucket Git repositories over SSH</title>
@@ -64,6 +86,28 @@
     <category term="Module Federation" scheme="https://jiaopucun.com/tags/Module-Federation/"/>
     
     <category term="Micro Frontend" scheme="https://jiaopucun.com/tags/Micro-Frontend/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>The Roadblocks of uni-app: How I Solved Them</title>
+    <link href="https://jiaopucun.com/2026/01/24/the-roadblocks-of-uni-app-how-i-solved-them/"/>
+    <id>https://jiaopucun.com/2026/01/24/the-roadblocks-of-uni-app-how-i-solved-them/</id>
+    <published>2026-01-24T09:33:09.000Z</published>
+    <updated>2026-09-05T02:49:52.151Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="The-paths-of-css-and-js-files-in-the-generated-index-html-starts-with"><a href="#The-paths-of-css-and-js-files-in-the-generated-index-html-starts-with" class="headerlink" title="The paths of css and js files in the generated index.html starts with /."></a>The paths of css and js files in the generated <code>index.html</code> starts with <code>/</code>.</h2><p>This can be a problem if your app is not hosted in the domain root.</p><p><strong>Solution</strong>: Configure vite.config.js (Vite Projects)</p><p>If using Vite (uni-app Vue3 projects):</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// vite.config.js</span></span><br><span class="line"><span class="keyword">import</span> &#123; defineConfig &#125; <span class="keyword">from</span> <span class="string">&#x27;vite&#x27;</span></span><br><span class="line"><span class="keyword">import</span> uni <span class="keyword">from</span> <span class="string">&#x27;@dcloudio/vite-plugin-uni&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">defineConfig</span>(&#123;</span><br><span class="line">  <span class="attr">plugins</span>: [<span class="title function_">uni</span>()],</span><br><span class="line">  <span class="attr">base</span>: <span class="string">&#x27;./&#x27;</span> <span class="comment">// Set to relative path</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><h2 id="Access-to-CSS-stylesheet-at-‘xxx-css’-from-origin-‘null’-has-been-blocked-by-CORS-policy-Cross-origin-requests-are-only-supported-for-protocol-schemes-chrome-extension-chrome-untrusted-data-edge-http-https-isolated-app"><a href="#Access-to-CSS-stylesheet-at-‘xxx-css’-from-origin-‘null’-has-been-blocked-by-CORS-policy-Cross-origin-requests-are-only-supported-for-protocol-schemes-chrome-extension-chrome-untrusted-data-edge-http-https-isolated-app" class="headerlink" title="Access to CSS stylesheet at ‘xxx.css’ from origin ‘null’ has been blocked by CORS policy: Cross origin requests are only supported for protocol schemes: chrome-extension, chrome-untrusted, data, edge, http, https, isolated-app."></a>Access to CSS stylesheet at ‘xxx.css’ from origin ‘null’ has been blocked by CORS policy: Cross origin requests are only supported for protocol schemes: chrome-extension, chrome-untrusted, data, edge, http, https, isolated-app.</h2><p>In this case you’re trying to open the <code>index.html</code> file directly from the filesystem (<code>file://</code> protocol), which triggers CORS (Cross-Origin Resource Sharing) restrictions in modern browsers. The paths in your HTML are already correct (<code>./assets/...</code>), but browsers block <code>file://</code> protocol requests for security reasons.</p><p><strong>Quick Solutions:</strong> Use a Local HTTP Server, instead of opening <code>index.html</code> directly, serve it through a local HTTP server.</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;The-paths-of-css-and-js-files-in-the-generated-index-html-starts-with&quot;&gt;&lt;a href=&quot;#The-paths-of-css-and-js-files-in-the-generated-inde</summary>
+      
+    
+    
+    
+    
+    <category term="uni-app" scheme="https://jiaopucun.com/tags/uni-app/"/>
     
   </entry>
   
@@ -434,54 +478,6 @@
     
     
     <category term="Bitbucket" scheme="https://jiaopucun.com/tags/Bitbucket/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>How to install NVM (Node Version Manager) on macOS</title>
-    <link href="https://jiaopucun.com/2024/12/29/how-to-install-nvm-node-version-manager-on-macos/"/>
-    <id>https://jiaopucun.com/2024/12/29/how-to-install-nvm-node-version-manager-on-macos/</id>
-    <published>2024-12-29T04:14:37.000Z</published>
-    <updated>2026-09-03T15:14:02.252Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="Install-amp-Update-Script"><a href="#Install-amp-Update-Script" class="headerlink" title="Install &amp; Update Script"></a>Install &amp; Update Script</h2><p>To install nvm, download the <a href="https://github.com/nvm-sh/nvm/blob/v0.40.1/install.sh">install script</a> and make it executable.</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod +x install.sh</span><br><span class="line">sh install.sh</span><br></pre></td></tr></table></figure><p>Since macOS 10.15, the default shell is <code>zsh</code> and nvm will look for <code>.zshrc</code> to update, none is installed by default. Create one with <code>touch ~/.zshrc</code>:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch ~/.zshrc</span><br></pre></td></tr></table></figure><p>Add the source lines to <code>.zshrc</code> profile file:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export NVM_DIR=&quot;$([ -z &quot;$&#123;XDG_CONFIG_HOME-&#125;&quot; ] &amp;&amp; printf %s &quot;$&#123;HOME&#125;/.nvm&quot; || printf %s &quot;$&#123;XDG_CONFIG_HOME&#125;/nvm&quot;)&quot;</span><br><span class="line">[ -s &quot;$NVM_DIR/nvm.sh&quot; ] &amp;&amp; \. &quot;$NVM_DIR/nvm.sh&quot; # This loads nvm</span><br></pre></td></tr></table></figure><h2 id="Verify-your-installation"><a href="#Verify-your-installation" class="headerlink" title="Verify your installation"></a>Verify your installation</h2><p>You can verify that NVM is installed by running:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm --version</span><br></pre></td></tr></table></figure><h2 id="Install-Node-js-using-NVM"><a href="#Install-Node-js-using-NVM" class="headerlink" title="Install Node.js using NVM"></a>Install Node.js using NVM</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ nvm use 16</span><br><span class="line">Now using node v16.9.1 (npm v7.21.1)</span><br><span class="line">$ node -v</span><br><span class="line">v16.9.1</span><br><span class="line">$ nvm use 14</span><br><span class="line">Now using node v14.18.0 (npm v6.14.15)</span><br><span class="line">$ node -v</span><br><span class="line">v14.18.0</span><br><span class="line">$ nvm install 12</span><br><span class="line">Now using node v12.22.6 (npm v6.14.5)</span><br><span class="line">$ node -v</span><br><span class="line">v12.22.6</span><br></pre></td></tr></table></figure><h2 id="Troubleshooting"><a href="#Troubleshooting" class="headerlink" title="Troubleshooting"></a>Troubleshooting</h2><p>If you have this error:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir: /Users/rainyjune/.nvm/alias: Permission denied</span><br></pre></td></tr></table></figure><p>Change permission on the <code>.nvm</code> directory:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod -R 777 ~/.nvm </span><br></pre></td></tr></table></figure><p>yarn corepack error: “Error when performing the request to <a href="https://registry.npmjs.org/yarn/latest">https://registry.npmjs.org/yarn/latest</a>“, please run the command below in your terminal:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export COREPACK_NPM_REGISTRY=https://registry.npmmirror.com</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;Install-amp-Update-Script&quot;&gt;&lt;a href=&quot;#Install-amp-Update-Script&quot; class=&quot;headerlink&quot; title=&quot;Install &amp;amp; Update Script&quot;&gt;&lt;/a&gt;Install &amp;</summary>
-      
-    
-    
-    
-    
-    <category term="NVM" scheme="https://jiaopucun.com/tags/NVM/"/>
-    
-    <category term="Mac OS" scheme="https://jiaopucun.com/tags/Mac-OS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Installing the latest version of MySQL on Windows 11</title>
-    <link href="https://jiaopucun.com/2024/12/24/installing-the-latest-version-of-mysql-on-windows-11/"/>
-    <id>https://jiaopucun.com/2024/12/24/installing-the-latest-version-of-mysql-on-windows-11/</id>
-    <published>2024-12-24T15:29:36.000Z</published>
-    <updated>2026-09-03T15:14:02.270Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="Download-MySQL-Installer"><a href="#Download-MySQL-Installer" class="headerlink" title="Download MySQL Installer"></a>Download MySQL Installer</h2><p>Go to the official MySQL website: <a href="https://dev.mysql.com/downloads/installer/">https://dev.mysql.com/downloads/installer/</a></p><p>Choose MySQL Installer for Windows (<code>.msi</code> file). Download the “MySQL Installer (Full)” (larger size) to avoid downloading additional components later.</p><h2 id="Run-the-Installer"><a href="#Run-the-Installer" class="headerlink" title="Run the Installer"></a>Run the Installer</h2><p>Double-click the downloaded <code>.msi</code> file to launch the installer.</p><p>Choose the “<strong>Custom</strong>“ installation if you want to select components manually or specify install directories for its components.</p><p><img src="/2024/12/24/installing-the-latest-version-of-mysql-on-windows-11/mysql_installer_setup_type_custom.png"></p><p>And in the next step, you go to Advanced Options and specify the location to install.</p><p><img src="/2024/12/24/installing-the-latest-version-of-mysql-on-windows-11/mysql_installer_select_products_advanced_options.jpg"></p><p>NOTE: Select each item first, then Advanced Options will be visible.</p><p><img src="/2024/12/24/installing-the-latest-version-of-mysql-on-windows-11/mysql_installer_install_directory.png"></p><h2 id="Installation-Process"><a href="#Installation-Process" class="headerlink" title="Installation Process"></a>Installation Process</h2><ol><li>Click <strong>Next</strong> to continue.</li><li>The installer may download and install required dependencies like <strong>Visual C++ Redistributable</strong>.</li><li>Once ready, click <strong>Execute</strong> to install MySQL.</li></ol><h2 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h2><ol><li>Server Configuration</li></ol><ul><li>Choose Standalone MySQL Server.</li><li>Select <strong>Development Machine</strong> for minimal memory usage or <strong>Server Machine</strong> for production.</li></ul><ol start="2"><li>Connectivity</li></ol><ul><li>Leave the default <strong>TCP&#x2F;IP (port 3306)</strong> or change if necessary.</li><li>Ensure <strong>Firewall Exception</strong> is enabled.</li></ul><ol start="3"><li>Authentication</li></ol><ul><li>Choose <strong>Strong Password Encryption</strong> (Recommended).</li><li>Set the root password (keep it safe).</li></ul><ol start="4"><li>Accounts</li></ol><ul><li>Create a MySQL user (optional, root user can manage everything).</li></ul><ol start="5"><li>Windows Service</li></ol><ul><li>Name the service (default is <code>MySQL80</code>).</li><li>Select <strong>Run as a Standard System Account</strong>.</li></ul><h2 id="Execute-and-Complete-Installation"><a href="#Execute-and-Complete-Installation" class="headerlink" title="Execute and Complete Installation"></a>Execute and Complete Installation</h2><ul><li>Click <strong>Execute</strong> to apply configurations.</li><li>Once done, click <strong>Finish</strong></li></ul><h2 id="Add-MySQL-to-System-Path-Optional-for-CLI-Use"><a href="#Add-MySQL-to-System-Path-Optional-for-CLI-Use" class="headerlink" title="Add MySQL to System Path (Optional for CLI Use)"></a>Add MySQL to System Path (Optional for CLI Use)</h2><ol><li>Go to <strong>Settings</strong> &gt; <strong>System</strong> &gt; <strong>About</strong> &gt; <strong>Advanced System Settings</strong> &gt; <strong>Environment Variables</strong>.</li><li>In <strong>System Variables</strong>, find <code>Path</code> and click <strong>Edit</strong>.</li><li>Add:</li></ol><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Program Files\MySQL\MySQL Server 8.0\bin</span><br></pre></td></tr></table></figure><ol start="4"><li>Restart Command Prompt and verify:</li></ol><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql --version</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;Download-MySQL-Installer&quot;&gt;&lt;a href=&quot;#Download-MySQL-Installer&quot; class=&quot;headerlink&quot; title=&quot;Download MySQL Installer&quot;&gt;&lt;/a&gt;Download MySQL</summary>
-      
-    
-    
-    
-    
-    <category term="Windows 11" scheme="https://jiaopucun.com/tags/Windows-11/"/>
-    
-    <category term="MySQL" scheme="https://jiaopucun.com/tags/MySQL/"/>
     
   </entry>
   
