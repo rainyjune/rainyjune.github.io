@@ -9,15 +9,15 @@
   
   <title>Electron installation Errors | SummerTown</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Electron is a framework for building desktop applications using JavaScript, HTML and CSS. When you are following the tutorial on the official website, you might have problems when you try to install t">
+  <meta name="description" content="Electron is a framework for building desktop applications using JavaScript, HTML and CSS. Fail to install ElectronWhen you are following the tutorial on the official website, you might have problems w">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Electron installation Errors">
 <meta property="og:url" content="https://jiaopucun.com/2023/01/04/Electron-installation-Errors/index.html">
 <meta property="og:site_name" content="SummerTown">
-<meta property="og:description" content="Electron is a framework for building desktop applications using JavaScript, HTML and CSS. When you are following the tutorial on the official website, you might have problems when you try to install t">
+<meta property="og:description" content="Electron is a framework for building desktop applications using JavaScript, HTML and CSS. Fail to install ElectronWhen you are following the tutorial on the official website, you might have problems w">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-01-04T14:52:52.000Z">
-<meta property="article:modified_time" content="2026-09-03T15:14:02.211Z">
+<meta property="article:modified_time" content="2026-09-09T12:57:13.325Z">
 <meta property="article:author" content="rainyjune">
 <meta property="article:tag" content="Electron">
 <meta name="twitter:card" content="summary">
@@ -100,28 +100,27 @@
       </header>
     
     <div class="article-entry" itemprop="articleBody">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Build-errors"><span class="toc-text">Build errors</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Fail-to-install-Electron"><span class="toc-text">Fail to install Electron</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Build-errors"><span class="toc-text">Build errors</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ERROR-Cannot-create-symbolic-link"><span class="toc-text">ERROR: Cannot create symbolic link</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sandbox-issue"><span class="toc-text">Sandbox issue</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#npm-warn-Unknown-project-config-%E2%80%9CELECTRON-MIRROR%E2%80%9D"><span class="toc-text">npm warn Unknown project config “ELECTRON_MIRROR”</span></a></li></ol>
       
         <p><a target="_blank" rel="noopener" href="https://www.electronjs.org/">Electron</a> is a framework for building desktop applications using JavaScript, HTML and CSS.</p>
-<p>When you are following the tutorial on the official website, you might have problems when you try to install the <code>electron</code> package:</p>
+<h2 id="Fail-to-install-Electron"><a href="#Fail-to-install-Electron" class="headerlink" title="Fail to install Electron"></a>Fail to install Electron</h2><p>When you are following the tutorial on the official website, you might have problems when you try to install the <code>electron</code> package:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install electron --save-dev</span><br></pre></td></tr></table></figure>
 
 <p>You might come across error messages such as <code>Electron RequestError: connect ETIMEDOUT 20.205.243.166:443</code>. This problem is so common that many developers are asking the same question all the time, even the official document has given <a target="_blank" rel="noopener" href="https://www.electronjs.org/docs/latest/tutorial/installation">their solution</a>.</p>
 <p>To summarise, if you are a developer who is living in China, you can simply create a <code>.npmrc</code> in your project root folder, then add this line into the file:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">electron_mirror=https://npmmirror.com/mirrors/electron/</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ELECTRON_MIRROR=&quot;https://npmmirror.com/mirrors/electron/&quot;</span><br></pre></td></tr></table></figure>
 
 <p>Save and close the file. Try the command above again, you should be able to install Electron now.</p>
 <p>Alternatively, you can also set NPM config settings by running:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># yarn</span><br><span class="line">yarn config set electron_mirror https://npmmirror.com/mirrors/electron/</span><br><span class="line"></span><br><span class="line"># npm</span><br><span class="line"></span><br><span class="line">npm config set ELECTRON_MIRROR https://npmmirror.com/mirrors/electron/</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># yarn</span></span><br><span class="line">yarn config <span class="built_in">set</span> electron_mirror https://npmmirror.com/mirrors/electron/</span><br><span class="line"></span><br><span class="line"><span class="comment"># npm</span></span><br><span class="line">npm config <span class="built_in">set</span> ELECTRON_MIRROR https://npmmirror.com/mirrors/electron/</span><br></pre></td></tr></table></figure>
 
 <h2 id="Build-errors"><a href="#Build-errors" class="headerlink" title="Build errors"></a>Build errors</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/electron-userland/electron-builder-binaries/releases/download/winCodeSign-2.6.0/winCodeSign-2.6.0.7z&quot;: dial tcp 20.205.243.166:443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond</span><br></pre></td></tr></table></figure>
 
 <p>Solution: Configure proxy in npm</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm config set proxy http://127.0.0.1:7890</span><br><span class="line">npm config set https-proxy http://127.0.0.1:7890</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm config <span class="built_in">set</span> proxy http://127.0.0.1:7890</span><br><span class="line">npm config <span class="built_in">set</span> https-proxy http://127.0.0.1:7890</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ERROR: Cannot create symbolic link</span><br></pre></td></tr></table></figure>
 
-<p>Solution:</p>
+<h2 id="ERROR-Cannot-create-symbolic-link"><a href="#ERROR-Cannot-create-symbolic-link" class="headerlink" title="ERROR: Cannot create symbolic link"></a>ERROR: Cannot create symbolic link</h2><p>Solution:</p>
 <p>This error usually happens on Windows when electron-builder tries to create a symbolic link (symlink) during packaging.</p>
 <p>By default, electron-builder sometimes uses symlinks to save space in node_modules. But on Windows:</p>
 <ul>
@@ -134,11 +133,24 @@
 <li>Turn on <strong>Developer Mode</strong>.</li>
 <li>This allows symlink creation without needing admin.</li>
 </ul>
+<h2 id="Sandbox-issue"><a href="#Sandbox-issue" class="headerlink" title="Sandbox issue"></a>Sandbox issue</h2><p>You may have this sandbox issue while starting your electron apps:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[4998:0909/201959.792204:FATAL:sandbox/linux/suid/client/setuid_sandbox_host.cc:166] The SUID sandbox helper binary was found, but is not configured correctly. Rather than run without sandboxing I&#x27;m aborting now. You need to make sure that /home/username/Public/my-electron-app/node_modules/electron/dist/chrome-sandbox is owned by root and has mode 4755.</span><br><span class="line">/home/username/Public/my-electron-app/node_modules/electron/dist/electron exited with signal SIGTRAP</span><br></pre></td></tr></table></figure>
 
+<p>Solution 1: Set the SUID permission on chrome-sandbox (recommended)</p>
+<p>Run these commands:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Navigate to your project directory</span></span><br><span class="line"><span class="built_in">cd</span> /home/username/Public/my-electron-app</span><br><span class="line"></span><br><span class="line"><span class="comment"># Set ownership to root and set SUID permissions</span></span><br><span class="line">sudo <span class="built_in">chown</span> root:root node_modules/electron/dist/chrome-sandbox</span><br><span class="line">sudo <span class="built_in">chmod</span> 4755 node_modules/electron/dist/chrome-sandbox</span><br></pre></td></tr></table></figure>
+
+<p>Solution 2: Run with sandbox disabled (Temporary fix)</p>
+<p>It’s the easiest way but not recommended for production.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Run Electron with sandbox disabled</span></span><br><span class="line">electron . --no-sandbox</span><br></pre></td></tr></table></figure>
+
+<h2 id="npm-warn-Unknown-project-config-“ELECTRON-MIRROR”"><a href="#npm-warn-Unknown-project-config-“ELECTRON-MIRROR”" class="headerlink" title="npm warn Unknown project config “ELECTRON_MIRROR”"></a>npm warn Unknown project config “ELECTRON_MIRROR”</h2><p>The <code>ELECTRON_MIRROR</code> warning is because npm is moving away from allowing arbitrary config names in <code>.npmrc</code>.</p>
+<p>To fix the npm warning, we can Set the mirror directly in the <code>start</code> script:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;start&quot;</span><span class="punctuation">:</span> <span class="string">&quot;ELECTRON_MIRROR=https://npmmirror.com/mirrors/electron/ npm start&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://jiaopucun.com/2023/01/04/Electron-installation-Errors/" data-id="cmtnsislv0007rjo50tkj46wb" class="article-share-link">Share</a>
+      <a data-url="https://jiaopucun.com/2023/01/04/Electron-installation-Errors/" data-id="cmtxwx5oy00071do568tt14ve" class="article-share-link">Share</a>
       
         <a href="https://jiaopucun.com/2023/01/04/Electron-installation-Errors/#disqus_thread" class="article-comment-link">Comments</a>
       
